@@ -12,6 +12,18 @@ terminale, doppia lingua ITA/EN, form contatti senza backend (mailto).
 Collaudato sull'homelab casalingo (Apache + Let's Encrypt, accesso solo LAN)
 prima della pubblicazione qui.
 
+## Mappa del sito
+
+```
+index.html (Home — profilo, stack, download CV)
+├── about.html (About — valori e percorso)
+├── projects.html (Progetti)
+├── certifications.html (Certificazioni e formazione)
+├── contact.html (Contatti)
+├── cv/cv-stefano-pucci.pdf
+└── footer, in ogni pagina → Email · LinkedIn · CV · GitHub
+```
+
 ## Struttura
 
 ```
