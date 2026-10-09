@@ -3,6 +3,15 @@
 Portfolio personale statico: Network Engineer & System Architect.
 HTML + CSS + JavaScript vanilla, zero dipendenze/build.
 
+## Come è nato
+
+Progetto nato nel 2026 durante il corso di specializzazione Sistemista
+Informatico (Confindustria Ancona): serviva un portfolio per presentare
+competenze, certificazioni e progetti. Scritto a mano in HTML/CSS/JS con tema
+terminale, doppia lingua ITA/EN, form contatti senza backend (mailto).
+Collaudato sull'homelab casalingo (Apache + Let's Encrypt, accesso solo LAN)
+prima della pubblicazione qui.
+
 ## Struttura
 
 ```
