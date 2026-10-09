@@ -1,0 +1,16 @@
+# locali / OS
+.DS_Store
+Thumbs.db
+*.log
+contact-log.txt
+
+# backup e materiale interno (mai nel repo)
+Confidustria-pu/
+CONFIG_STEPS.md
+GUIDA_CODICE.*
+backup-*.tar.gz
+*.zip
+
+# tool
+.node_modules/
+.venv/

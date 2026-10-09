@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.contact">Contatti - Stefano Pucci</title>
+  <meta name="description" content="Contatta Stefano Pucci per opportunità professionali, progetti e collaborazioni.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="grid-bg">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">stefano_pucci</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+        <li><a href="projects.html" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
+        <li><a href="contact.html" class="active" data-i18n="nav.contact">CONTATTI</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn lang-btn-it active" data-lang="it" data-i18n="nav.lang_it">ITA</button>
+        <button class="lang-btn lang-btn-en" data-lang="en" data-i18n="nav.lang_en">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">
+          <span class="line"></span>
+          <span data-i18n="contact.label">ESTABLISH_CONNECTION</span>
+        </div>
+        <h2 data-i18n-html="contact.title">Contatti &amp; <span>Connessione</span></h2>
+        <p data-i18n="contact.desc">&gt; Inizia una connessione sicura &mdash; ti rispondo entro 24h</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-form-wrap">
+          <div class="secure-badge">
+            <span class="secure-dot"></span>
+            <span class="secure-label" data-i18n="contact.secure_label">SECURE_CHANNEL</span>
+            <span class="secure-text" data-i18n="contact.secure_text">Si apre il tuo client email &bull; Nessun dato salvato sul sito</span>
+          </div>
+
+          <form id="contact-form">
+            <div class="form-group">
+              <label class="form-label" data-i18n="contact.form_name_label">NOME *</label>
+              <input type="text" name="name" data-i18n-placeholder="contact.form_name_plh" placeholder="Il tuo nome" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" data-i18n="contact.form_email_label">EMAIL *</label>
+              <input type="email" name="email" data-i18n-placeholder="contact.form_email_plh" placeholder="email@esempio.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" data-i18n="contact.form_subject_label">OGGETTO</label>
+              <input type="text" name="subject" data-i18n-placeholder="contact.form_subject_plh" placeholder="Oggetto del messaggio">
+            </div>
+            <div class="form-group">
+              <label class="form-label" data-i18n="contact.form_msg_label">MESSAGGIO *</label>
+              <textarea name="message" data-i18n-placeholder="contact.form_msg_plh" placeholder="Descrivi il tuo progetto, la tua richiesta o proposta di collaborazione..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-submit">
+              <span class="btn-text" data-i18n="contact.form_btn">INVIA_MESSAGGIO</span>
+              <span class="btn-loader" style="display:none;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+                <span data-i18n="contact.form_loading">INVIO IN CORSO...</span>
+              </span>
+            </button>
+          </form>
+
+          <div id="form-success" style="display:none;">
+            <div class="success-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00FF41" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3 class="success-title" data-i18n="contact.success_title">EMAIL_PRONTA</h3>
+            <p class="success-text" data-i18n="contact.success_text">Si &egrave; aperto il tuo client email con il messaggio pronto. Premi invio l&igrave; per spedire.</p>
+            <button class="btn btn-outline btn-sm" id="btn-new-connection"><span data-i18n="contact.success_btn">NUOVA_CONNESSIONE</span></button>
+          </div>
+        </div>
+
+        <div class="contact-info">
+          <div class="contact-info-card">
+            <span class="section-label-inline" data-i18n="contact.direct_label">CANALI_DIRETTI</span>
+            <div class="contact-channels">
+              <a href="mailto:stefano.informatico@gmail.com" class="channel">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <div>
+                  <span class="channel-label" data-i18n="contact.channel_email">EMAIL</span>
+                  <span class="channel-value">stefano.informatico@gmail.com</span>
+                </div>
+              </a>
+              <a href="tel:+393713946209" class="channel">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <div>
+                  <span class="channel-label" data-i18n="contact.channel_phone">TELEFONO</span>
+                  <span class="channel-value">+39 371 394 6209</span>
+                </div>
+              </a>
+              <a href="https://www.linkedin.com/in/stefano-pucci-08210a19a/" target="_blank" rel="noopener" class="channel">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#00F0FF"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                <div>
+                  <span class="channel-label" data-i18n="contact.channel_linkedin">LINKEDIN</span>
+                  <span class="channel-value">linkedin.com/in/stefano-pucci-08210a19a</span>
+                </div>
+              </a>
+              <div class="channel">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <div>
+                  <span class="channel-label" data-i18n="contact.channel_location">LOCALIT&Agrave;</span>
+                  <span class="channel-value">Mondolfo (PU), Italia</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="availability-card">
+            <div class="avail-dot"></div>
+            <span class="avail-label" data-i18n="contact.avail_label">DISPONIBILE</span>
+            <p class="avail-text" data-i18n="contact.avail_text">Aperto a nuove opportunit&agrave; professionali in ambito sistemistica, networking e infrastrutture IT.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2026 Stefano Pucci</p>
+        <p class="footer-tagline" data-i18n-html="footer.tagline">built with &lt;html&gt; &bull; <span class="prompt-symbol">whoami</span></p>
+        <div class="footer-links">
+          <a href="mailto:stefano.informatico@gmail.com" class="footer-link">Email</a>
+          <span class="footer-sep">|</span>
+          <a href="https://www.linkedin.com/in/stefano-pucci-08210a19a/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+          <span class="footer-sep">|</span>
+          <a href="cv/cv-stefano-pucci.pdf" download class="footer-link">CV</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

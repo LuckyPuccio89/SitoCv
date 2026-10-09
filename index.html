@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.index">Stefano Pucci - Network Engineer &amp; System Architect</title>
+  <meta name="description" content="Portfolio professionale di Stefano Pucci — Sistemista Informatico, Network Engineer e System Architect.">
+  <meta property="og:title" content="Stefano Pucci — Portfolio">
+  <meta property="og:description" content="Sistemista Informatico specializzato in infrastrutture IT, networking e virtualizzazione.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="grid-bg">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">stefano_pucci</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home" class="active">HOME</a></li>
+        <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+        <li><a href="projects.html" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">CONTATTI</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn lang-btn-it active" data-lang="it" data-i18n="nav.lang_it">ITA</button>
+        <button class="lang-btn lang-btn-en" data-lang="en" data-i18n="nav.lang_en">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero scanline">
+    <div class="container">
+      <div class="section-label">
+        <span class="line"></span>
+        <span data-i18n="hero.label">WHO_AM_I</span>
+      </div>
+      <h1>Stefano <span>Pucci</span></h1>
+      <p class="tagline" data-i18n="hero.tagline">Network Engineer &amp; System Architect</p>
+      <p class="subtitle" data-i18n="hero.subtitle">Progettazione e gestione di infrastrutture IT ad alte prestazioni</p>
+      <div class="hero-main">
+        <figure class="hero-photo">
+          <img src="img/foto-cv.png" alt="Foto di Stefano Pucci" loading="eager" fetchpriority="high">
+        </figure>
+        <div id="retro-terminal" class="retro-terminal">
+          <div class="term-crt">
+            <div class="term-screen">
+              <div class="term-output"></div>
+            </div>
+            <div class="term-brand">STEFANO PUCCI — TERMINAL v1.0</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-buttons">
+        <a href="projects.html" class="btn" data-i18n="hero.btn_projects">ESPLORA_PROGETTI</a>
+        <a href="cv/cv-stefano-pucci.pdf" class="btn btn-outline" download data-i18n="hero.btn_cv">SCARICA_CV</a>
+        <a href="contact.html" class="btn btn-ghost" data-i18n="hero.btn_contact">CONTATTI</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">
+          <span class="line"></span>
+          <span data-i18n="overview.label">SEZIONE_01</span>
+        </div>
+        <h2 data-i18n-html="overview.title">Overview <span>Tecnica</span></h2>
+        <p data-i18n="overview.desc">&gt; Stack tecnologico e aree di competenza principali</p>
+      </div>
+
+      <div class="stats-bar">
+        <div class="stat">
+          <span class="stat-value" data-i18n="overview.stat1_value">7+</span>
+          <span class="stat-label" data-i18n="overview.stat1_label">TECNOLOGIE</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" data-i18n="overview.stat2_value">4</span>
+          <span class="stat-label" data-i18n="overview.stat2_label">PROGETTI</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" data-i18n="overview.stat3_value">5</span>
+          <span class="stat-label" data-i18n="overview.stat3_label">CERTIFICAZIONI</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" data-i18n="overview.stat4_value">1800+</span>
+          <span class="stat-label" data-i18n="overview.stat4_label">ORE FORMAZIONE</span>
+        </div>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+          </div>
+          <h3 data-i18n="card1_title">Sistemi Operativi</h3>
+          <p data-i18n="card1_desc">Linux (Debian, Ubuntu, CentOS), Windows Server, Proxmox VE</p>
+          <div class="card-tags">
+            <span class="tag">Linux</span>
+            <span class="tag">Windows</span>
+            <span class="tag">Proxmox</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h3 data-i18n="card2_title">Networking</h3>
+          <p data-i18n="card2_desc">TCP/IP, VLAN, VPN, Firewall, SD-WAN, OSPF, BGP</p>
+          <div class="card-tags">
+            <span class="tag">TCP/IP</span>
+            <span class="tag">VPN</span>
+            <span class="tag">SD-WAN</span>
+            <span class="tag">BGP</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 data-i18n="card3_title">Sicurezza</h3>
+          <p data-i18n="card3_desc">Hardening, IDS/IPS, Backup automation, Vulnerability assessment</p>
+          <div class="card-tags">
+            <span class="tag">Hardening</span>
+            <span class="tag">IDS/IPS</span>
+            <span class="tag">Backup</span>
+            <span class="tag">Monitoring</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">
+          <span class="line"></span>
+          <span data-i18n="cv.label">DOWNLOAD_CV</span>
+        </div>
+        <h2 data-i18n-html="cv.title">Curriculum <span>Vitae</span></h2>
+        <p data-i18n="cv.desc">&gt; Scarica il mio CV in formato PDF</p>
+      </div>
+
+      <div class="cv-download">
+        <div class="cv-download-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+        </div>
+        <div class="cv-download-info">
+          <h3 data-i18n="cv.filename">CV_Stefano_Pucci.pdf</h3>
+          <p data-i18n="cv.updated">Ultimo aggiornamento: Luglio 2026 &bull; Formato PDF</p>
+        </div>
+        <a href="cv/cv-stefano-pucci.pdf" class="btn" download data-i18n="cv.btn">SCARICA</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2026 Stefano Pucci</p>
+        <p class="footer-tagline" data-i18n-html="footer.tagline">built with &lt;html&gt; &bull; <span class="prompt-symbol">whoami</span></p>
+        <div class="footer-links">
+          <a href="mailto:stefano.informatico@gmail.com" class="footer-link">Email</a>
+          <span class="footer-sep">|</span>
+          <a href="https://www.linkedin.com/in/stefano-pucci-08210a19a/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+          <span class="footer-sep">|</span>
+          <a href="cv/cv-stefano-pucci.pdf" download class="footer-link">CV</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/terminal.js"></script>
+</body>
+</html>
