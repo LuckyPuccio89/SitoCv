@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.projects">Progetti - Stefano Pucci</title>
+  <meta name="description" content="Progetti di Stefano Pucci — Sito web portfolio CV, infrastrutture IT e networking.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/style.css?v=20261013b">
+</head>
+<body class="grid-bg">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">stefano_pucci</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+        <li><a href="projects.html" class="active" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="firewall.html" data-i18n="nav.firewall">FIREWALL</a></li>
+        <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">CONTATTI</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn lang-btn-it active" data-lang="it" data-i18n="nav.lang_it">ITA</button>
+        <button class="lang-btn lang-btn-en" data-lang="en" data-i18n="nav.lang_en">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">
+          <span class="line"></span>
+          <span data-i18n="projects.label">SEZIONE_03</span>
+        </div>
+        <h2 data-i18n-html="projects.title">Progetti <span>Realizzati</span></h2>
+        <p data-i18n="projects.desc">&gt; Overview dei progetti completati e in corso</p>
+        <div class="project-links-list" style="margin-top:16px;"><a href="changelog.html" class="btn btn-sm btn-outline"><span data-i18n="cl.label">CHANGELOG</span></a></div>
+      </div>
+
+      <div class="project-featured">
+        <div class="project-featured-badge">
+          <span class="status">
+            <span class="status-dot"></span>
+            <span data-i18n="projects.status_done">COMPLETATO</span>
+          </span>
+          <span class="project-year" data-i18n="projects.homelab_year">Ottobre 2026</span>
+        </div>
+        <h3 class="project-featured-title" data-i18n="projects.homelab_title">Home Lab Data Center</h3>
+        <p class="project-featured-subtitle" data-i18n="projects.homelab_sub">Infrastruttura home lab con firewall, directory service e hosting TLS</p>
+        <div class="project-featured-desc">
+          <p data-i18n="projects.homelab_desc">
+            Progettazione e realizzazione di un data center domestico su singolo nodo Proxmox con firewall OPNsense,
+            domain controller Zentyal AD, segmentazione VLAN e hosting TLS dei servizi web — completato a ottobre 2026.
+            Il rapporto tecnico completo documenta architettura, configurazioni e lezioni apprese.
+          </p>
+        </div>
+
+        <div class="project-tech">
+          <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
+          <div class="project-tech-list">
+            <span class="tag">Proxmox</span>
+            <span class="tag">OPNsense</span>
+            <span class="tag">Zentyal</span>
+            <span class="tag">VLAN</span>
+            <span class="tag">Apache TLS</span>
+          </div>
+        </div>
+
+        <div class="project-links">
+          <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
+          <div class="project-links-list">
+            <a href="homelab-report.html" class="btn btn-sm btn-outline"><span data-i18n="projects.btn_report">LEGGI_RAPPORTO</span></a>
+          </div>
+        </div>
+
+        <div class="project-featured" style="margin-top:48px;">
+          <div class="project-featured-badge">
+            <span class="status">
+              <span class="status-dot"></span>
+              <span data-i18n="projects.status_done">COMPLETATO</span>
+            </span>
+            <span class="project-year" data-i18n="projects.docker_year">Ottobre 2026</span>
+          </div>
+          <h3 class="project-featured-title" data-i18n="projects.docker_title">Docker — Monitoring &amp; Dev</h3>
+          <p class="project-featured-subtitle" data-i18n="projects.docker_sub">7 container in 2 stack compose: monitoraggio e sviluppo del sito</p>
+          <div class="project-featured-desc">
+            <p data-i18n="projects.docker_desc">
+              Due stack Docker Compose sull'host del sito: monitoraggio con Uptime Kuma, Prometheus, exporter e Grafana,
+              più ambiente di sviluppo con code-server e FileBrowser sulla docroot live — con limiti di memoria,
+              restart automatico e volumi dedicati.
+            </p>
+          </div>
+
+          <div class="project-tech">
+            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
+            <div class="project-tech-list">
+              <span class="tag">Docker</span>
+              <span class="tag">Compose</span>
+              <span class="tag">Uptime Kuma</span>
+              <span class="tag">Prometheus</span>
+              <span class="tag">Grafana</span>
+              <span class="tag">code-server</span>
+              <span class="tag">FileBrowser</span>
+            </div>
+          </div>
+
+          <div class="project-links">
+            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
+            <div class="project-links-list">
+              <a href="docker-report.html" class="btn btn-sm btn-outline"><span data-i18n="projects.btn_docker">RAPPORTO_DOCKER</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-featured" style="margin-top:48px;">
+          <div class="project-featured-badge">
+            <span class="status">
+              <span class="status-dot"></span>
+              <span data-i18n="projects.status_done">COMPLETATO</span>
+            </span>
+            <span class="project-year" data-i18n="projects.gtfs_year">Ottobre 2026</span>
+          </div>
+          <h3 class="project-featured-title" data-i18n="projects.gtfs_title">Infomobility GTFS Live</h3>
+          <p class="project-featured-subtitle" data-i18n="projects.gtfs_sub">Fermate reali GTFS + partenze live Viaggiatreno Fano-Ancona</p>
+          <div class="project-featured-desc">
+            <p data-i18n="projects.gtfs_desc">
+              Demo stile monitoraggio ITS Pluservice: fermate reali mdb-1319 (stop_id, lat/lon), 2 linee, 4 corse animate ogni 2s. Il feed ha solo 2 trip: posizioni simulate, documentate in api/gtfs.json.
+            </p>
+          </div>
+
+          <div class="project-tech">
+            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
+            <div class="project-tech-list">
+              <span class="tag">GTFS-like JSON</span>
+              <span class="tag">SVG live</span>
+              <span class="tag">AVM/AVL sim</span>
+              <span class="tag">Vanilla JS</span>
+            </div>
+          </div>
+
+          <div class="project-links">
+            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
+            <div class="project-links-list">
+              <a href="gtfs-demo.html" class="btn btn-sm"><span data-i18n="projects.btn_demo">APRI_DEMO</span></a>
+              <a href="mobility-report.html" class="btn btn-sm btn-outline"><span data-i18n="projects.btn_mrep">RAPPORTO_DETTAGLIATO</span></a>
+              <a href="api/gtfs.json" class="btn btn-sm btn-outline" target="_blank" rel="noopener">API_JSON</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-featured" style="margin-top:48px;">
+          <div class="project-featured-badge">
+            <span class="status">
+              <span class="status-dot"></span>
+              <span data-i18n="projects.status_done">COMPLETATO</span>
+            </span>
+            <span class="project-year" data-i18n="projects.kpi_year">Ottobre 2026</span>
+          </div>
+          <h3 class="project-featured-title" data-i18n="projects.kpi_title">KPI Platform ART</h3>
+          <p class="project-featured-subtitle" data-i18n="projects.kpi_sub">Dashboard delibere ART: puntualita, copertura, soppresse, reclami</p>
+          <div class="project-featured-desc">
+            <p data-i18n="projects.kpi_desc">
+              Demo stile KPI Platform Pluservice: 9 mesi di dati da api/kpi.json, verifica automatica soglie, grafici canvas vanilla e tabella con export CSV locale.
+            </p>
+          </div>
+
+          <div class="project-tech">
+            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
+            <div class="project-tech-list">
+              <span class="tag">ART KPI</span>
+              <span class="tag">Canvas charts</span>
+              <span class="tag">CSV export</span>
+              <span class="tag">Vanilla JS</span>
+            </div>
+          </div>
+
+          <div class="project-links">
+            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
+            <div class="project-links-list">
+              <a href="kpi-demo.html" class="btn btn-sm"><span data-i18n="projects.btn_demo">APRI_DEMO</span></a>
+              <a href="mobility-report.html" class="btn btn-sm btn-outline"><span data-i18n="projects.btn_mrep">RAPPORTO_DETTAGLIATO</span></a>
+              <a href="api/kpi.json" class="btn btn-sm btn-outline" target="_blank" rel="noopener">API_JSON</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-featured" style="margin-top:48px;">
+          <div class="project-featured-badge">
+            <span class="status">
+              <span class="status-dot"></span>
+              <span data-i18n="projects.status_done">COMPLETATO</span>
+            </span>
+            <span class="project-year" data-i18n="projects.kpi_year">Ottobre 2026</span>
+          </div>
+          <h3 class="project-featured-title" data-i18n="projects.gym_title">Palestre Web</h3>
+          <p class="project-featured-subtitle" data-i18n="projects.gym_sub">Terminali didattici: SQL su DB aziendale, HTML e CSS sul sito vero</p>
+          <div class="project-featured-desc">
+            <p data-i18n="projects.gym_desc">
+              Tre palestre senza timer con verifica automatica: Fase 0 ricostruisci il database lab_azienda in sandbox Docker, poi query sul DB condiviso; ricomponi schede, tabelle e form in HTML; rivesti il terminale in CSS.
+            </p>
+          </div>
+
+          <div class="project-tech">
+            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
+            <div class="project-tech-list">
+              <span class="tag">MySQL Docker</span>
+              <span class="tag">PHP sandbox</span>
+              <span class="tag">HTML live</span>
+              <span class="tag">CSS computed</span>
+              <span class="tag">Vanilla JS</span>
+            </div>
+          </div>
+
+          <div class="project-links">
+            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
+            <div class="project-links-list">
+              <a href="lab-sql.html" class="btn btn-sm"><span data-i18n="projects.btn_labsql">PALESTRA_SQL</span></a>
+              <a href="lab-html.html" class="btn btn-sm btn-outline"><span data-i18n="projects.btn_labhtml">PALESTRA_HTML</span></a>
+              <a href="lab-css.html" class="btn btn-sm btn-outline"><span data-i18n="projects.btn_labcss">PALESTRA_CSS</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-featured" style="margin-top:48px;">
+          <div class="project-featured-badge">
+            <span class="status">
+              <span class="status-dot"></span>
+              <span data-i18n="projects.status_done">COMPLETATO</span>
+            </span>
+            <span class="project-year" data-i18n="projects.mikrotik_year">Ottobre 2026</span>
+          </div>
+          <h3 class="project-featured-title" data-i18n="mt.card_title">MikroTik hEX S &mdash; FTTH Italia</h3>
+          <p class="project-featured-subtitle" data-i18n="mt.card_sub">Tutorial di configurazione router per le fibre italiane (PPPoE + VLAN)</p>
+          <div class="project-featured-desc">
+            <p data-i18n="mt.card_desc">
+              Guida passo-passo per configurare un router MikroTik (RouterOS 7) su FTTH italiana: ONT, VLAN di accesso
+              (802.1Q), client PPPoE, NAT, DHCP/DNS e firewall di base &mdash; con tabella dei parametri per i principali
+              operatori e sezione troubleshooting. Nessun indirizzo o credenziale reale pubblicato.
+            </p>
+          </div>
+
+          <div class="project-tech">
+            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
+            <div class="project-tech-list">
+              <span class="tag">MikroTik</span>
+              <span class="tag">RouterOS 7</span>
+              <span class="tag">PPPoE</span>
+              <span class="tag">VLAN 802.1Q</span>
+              <span class="tag">FTTH</span>
+            </div>
+          </div>
+
+          <div class="project-tech" style="margin-top:20px;">
+            <span class="section-label-inline" data-i18n="mt.card_what">COSE_FATTE</span>
+            <ul style="list-style:none;padding:0;margin:12px 0 0;font-size:.82rem;line-height:1.9;color:var(--text-dim);">
+              <li><span style="color:var(--terminal)">&#10003;</span> <span data-i18n="mt.card_w1">Tutorial FTTH pubblicato e indicizzato in sitemap</span></li>
+              <li><span style="color:var(--terminal)">&#10003;</span> <span data-i18n="mt.card_w2">Configurazione di rete e firewall rafforzata (amministrazione solo dalla rete locale)</span></li>
+              <li><span style="color:var(--terminal)">&#10003;</span> <span data-i18n="mt.card_w3">Firewall stateful con blocco di default a valle delle regole di inoltro</span></li>
+              <li><span style="color:var(--terminal)">&#10003;</span> <span data-i18n="mt.card_w4">HTTPS pubblico con certificato valido e redirect http&rarr;https</span></li>
+              <li><span style="color:var(--terminal)">&#10003;</span> <span data-i18n="mt.card_w5">Accesso al sito stabile anche dalla rete interna</span></li>
+              <li><span style="color:var(--terminal)">&#10003;</span> <span data-i18n="mt.card_w6">VPN di amministrazione remota verificata</span></li>
+              <li><span style="color:var(--terminal)">&#10003;</span> <span data-i18n="mt.card_w7">Backup di configurazione eseguiti prima e dopo le modifiche</span></li>
+            </ul>
+          </div>
+
+          <div class="project-links">
+            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
+            <div class="project-links-list">
+              <a href="mikrotik-ftth-italia.html" class="btn btn-sm" data-i18n="mt.card_open">APRI_TUTORIAL</a>
+              <a href="changelog.html" class="btn btn-sm btn-outline">COSE_FATTE</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-featured" style="margin-top:48px;">
+          <div class="project-featured-badge">
+            <span class="status">
+              <span class="status-dot"></span>
+              <span data-i18n="projects.status_live">LIVE</span>
+            </span>
+            <span class="project-year" data-i18n="projects.firewall_year">Ottobre 2026</span>
+          </div>
+          <h3 class="project-featured-title" data-i18n="projects.firewall_title">Firewall Live &mdash; OPNsense &amp; MikroTik</h3>
+          <p class="project-featured-subtitle" data-i18n="projects.firewall_sub">Dashboard di monitoraggio in tempo reale con refresh ogni 30 secondi</p>
+          <div class="project-featured-desc">
+            <p data-i18n="projects.firewall_desc">
+              Pagina pubblica con dati reali e sanitizzati dai due firewall: disponibilit&agrave;, risorse, connessioni,
+              contatori e attacchi rilevati. Backend Prometheus + Grafana, credenziali fuori dalla docroot e pannello
+              Grafana raggiungibile solo dalla rete locale.
+            </p>
+          </div>
+
+          <div class="project-tech">
+            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
+            <div class="project-tech-list">
+              <span class="tag">OPNsense</span>
+              <span class="tag">MikroTik</span>
+              <span class="tag">Prometheus</span>
+              <span class="tag">Grafana</span>
+              <span class="tag">Python</span>
+            </div>
+          </div>
+
+          <div class="project-links">
+            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
+            <div class="project-links-list">
+              <a href="firewall.html" class="btn btn-sm" data-i18n="projects.firewall_btn">APRI_DASHBOARD</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-featured" style="margin-top:48px;">
+          <div class="project-featured-badge">
+            <span class="status">
+              <span class="status-dot"></span>
+              <span data-i18n="projects.status_live">LIVE</span>
+            </span>
+            <span class="project-year" data-i18n="projects.ad_year">Ottobre 2026</span>
+          </div>
+          <h3 class="project-featured-title" data-i18n="projects.ad_title">Active Directory Live</h3>
+          <p class="project-featured-subtitle" data-i18n="projects.ad_sub">Monitoraggio live del domain controller Samba 4.19 su Zentyal</p>
+          <div class="project-featured-desc">
+            <p data-i18n="projects.ad_desc">
+              Pagina pubblica con dati aggregati e sanitizzati dal domain controller: utenti attivi e bloccati,
+              servizi, record SRV, autenticazioni, dbcheck e alert. Exporter Python in sola lettura, Prometheus
+              e 16 regole Grafana con notifica email; nessun nome utente o IP pubblicato.
+            </p>
+          </div>
+
+          <div class="project-tech">
+            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
+            <div class="project-tech-list">
+              <span class="tag">Samba 4.19</span>
+              <span class="tag">Zentyal</span>
+              <span class="tag">Prometheus</span>
+              <span class="tag">Grafana</span>
+              <span class="tag">Python</span>
+            </div>
+          </div>
+
+          <div class="project-links">
+            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
+            <div class="project-links-list">
+              <a href="ad-monitoring.html" class="btn btn-sm" data-i18n="projects.ad_btn">APRI_DASHBOARD</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-featured" style="margin-top:48px;">
+          <div class="project-featured-badge">
+            <span class="status">
+              <span class="status-dot"></span>
+              <span data-i18n="projects.status_done">COMPLETATO</span>
+            </span>
+            <span class="project-year" data-i18n="projects.security_year">Ottobre 2026</span>
+          </div>
+          <h3 class="project-featured-title" data-i18n="projects.security_title">Report di Sicurezza</h3>
+          <p class="project-featured-subtitle" data-i18n="projects.security_sub">Attacchi rilevati, IP bloccati e mitigazioni sull'homelab esposto</p>
+          <div class="project-featured-desc">
+            <p data-i18n="projects.security_desc">
+              Analisi degli accessi non autorizzati al sito pubblico: 45 IP dannosi bloccati nell'address-list MikroTik, 22 paesi, segnalazioni abuse inviate e Fail2ban attivo su Zentyal.
+            </p>
+          </div>
+
+          <div class="project-tech">
+            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
+            <div class="project-tech-list">
+              <span class="tag">MikroTik</span>
+              <span class="tag">Fail2ban</span>
+              <span class="tag">Zentyal</span>
+              <span class="tag">Apache</span>
+            </div>
+          </div>
+
+          <div class="project-links">
+            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
+            <div class="project-links-list">
+              <a href="security.html" class="btn btn-sm"><span data-i18n="projects.security_btn">APRI_REPORT</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-featured" style="margin-top:48px;">
+          <div class="project-featured-badge">
+            <span class="status">
+              <span class="status-dot"></span>
+              <span data-i18n="projects.status_done">COMPLETATO</span>
+            </span>
+            <span class="project-year">Luglio 2026</span>
+          </div>
+          <h3 class="project-featured-title" data-i18n="projects.featured_title">Portfolio CV &mdash; Sito Personale</h3>
+          <p class="project-featured-subtitle" data-i18n="projects.featured_sub">Sito web professionale con curriculum e contatti</p>
+          <div class="project-featured-desc">
+            <p data-i18n="projects.featured_desc">
+              Progettazione e realizzazione di un sito web portfolio professionale per presentare competenze tecniche,
+              certificazioni e progetti nel campo dell'IT e networking. Sito statico a tema terminale/cyberpunk
+              con griglia, effetti scanline e pulsazioni, costruito interamente con HTML, CSS e JavaScript vanilla.
+            </p>
+          </div>
+
+          <div class="project-specs">
+            <div class="project-spec">
+              <span class="project-spec-value" data-i18n="projects.spec1_value">Statico</span>
+              <span class="project-spec-label" data-i18n="projects.spec1_label">TIPO</span>
+            </div>
+            <div class="project-spec">
+              <span class="project-spec-value" data-i18n="projects.spec2_value">100%</span>
+              <span class="project-spec-label" data-i18n="projects.spec2_label">MOBILE READY</span>
+            </div>
+            <div class="project-spec">
+              <span class="project-spec-value" data-i18n="projects.spec3_value">7</span>
+              <span class="project-spec-label" data-i18n="projects.spec3_label">PAGINE</span>
+            </div>
+            <div class="project-spec">
+              <span class="project-spec-value" data-i18n="projects.spec4_value">0</span>
+              <span class="project-spec-label" data-i18n="projects.spec4_label">DIPENDENZE</span>
+            </div>
+          </div>
+
+          <div class="project-tech">
+            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
+            <div class="project-tech-list">
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">EmailJS</span>
+              <span class="tag">Responsive</span>
+            </div>
+          </div>
+
+          <div class="project-links">
+            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
+            <div class="project-links-list">
+              <a href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span data-i18n="projects.btn_source">CODICE_SORGENTE</span>
+              </a>
+              <a href="index.html" class="btn btn-sm"><span data-i18n="projects.btn_visit">VISITA_SITO</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2026 Stefano Pucci</p>
+        <p class="footer-tagline" data-i18n-html="footer.tagline">built with &lt;html&gt; &bull; <span class="prompt-symbol">whoami</span></p>
+        <div class="footer-links">
+          <a href="mailto:stefano.informatico@gmail.com" class="footer-link">Email</a>
+          <span class="footer-sep">|</span>
+          <a href="https://www.linkedin.com/in/stefano-pucci-08210a19a/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+          <span class="footer-sep">|</span>
+          <a href="cv/cv-stefano-pucci.pdf" download class="footer-link">CV</a>
+          <span class="footer-sep">|</span>
+          <a href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js?v=20261019b"></script>
+  <script src="js/report-i18n.js?v=20261019"></script>
+  <script src="js/mikrotik-i18n.js?v=20261019"></script>
+  <script src="js/ad-i18n.js?v=20261021a"></script>
+  <script src="js/main.js?v=20261013b"></script>
+</body>
+</html>
