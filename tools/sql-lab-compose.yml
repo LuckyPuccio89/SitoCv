@@ -1,0 +1,27 @@
+# MySQL palestra in Docker (staging + prod): dati aziendali + sandbox lab_*.
+# Avvio:  docker compose -f tools/sql-lab-compose.yml up -d
+# Dump:   mysqldump azienda_demo > /tmp/azienda_demo.sql
+# Import: docker exec -i tpl-sql-lab mysql -h 127.0.0.1 -uroot -p"$ROOTPW" azienda_demo < /tmp/azienda_demo.sql
+# Utenti: vedi tools/sql/03-lab-sandbox.sql (host) — nel container gli stessi GRANT con host '%'.
+# PHP prova prima 127.0.0.1:3307 (lab_docker_dsn), poi fallback MySQL host. Root pw in /etc/tpl-demo/docker-lab-root.pw (600).
+services:
+  sql-lab:
+    image: mysql:8.0
+    container_name: tpl-sql-lab
+    restart: unless-stopped
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root
+    secrets:
+      - mysql_root
+    ports:
+      - "127.0.0.1:3307:3306"
+    volumes:
+      - tpl-sql-lab-data:/var/lib/mysql
+
+secrets:
+  mysql_root:
+    file: /etc/tpl-demo/docker-lab-root.pw
+
+volumes:
+  tpl-sql-lab-data:

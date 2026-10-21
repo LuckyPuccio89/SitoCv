@@ -48,6 +48,17 @@ python3 -m http.server 8080
 - **Apache:** `DocumentRoot` su questa cartella, vedi `Alias /collaudo-sito` per collaudo interno
 - **Docker (solo host senza Apache su 80/443):** `nginx:alpine` + volume `:ro`
 
+## Poller live (GTFS demo)
+
+- `tools/viaggiatreno-poll.py` → `api/realtime.json` + tabella MySQL `departures` (partenze live Fano/Senigallia/Falconara/Ancona, ogni 5 min):
+  `*/5 * * * * /usr/bin/python3 /var/www/html/tools/viaggiatreno-poll.py --out /var/www/html/api/realtime.json --mysql-cnf /etc/tpl-demo/mysql.cnf`
+- `tools/gtfs-to-json.py` → rigenera fermate reali in `api/gtfs.json` dal feed mdb-1319:
+  `python3 tools/gtfs-to-json.py /tmp/gtfs-marche/marche-latest.zip --out api/gtfs.json`
+- `tools/db-import.php` → importa `api/*.json` in MySQL `tpl_demo` (fermate, linee, mezzi, KPI):
+  `php tools/db-import.php --docroot /var/www/html`
+- `api/query.php` → API readonly su MySQL (stessa forma dei JSON): `?a=status|realtime|gtfs|kpi|stations|departures&st=|delays|routes|bus&line=`
+- Senza cron il sito mostra l'ultimo snapshot con badge STALE, o la simulazione con badge SIMULATO.
+
 ## Note
 
 - Form contatti via `mailto:`, nessun backend / nessuna chiave API nel repo

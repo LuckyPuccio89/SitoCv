@@ -9,7 +9,7 @@
   <meta property="og:description" content="Sistemista Informatico specializzato in infrastrutture IT, networking e virtualizzazione.">
   <meta property="og:type" content="website">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=20261013b">
 </head>
 <body class="grid-bg">
   <nav class="navbar">
@@ -19,6 +19,7 @@
         <li><a href="index.html" data-i18n="nav.home" class="active">HOME</a></li>
         <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
         <li><a href="projects.html" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="firewall.html" data-i18n="nav.firewall">FIREWALL</a></li>
         <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">CONTATTI</a></li>
       </ul>
@@ -55,6 +56,7 @@
         <a href="projects.html" class="btn" data-i18n="hero.btn_projects">ESPLORA_PROGETTI</a>
         <a href="cv/cv-stefano-pucci.pdf" class="btn btn-outline" download data-i18n="hero.btn_cv">SCARICA_CV</a>
         <a href="contact.html" class="btn btn-ghost" data-i18n="hero.btn_contact">CONTATTI</a>
+        <a href="homelab-report.html" class="btn btn-outline" data-i18n="report.hero_btn">RAPPORTO_HOMELAB</a>
       </div>
     </div>
   </header>
@@ -76,16 +78,40 @@
           <span class="stat-label" data-i18n="overview.stat1_label">TECNOLOGIE</span>
         </div>
         <div class="stat">
-          <span class="stat-value" data-i18n="overview.stat2_value">4</span>
+          <span class="stat-value" data-i18n="overview.stat2_value">3</span>
           <span class="stat-label" data-i18n="overview.stat2_label">PROGETTI</span>
         </div>
         <div class="stat">
-          <span class="stat-value" data-i18n="overview.stat3_value">5</span>
+          <span class="stat-value" data-i18n="overview.stat3_value">3</span>
           <span class="stat-label" data-i18n="overview.stat3_label">CERTIFICAZIONI</span>
         </div>
         <div class="stat">
           <span class="stat-value" data-i18n="overview.stat4_value">1800+</span>
           <span class="stat-label" data-i18n="overview.stat4_label">ORE FORMAZIONE</span>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin:0 0 24px;">
+        <span class="line"></span>
+        <span data-i18n="perf.label">SYSTEM_STATUS</span>
+      </div>
+
+      <div class="stats-bar" id="perf-cards">
+        <div class="stat">
+          <span class="stat-value">—</span>
+          <span class="stat-label">CPU</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">—</span>
+          <span class="stat-label">MEM</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">—</span>
+          <span class="stat-label">UPTIME</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">—</span>
+          <span class="stat-label">TARGETS</span>
         </div>
       </div>
 
@@ -174,8 +200,27 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/terminal.js"></script>
+  <script src="js/i18n.js?v=20261019b"></script>
+  <script src="js/report-i18n.js?v=20261019"></script>
+  <script src="js/main.js?v=20261013b"></script>
+  <script src="js/terminal.js?v=20261014"></script>
+  <script src="js/perf.js?v=20261013b"></script>
+  <script>
+    // Live system status (Prometheus -> api/perf.json). Refresh every 120s.
+    document.addEventListener('DOMContentLoaded', function () {
+      function mountPerf() {
+        var el = document.getElementById('perf-cards');
+        if (!el || typeof PERF === 'undefined') return;
+        var lang = (window.LANG && LANG.current) || 'it';
+        PERF.load().then(function (d) {
+          PERF.mountCards(el, d, lang);
+        }).catch(function () {
+          PERF.mountCards(el, null, lang);
+        });
+      }
+      mountPerf();
+      setInterval(mountPerf, 120000);
+    });
+  </script>
 </body>
 </html>

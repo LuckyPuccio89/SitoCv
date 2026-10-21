@@ -432,6 +432,14 @@ body {
   display: block;
 }
 
+.stat-sub {
+  font-size: 0.58rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  margin-top: 2px;
+  display: block;
+}
+
 /* ============================================================
    CARDS
    ============================================================ */

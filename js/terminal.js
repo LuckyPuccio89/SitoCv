@@ -28,8 +28,8 @@ const terminalData = {
   ],
   projects: [
     'Portfolio CV — Sito Personale (2026)',
-    'Home Lab Data Center — In pianificazione',
-    'Architettura SD-WAN — In pianificazione'
+    'Home Lab Data Center — Completato (10/2026)',
+    'Docker Containers — Monitoraggio & Dev (2026)',
   ]
 };
 
@@ -56,9 +56,29 @@ class Terminal {
         });
       },
       projects: () => {
-        const text = this.renderProjects();
-        this.typeOutput(text, () => {
-          this.addLineRaw('  <a href="projects.html" class="term-link">' + LANG.t('term.projects_link') + '</a>');
+        const h = LANG.t('term.projects_header');
+        const inner = 42;
+        const padL = Math.floor((inner - h.length) / 2);
+        const padR = inner - h.length - padL;
+        const header = [
+          '',
+          '\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557',
+          '\u2551' + ' '.repeat(padL) + h + ' '.repeat(padR) + '\u2551',
+          '\u255A\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255D',
+          ''
+        ].join('\n');
+        const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const links = [null, 'homelab-report.html', 'docker-report.html'];
+        this.typeOutput(header, () => {
+          terminalData.projects.forEach((proj, i) => {
+            if (links[i]) {
+              this.addLineRaw('  ' + (i + 1) + '. ' + esc(proj) + ' <a href="' + links[i] + '" class="term-link">[REPORT]</a>');
+            } else {
+              this.addLineRaw('  ' + (i + 1) + '. ' + esc(proj));
+            }
+          });
+          this.addLineRaw('');
+          this.addLineRaw('\u2500'.repeat(44));
           this.scrollToBottom();
           this.showPrompt();
         });
@@ -118,7 +138,7 @@ class Terminal {
       { text: (() => { const fn = l('boot.connected'); const d = new Date().toLocaleDateString(LANG.current === 'en' ? 'en-US' : 'it-IT'); return typeof fn === 'function' ? fn(d) : fn + ' \u2014 ' + d; })(), speed: 12 },
       { text: '', speed: 1 },
       { text: l('boot.load_config'), speed: 12 },
-      { text: '  [\u2713] sito_cv.txt...................', speed: 5 },
+      { text: '  [\u2713] sito_cv.json...................', speed: 5 },
       { text: '', speed: 1 },
       { text: l('boot.initializing'), speed: 10 },
       { text: l('boot.os_stack'), speed: 10 },

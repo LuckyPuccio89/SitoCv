@@ -5,5 +5,18 @@
   <url><loc>https://pucci-homelab.duckdns.org/projects.html</loc><lastmod>2026-10-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://pucci-homelab.duckdns.org/certifications.html</loc><lastmod>2026-10-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://pucci-homelab.duckdns.org/contact.html</loc><lastmod>2026-10-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pucci-homelab.duckdns.org/homelab-report.html</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pucci-homelab.duckdns.org/docker-report.html</loc><lastmod>2026-10-13</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pucci-homelab.duckdns.org/gtfs-demo.html</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pucci-homelab.duckdns.org/mobility-report.html</loc><lastmod>2026-10-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pucci-homelab.duckdns.org/query-terminal.html</loc><lastmod>2026-10-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pucci-homelab.duckdns.org/kpi-demo.html</loc><lastmod>2026-10-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pucci-homelab.duckdns.org/lab-sql.html</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pucci-homelab.duckdns.org/lab-html.html</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pucci-homelab.duckdns.org/lab-css.html</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pucci-homelab.duckdns.org/changelog.html</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://pucci-homelab.duckdns.org/mikrotik-ftth-italia.html</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pucci-homelab.duckdns.org/security.html</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pucci-homelab.duckdns.org/firewall.html</loc><lastmod>2026-10-19</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://pucci-homelab.duckdns.org/ad-monitoring.html</loc><lastmod>2026-10-21</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
 </urlset>

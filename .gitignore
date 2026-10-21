@@ -14,3 +14,10 @@ backup-*.tar.gz
 # tool
 .node_modules/
 .venv/
+
+# snapshot generati dal server (poller), non versionare
+api/ad.json
+api/firewall.json
+api/perf.json
+api/realtime.json
+tools/__pycache__/

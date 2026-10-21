@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.changelog">Changelog - Stefano Pucci</title>
+  <meta name="description" content="Changelog del sito: tutte le versioni dalla nascita a oggi.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/style.css?v=20261013b">
+  <style>
+    .cl-files{font-size:.66rem;color:var(--text-dim);line-height:1.7;margin-top:12px;word-break:break-all}
+    .cl-files code{color:var(--cyan);background:none;padding:0}
+    .cl-ver{display:inline-block;font-size:.7rem;color:var(--cyan);border:1px solid rgba(0,240,255,.25);
+      background:rgba(0,240,255,.06);padding:3px 10px;letter-spacing:.1em;margin-bottom:12px}
+    .cl-date{font-size:.62rem;color:var(--steel);letter-spacing:.1em;margin-bottom:12px;display:block}
+    .demo-note{font-size:.72rem;color:#6a6a7a;margin-top:12px}
+  </style>
+</head>
+<body class="grid-bg">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">stefano_pucci</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+        <li><a href="projects.html" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="firewall.html" data-i18n="nav.firewall">FIREWALL</a></li>
+        <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">CONTATTI</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn lang-btn-it active" data-lang="it">ITA</button>
+        <button class="lang-btn lang-btn-en" data-lang="en">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label"><span class="line"></span><span data-i18n="cl.label">CHANGELOG</span></div>
+        <h2 data-i18n-html="cl.title">Versioni del <span>sito</span></h2>
+        <p data-i18n="cl.desc">&gt; Dalla nascita a oggi — aggiornato a ogni rilascio</p>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <span class="cl-ver">v1.0</span>
+          <span class="cl-date">LUGLIO 2026</span>
+          <h3 data-i18n="cl.v10t">Nascita del portfolio</h3>
+          <p data-i18n="cl.v10d">Sito statico scritto a mano per il corso Sistemista: tema terminale, ITA/EN, form via mailto, CV in PDF, zero dipendenze.</p>
+          <div class="cl-files"><code>index/about/projects/certifications/contact.html</code><br><code>css/style.css js/i18n.js js/main.js</code></div>
+        </div>
+        <div class="card">
+          <span class="cl-ver">v1.1</span>
+          <span class="cl-date">SETT 2026</span>
+          <h3 data-i18n="cl.v11t">Homelab e TLS</h3>
+          <p data-i18n="cl.v11d">Hosting su Apache casalingo con HTTPS, prima in LAN poi pubblico via DuckDNS con redirect http→https.</p>
+          <div class="cl-files"><code>homelab-report.html · robots.txt · sitemap.xml</code></div>
+        </div>
+        <div class="card">
+          <span class="cl-ver">v1.2</span>
+          <span class="cl-date">13/10/2026</span>
+          <h3 data-i18n="cl.v12t">Docker monitoring</h3>
+          <p data-i18n="cl.v12d">7 container in 2 stack compose: Uptime Kuma, Prometheus, Grafana più code-server e FileBrowser. Rapporto dedicato.</p>
+          <div class="cl-files"><code>docker-report.html · js/docker-i18n.js</code></div>
+        </div>
+        <div class="card">
+          <span class="cl-ver">v1.3</span>
+          <span class="cl-date">13/10/2026</span>
+          <h3 data-i18n="cl.v13t">Status live in home</h3>
+          <p data-i18n="cl.v13d">Poller Prometheus che scrive api/perf.json ogni 2 minuti: CPU, RAM, uptime e target visibili in home.</p>
+          <div class="cl-files"><code>api/perf.json · tools/prometheus-poll.py · js/perf.js</code></div>
+        </div>
+        <div class="card">
+          <span class="cl-ver">v2.0</span>
+          <span class="cl-date">14/10/2026</span>
+          <h3 data-i18n="cl.v20t">Demo TPL Pluservice</h3>
+          <p data-i18n="cl.v20d">Mappa AVM simulata e dashboard KPI in stile ART, con API JSON statiche e schede in progetti.</p>
+          <div class="cl-files"><code>gtfs-demo.html · kpi-demo.html · api/gtfs.json · api/kpi.json · js/gtfs.js · js/kpi.js</code></div>
+        </div>
+        <div class="card">
+          <span class="cl-ver">v2.1</span>
+          <span class="cl-date">14/10/2026</span>
+          <h3 data-i18n="cl.v21t">Dati reali + live</h3>
+          <p data-i18n="cl.v21d">Fermate reali dal feed GTFS Trenitalia, quadro ART/Regione Marche, partenze live Viaggiatreno con badge LIVE/STALE e rapporto tecnico.</p>
+          <div class="cl-files"><code>api/realtime.json · js/gtfs-live.js · tools/viaggiatreno-poll.py · tools/gtfs-to-json.py · mobility-report.html</code></div>
+        </div>
+        <div class="card">
+          <span class="cl-ver">v2.2</span>
+          <span class="cl-date">15/10/2026</span>
+          <h3 data-i18n="cl.v22t">Terminale orari</h3>
+          <p data-i18n="cl.v22d">Terminale stile home per interrogare partenze e bus: tabelle con titoli, history frecce, dimensioni fisse. Sito test /collaudo-sito.</p>
+          <div class="cl-files"><code>query-terminal.html · js/query.js</code></div>
+        </div>
+        <div class="card">
+          <span class="cl-ver">v2.3</span>
+          <span class="cl-date">15/10/2026</span>
+          <h3 data-i18n="cl.v23t">Backend MySQL</h3>
+          <p data-i18n="cl.v23d">Database tpl_demo, API PHP readonly con fallback ai JSON, poller che storicizza gli snapshot, utenti least-privilege.</p>
+          <div class="cl-files"><code>api/query.php · tools/sql/01-schema.sql · tools/db-import.php</code></div>
+        </div>
+        <div class="card">
+          <span class="cl-ver">v2.3.1</span>
+          <span class="cl-date">15/10/2026</span>
+          <h3 data-i18n="cl.v231t">Bugfix</h3>
+          <p data-i18n="cl.v231d">Entità &amp;bull; nel live, timezone ISO nello snapshot (badge STALE fantasma), guardia sul box ASCII. Caccia bug a tappeto: resto OK.</p>
+          <div class="cl-files"><code>js/gtfs-live.js · api/query.php · js/query.js</code></div>
+        </div>
+        <div class="card">
+          <span class="cl-ver">v2.4</span>
+          <span class="cl-date">16/10/2026</span>
+          <h3 data-i18n="cl.v24t">Palestre in produzione</h3>
+          <p data-i18n="cl.v24d">SQL, HTML e CSS promosse in produzione: sandbox Docker, verifica automatica, cron live ogni 5/2 min. Giochi bocciati, restano in staging.</p>
+          <div class="cl-files"><code>lab-sql/html/css.html · api/lab-*.php · /etc/cron.d/site-polls</code></div>
+        </div>
+        <div class="card">
+          <span class="cl-ver">v2.5</span>
+          <span class="cl-date">19/10/2026</span>
+          <h3 data-i18n="cl.v25t">Arrivi + bus veri</h3>
+          <p data-i18n="cl.v25d">Tab Arrivi/Partenze Viaggiatreno in produzione e parser PDF Conerobus Linea I (orari reali, monotonia verificata) in staging.</p>
+          <div class="cl-files"><code>tools/viaggiatreno-poll.py · js/gtfs-live.js · tools/conerobus-parse.py · api/bus-i.json</code></div>
+        </div>
+        <div class="card">
+          <span class="cl-ver">v2.9</span>
+          <span class="cl-date">17/10/2026</span>
+          <h3 data-i18n="cl.v29t">Tutorial MikroTik FTTH Italia</h3>
+          <p data-i18n="cl.v29d">Nuova guida passo-passo per configurare un router MikroTik (RouterOS 7) su fibra italiana: ONT, VLAN 802.1Q, PPPoE, NAT, DHCP/DNS e firewall di base, con tabella dei parametri per i principali operatori e sezione troubleshooting. Nessun indirizzo o credenziale reale pubblicato; i comandi omettono la parte finale di pubblicazione servizi.</p>
+          <div class="cl-files"><code>mikrotik-ftth-italia.html · projects.html · sitemap.xml</code></div>
+        </div>
+        <div class="card">
+          <span class="cl-ver">v3.0</span>
+          <span class="cl-date">17/10/2026</span>
+          <h3 data-i18n="cl.v30t">HTTPS pubblico valido</h3>
+          <p data-i18n="cl.v30d">Certificato HTTPS con rinnovo automatico e redirect http&rarr;https per il sito, con consolidamento delle regole di inoltro per ridurre l'esposizione dei servizi interni. Il sito risulta raggiungibile in modo stabile anche dalla rete interna.</p>
+          <div class="cl-files"><code>homelab-report.html · projects.html</code></div>
+        </div>
+        <div class="card">
+          <span class="cl-ver">v3.1</span>
+          <span class="cl-date">17/10/2026</span>
+          <h3 data-i18n="cl.v31t">Hardening di rete + ottimizzazione</h3>
+          <p data-i18n="cl.v31d">Rafforzata la configurazione del router di bordo e del firewall: amministrazione consentita solo dalla rete locale, servizi non necessari disattivati, firewall stateful con blocco di default a valle delle regole di inoltro e ottimizzazione del forwarding. Eseguiti backup di configurazione prima e dopo le modifiche.</p>
+          <div class="cl-files"><code>router · firewall</code></div>
+        </div>
+        <div class="card">
+          <span class="cl-ver">v3.2</span>
+          <span class="cl-date">19/10/2026</span>
+          <h3 data-i18n="cl.v32t">Report sicurezza + manutenzione</h3>
+          <p data-i18n="cl.v32d">Pubblicato il report attacchi con card in progetti, ripristinata la sitemap (host corretto e pagine mancanti) e sistemati i file live GTFS finiti nella radice del docroot.</p>
+          <div class="cl-files"><code>security.html · projects.html · sitemap.xml · js/gtfs-live.js · tools/viaggiatreno-poll.py</code></div>
+        </div>
+        <div class="card">
+          <span class="cl-ver">v3.3</span>
+          <span class="cl-date">19/10/2026</span>
+          <h3 data-i18n="cl.v33t">Firewall Live + guida MikroTik bilingue</h3>
+          <p data-i18n="cl.v33d">Nuova pagina firewall con dashboard aggiornata ogni 30 secondi su OPNsense e MikroTik (Prometheus + Grafana, pannello incorporato solo dalla rete locale), dati reali sanitizzati e nessun segreto esposto. Tradotta in inglese la guida MikroTik e la relativa card nei progetti.</p>
+          <div class="cl-files"><code>firewall.html · js/firewall.js · tools/firewall-exporter.py · mikrotik-ftth-italia.html · projects.html · sitemap.xml</code></div>
+        </div>
+      </div>
+
+      <p class="demo-note" data-i18n="cl.how">Come si aggiorna: nuova card in cima alla griglia + chiavi cl.* in js/i18n.js (copia una voce esistente) + bump sitemap.</p>
+
+      <div class="project-links" style="margin-top:24px">
+        <div class="project-links-list">
+          <a href="projects.html" class="btn btn-sm btn-outline"><span data-i18n="cl.back">TORNA_A_PROGETTI</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-content">
+    <p>&copy; 2026 Stefano Pucci</p>
+    <div class="footer-links"><a href="projects.html" class="footer-link">Progetti</a><span class="footer-sep">|</span><a href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" class="footer-link">GitHub</a></div>
+  </div></div></footer>
+
+  <script src="js/i18n.js?v=20261019b"></script>
+  <script src="js/main.js?v=20261013b"></script>
+</body>
+</html>

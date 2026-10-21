@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="fw.meta_title">Firewall Live — OPNsense &amp; MikroTik - Stefano Pucci</title>
+  <meta name="description" data-i18n-title="fw.meta_desc" content="Dashboard in tempo reale (aggiornamento 30 s) dei firewall OPNsense e MikroTik: disponibilità, risorse, connessioni e attacchi rilevati. Dati sanitizzati, nessun segreto esposto.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/style.css?v=20261013b">
+  <style>
+    .fw-note { border: 1px solid var(--border); border-left: 3px solid var(--cyan); background: var(--bg-card); border-radius: 8px; padding: 12px 16px; color: var(--text); margin: 12px 0 24px; font-size: 12.5px; line-height: 1.6; }
+    .fw-note strong { color: var(--cyan); }
+    .fw-badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 0; }
+    .fw-badge { font-size: 11px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--steel); background: var(--bg-card); }
+    .fw-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 18px 0 30px; }
+    .fw-dev { border: 1px solid var(--border); border-radius: 10px; background: var(--bg-card); padding: 18px; }
+    .fw-dev h3 { font-family: var(--font-mono); font-size: .82rem; letter-spacing: .12em; color: var(--cyan); margin: 0 0 4px; }
+    .fw-dev .role { color: var(--text-dim); font-size: .7rem; margin-bottom: 14px; }
+    .fw-status { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .1em; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--border); margin-bottom: 14px; }
+    .fw-status .dot { width: 8px; height: 8px; border-radius: 50%; background: #ff6b6b; box-shadow: 0 0 8px #ff6b6b; }
+    .fw-status.up { color: #4ade80; border-color: rgba(74,222,128,.35); }
+    .fw-status.up .dot { background: #4ade80; box-shadow: 0 0 8px #4ade80; }
+    .fw-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+    .fw-kpi label { display: block; font-size: .6rem; letter-spacing: .12em; color: var(--text-dim); margin-bottom: 2px; }
+    .fw-kpi b { font-family: var(--font-mono); font-size: 1rem; color: var(--text); font-weight: 600; }
+    .fw-kpi small { color: var(--text-dim); font-size: .62rem; }
+    .fw-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin: 0 0 30px; }
+    .fw-chart { border: 1px solid var(--border); border-radius: 10px; background: var(--bg-card); padding: 14px 16px; }
+    .fw-chart header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+    .fw-chart h4 { margin: 0; font-size: .7rem; letter-spacing: .1em; color: var(--cyan); font-family: var(--font-mono); }
+    .fw-chart .last { font-family: var(--font-mono); font-size: .78rem; color: var(--text); }
+    .fw-chart svg { width: 100%; height: 70px; display: block; }
+    .fw-chart .empty { color: var(--text-dim); font-size: .72rem; padding: 28px 0; text-align: center; }
+    .fw-table { width: 100%; border-collapse: collapse; font-size: .74rem; margin: 8px 0 0; }
+    .fw-table th { text-align: left; color: var(--cyan); font-size: .6rem; letter-spacing: .12em; padding: 8px 10px; border: 1px solid var(--border); background: rgba(0,240,255,.04); }
+    .fw-table td { padding: 7px 10px; border: 1px solid var(--border); color: var(--steel); font-family: var(--font-mono); }
+    .fw-table td:last-child { text-align: right; }
+    .fw-counter-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin: 14px 0 26px; }
+    .fw-counter { border: 1px solid var(--border); border-radius: 10px; background: var(--bg-card); padding: 14px 16px; }
+    .fw-counter label { display: block; font-size: .6rem; letter-spacing: .12em; color: var(--text-dim); margin-bottom: 4px; }
+    .fw-counter b { font-family: var(--font-mono); font-size: 1.35rem; color: var(--text); }
+    .fw-updated { font-family: var(--font-mono); font-size: .68rem; color: var(--text-dim); margin: 0 0 18px; }
+    .fw-grafana { border: 1px solid var(--border); border-radius: 10px; background: var(--bg-card); padding: 18px; margin: 10px 0 30px; }
+    .fw-grafana h3 { color: var(--cyan); font-family: var(--font-mono); font-size: .82rem; letter-spacing: .1em; margin: 0 0 6px; }
+    .fw-grafana p { color: var(--text-dim); font-size: .72rem; margin: 0 0 12px; }
+    .fw-grafana iframe { width: 100%; height: 820px; border: 1px solid var(--border); border-radius: 8px; background: #0b0b10; }
+    .fw-grafana .fallback { border: 1px dashed var(--border); border-radius: 8px; padding: 22px; text-align: center; color: var(--text-dim); font-size: .78rem; }
+    .fw-limit { font-size: .68rem; color: var(--text-dim); margin-top: 10px; }
+  </style>
+</head>
+<body class="grid-bg">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">stefano_pucci</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+        <li><a href="projects.html" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="firewall.html" class="active" data-i18n="nav.firewall">FIREWALL</a></li>
+        <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">CONTATTI</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn lang-btn-it active" data-lang="it" data-i18n="nav.lang_it">ITA</button>
+        <button class="lang-btn lang-btn-en" data-lang="en" data-i18n="nav.lang_en">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label"><span class="line"></span><span data-i18n="fw.label">FIREWALL_LIVE</span></div>
+        <h2 data-i18n-html="fw.title">Firewall <span>Live</span></h2>
+        <p data-i18n="fw.desc">&gt; Monitoraggio OPNsense e MikroTik con aggiornamento ogni 30 secondi &mdash; dati reali, segreti nascosti</p>
+        <div class="fw-badge-row">
+          <span class="fw-badge">OPNsense</span>
+          <span class="fw-badge">MikroTik hEX S</span>
+          <span class="fw-badge">Prometheus</span>
+          <span class="fw-badge">Grafana</span>
+          <span class="fw-badge" data-i18n="fw.badge_refresh">REFRESH 30s</span>
+        </div>
+        <div class="project-links-list" style="margin-top:16px;">
+          <a href="projects.html" class="btn btn-sm btn-outline" data-i18n="fw.back">&larr; PROGETTI</a>
+        </div>
+      </div>
+
+      <div class="fw-note" data-i18n-html="fw.note">
+        <strong>Dati reali, nessun segreto.</strong> La pagina legge uno snapshot JSON generato ogni 30 secondi dal server:
+        MikroTik via SSH in sola lettura (risorse, connessioni, contatori firewall, log attacchi) e OPNsense via probe
+        HTTPS (disponibilità, latenza, scadenza certificato). IP di management, credenziali e configurazioni non vengono
+        mai pubblicati. Dove un dato non è disponibile viene mostrato come <code>n/d</code>, senza simulazioni.
+      </div>
+
+      <p class="fw-updated"><span data-i18n="fw.updated">Ultimo aggiornamento</span>: <span id="fw-updated">—</span> · <span data-i18n="fw.refresh">refresh</span> 30s</p>
+
+      <div class="fw-grid" id="fw-devices">
+        <div class="fw-dev" data-device="opnsense">
+          <h3>OPNsense</h3>
+          <div class="role" data-i18n="fw.role_opnsense">Firewall perimetrale / gateway LAN</div>
+          <span class="fw-status"><span class="dot"></span><span class="state">—</span></span>
+          <div class="fw-kpis">
+            <div class="fw-kpi"><label data-i18n="fw.kpi_latency_api">LATENZA API</label><b data-k="latency">—</b></div>
+            <div class="fw-kpi"><label data-i18n="fw.kpi_tls">CERTIFICATO TLS</label><b data-k="tls">—</b></div>
+            <div class="fw-kpi"><label data-i18n="fw.kpi_cpu">CPU</label><b data-k="cpu">n/d</b></div>
+            <div class="fw-kpi"><label data-i18n="fw.kpi_mem">MEMORIA</label><b data-k="mem">n/d</b></div>
+            <div class="fw-kpi"><label data-i18n="fw.kpi_conntrack">CONNESSIONI</label><b data-k="ct">n/d</b></div>
+            <div class="fw-kpi"><label data-i18n="fw.kpi_wan">WAN</label><b data-k="wan">n/d</b></div>
+          </div>
+          <p class="fw-limit"><span data-i18n="fw.kpi_load">LOAD</span>: <b data-k="load">—</b> · <span data-i18n="fw.kpi_gateway">GATEWAY</span>: <b data-k="gw">—</b> · <span data-k="api">API in sola lettura</span></p>
+        </div>
+
+        <div class="fw-dev" data-device="mikrotik">
+          <h3>MikroTik hEX S</h3>
+          <div class="role" data-i18n="fw.role_mikrotik">Router di bordo / PPPoE</div>
+          <span class="fw-status"><span class="dot"></span><span class="state">—</span></span>
+          <div class="fw-kpis">
+            <div class="fw-kpi"><label data-i18n="fw.kpi_latency_ssh">RISPOSTA SSH</label><b data-k="latency">—</b></div>
+            <div class="fw-kpi"><label data-i18n="fw.kpi_cpu">CPU</label><b data-k="cpu">—</b></div>
+            <div class="fw-kpi"><label data-i18n="fw.kpi_mem">MEMORIA</label><b data-k="mem">—</b></div>
+            <div class="fw-kpi"><label data-i18n="fw.kpi_uptime">UPTIME</label><b data-k="uptime">—</b></div>
+            <div class="fw-kpi"><label data-i18n="fw.kpi_temp">TEMPERATURA</label><b data-k="temp">—</b></div>
+            <div class="fw-kpi"><label data-i18n="fw.kpi_conntrack">CONNESSIONI</label><b data-k="ct">—</b></div>
+          </div>
+          <p class="fw-limit"><span data-i18n="fw.kpi_wan">WAN</span>: <b data-k="wan">—</b> · <span data-i18n="fw.kpi_version">RouterOS</span> <b data-k="version">—</b></p>
+        </div>
+      </div>
+
+      <h3 style="color:var(--cyan);font-family:var(--font-mono);font-size:.82rem;letter-spacing:.1em;margin:0 0 4px;" data-i18n="fw.attacks_title">ATTACCHI RILEVATI</h3>
+      <div class="fw-counter-row">
+        <div class="fw-counter"><label data-i18n="fw.attack_events">EVENTI 24h</label><b id="fw-ev">—</b></div>
+        <div class="fw-counter"><label data-i18n="fw.attack_sources">SORGENTI UNICHE</label><b id="fw-src">—</b></div>
+        <div class="fw-counter"><label data-i18n="fw.attack_5min">EVENTI 5 MIN</label><b id="fw-5m">—</b></div>
+        <div class="fw-counter"><label data-i18n="fw.attack_login">LOGIN FALLITI 24h</label><b id="fw-login">—</b></div>
+      </div>
+
+      <div class="fw-grid" style="margin-top:0;">
+        <div>
+          <h4 style="color:var(--cyan);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;margin:0 0 8px;" data-i18n="fw.top_sources">TOP SORGENTI (24h)</h4>
+          <table class="fw-table">
+            <thead><tr><th data-i18n="fw.th_ip">IP</th><th data-i18n="fw.th_count">EVENTI</th></tr></thead>
+            <tbody id="fw-top"><tr><td colspan="2">—</td></tr></tbody>
+          </table>
+        </div>
+        <div>
+          <h4 style="color:var(--cyan);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;margin:0 0 8px;" data-i18n="fw.rules_title">CONTATORI FIREWALL</h4>
+          <table class="fw-table">
+            <thead><tr><th data-i18n="fw.th_chain">CHAIN</th><th data-i18n="fw.th_drops">PACCHETTI BLOCCATI</th></tr></thead>
+            <tbody id="fw-rules"><tr><td colspan="2">—</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3 style="color:var(--cyan);font-family:var(--font-mono);font-size:.82rem;letter-spacing:.1em;margin:30px 0 4px;" data-i18n="fw.charts_title">ANDAMENTO</h3>
+      <div class="fw-charts">
+        <div class="fw-chart"><header><h4 data-i18n="fw.chart_cpu">CPU / RAM MIKROTIK</h4><span class="last" id="fw-c1">—</span></header><div class="chart-body" data-chart="cpu"></div></div>
+        <div class="fw-chart"><header><h4 data-i18n="fw.chart_latency">LATENZA OPNsense</h4><span class="last" id="fw-c2">—</span></header><div class="chart-body" data-chart="latency"></div></div>
+        <div class="fw-chart"><header><h4 data-i18n="fw.chart_attacks">ATTACCHI / 5 MIN</h4><span class="last" id="fw-c3">—</span></header><div class="chart-body" data-chart="attacks"></div></div>
+        <div class="fw-chart"><header><h4 data-i18n="fw.chart_wan">TRAFFICO WAN</h4><span class="last" id="fw-c4">—</span></header><div class="chart-body" data-chart="wan"></div></div>
+      </div>
+
+      <div class="fw-grafana">
+        <h3 data-i18n="fw.grafana_title">DASHBOARD GRAFANA</h3>
+        <p data-i18n="fw.grafana_desc">Stessa telemetria su Grafana (Prometheus), con refresh a 30 secondi. Disponibile solo dalla rete locale: la dashboard non è raggiungibile da internet.</p>
+        <div id="fw-grafana-slot">
+          <div class="fallback" data-i18n="fw.grafana_check">Verifica della dashboard in corso…</div>
+        </div>
+        <p class="fw-limit" data-i18n="fw.grafana_note">Il pannello incorporato è in sola lettura (viewer anonimo limitato alla rete locale) e non espone credenziali.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2026 Stefano Pucci</p>
+        <p class="footer-tagline" data-i18n-html="footer.tagline">built with &lt;html&gt; &bull; <span class="prompt-symbol">whoami</span></p>
+        <div class="footer-links">
+          <a href="mailto:stefano.informatico@gmail.com" class="footer-link">Email</a>
+          <span class="footer-sep">|</span>
+          <a href="https://www.linkedin.com/in/stefano-pucci-08210a19a/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+          <span class="footer-sep">|</span>
+          <a href="cv/cv-stefano-pucci.pdf" download class="footer-link">CV</a>
+          <span class="footer-sep">|</span>
+          <a href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js?v=20261019b"></script>
+  <script src="js/firewall-i18n.js?v=20261019d"></script>
+  <script src="js/firewall.js?v=20261019c"></script>
+  <script src="js/main.js?v=20261013b"></script>
+</body>
+</html>

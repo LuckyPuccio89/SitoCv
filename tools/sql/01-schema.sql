@@ -1,0 +1,60 @@
+-- tpl_demo schema v1 — demo TPL portfolio (fermate reali GTFS + live Viaggiatreno + KPI ART)
+-- applicare: mysql tpl_demo < tools/sql/01-schema.sql
+CREATE TABLE IF NOT EXISTS stops (
+  code VARCHAR(8) PRIMARY KEY,
+  gtfs_stop_id VARCHAR(16) NOT NULL UNIQUE,
+  name VARCHAR(64) NOT NULL,
+  lat DECIMAL(9,5) NOT NULL,
+  lon DECIMAL(9,5) NOT NULL,
+  km DECIMAL(5,1) NOT NULL
+);
+CREATE TABLE IF NOT EXISTS routes (
+  id VARCHAR(16) PRIMARY KEY,
+  name VARCHAR(128) NOT NULL,
+  color VARCHAR(8) NOT NULL DEFAULT '#00F0FF'
+);
+CREATE TABLE IF NOT EXISTS route_stops (
+  route_id VARCHAR(16) NOT NULL,
+  stop_code VARCHAR(8) NOT NULL,
+  seq INT NOT NULL,
+  PRIMARY KEY (route_id, seq),
+  FOREIGN KEY (route_id) REFERENCES routes(id),
+  FOREIGN KEY (stop_code) REFERENCES stops(code)
+);
+CREATE TABLE IF NOT EXISTS vehicles (
+  id VARCHAR(16) PRIMARY KEY,
+  route_id VARCHAR(16) NOT NULL,
+  km DECIMAL(5,1) NOT NULL DEFAULT 0,
+  speed_kmh INT NOT NULL DEFAULT 0,
+  status VARCHAR(16) NOT NULL DEFAULT 'in_service',
+  next_stop VARCHAR(8),
+  delay_min INT NOT NULL DEFAULT 0,
+  note VARCHAR(255) DEFAULT '',
+  FOREIGN KEY (route_id) REFERENCES routes(id)
+);
+CREATE TABLE IF NOT EXISTS departures (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  station_sid VARCHAR(8) NOT NULL,
+  station_label VARCHAR(64) NOT NULL,
+  num VARCHAR(16),
+  cat VARCHAR(16),
+  dest VARCHAR(64),
+  hhmm CHAR(5),
+  delay_min INT NULL,
+  platform VARCHAR(8),
+  snapshot_at DATETIME NOT NULL,
+  INDEX idx_dep_station_snap (station_sid, snapshot_at)
+);
+CREATE TABLE IF NOT EXISTS kpi_months (
+  m CHAR(7) PRIMARY KEY,
+  scheduled INT NOT NULL,
+  operated INT NOT NULL,
+  cancelled INT NOT NULL,
+  punctual INT NOT NULL,
+  km INT NOT NULL,
+  complaints INT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS meta (
+  k VARCHAR(32) PRIMARY KEY,
+  v TEXT NOT NULL
+);

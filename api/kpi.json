@@ -1,0 +1,167 @@
+{
+ "generated_at": "2026-10-14",
+ "source": "SOGLIE REALI dal Contratto di Servizio Regione Marche-Trenitalia 2019-2033, Allegato 6 CMQ (obiettivi 2025 da Carta dei Servizi 2026 e Indicatori e livelli minimi di trasparenza 2025). VALORI mensili fittizi a scopo dimostrativo.",
+ "sources": {
+  "art_154_2019": "https://www.autorita-trasporti.it/wp-content/uploads/2019/11/All.-A-_delibera-n.-154_2019.pdf",
+  "art_monitoraggi": "https://www.autorita-trasporti.it/monitoraggi-on-line",
+  "contratto_marche_trenitalia_2019_2033": "https://www.regione.marche.it/Regione-Utile/Trasporti/Trasporto-ferroviario",
+  "piano_accesso_dato_marche": "https://www.regione.marche.it/portals/0/Infrastrutture_Trasporti/Ferro/Piano%20di%20Accesso%20al%20dato%20Regione%20Marche.pdf",
+  "relazione_monitoraggio_ferro_2016": "http://www.regione.marche.it/Portals/0/Infrastrutture_Trasporti/Ferro/2016/RELAZIONE%20SU%20MONITORAGGIO%20FERRO%202016.pdf",
+  "report_percepita_2021": "https://www.regione.marche.it (Ferro/2021/Report percepita ferro - anno 2021.pdf)",
+  "riferimento_kpi_tpl": "Agenzia TPL Milano - Allegato KPI e CMQ ex Misura 2 Del.154/2019; Regione Lombardia RdA bus integrativi (KPI + CMQ)",
+  "contratto_marche_trenitalia_zip": "https://www.regione.marche.it/portals/0/Infrastrutture_Trasporti/Ferro/2026/Contratto%20di%20Servizio%20Trenitalia%202019-2033%20con%20allegati_new_UP_giu26.zip",
+  "carta_servizi_2026": "https://static.regione.marche.it/.../Ferro/2026/Carta%20dei%20Servizi%202026.pdf (regione.marche.it)",
+  "art_16_2018": "https://www.autorita-trasporti.it/wp-content/uploads/2018/02/All.-A_delibera-n.-16_2018.pdf",
+  "art_53_2024": "https://www.autorita-trasporti.it/wp-content/uploads/2024/04/All.-A-delibera-n.-53_2024_signed.pdf"
+ },
+ "kpi_definitions": [
+  {
+   "key": "punct",
+   "name": "Puntualita (fascia 0-5 min)",
+   "ref": "CMQ ferro/strada: arrivi entro soglia su treni/bus effettuati"
+  },
+  {
+   "key": "cover",
+   "name": "Regolarita / corse effettuate",
+   "ref": "Misura 16: effettuate su programmate"
+  },
+  {
+   "key": "canc",
+   "name": "Soppresse",
+   "ref": "Misura 16: soppresse su programmate"
+  },
+  {
+   "key": "compl",
+   "name": "Reclami per 10k km",
+   "ref": "Qualita percepita: questionari + segnalazioni tpl@regione.marche.it"
+  }
+ ],
+ "thresholds": {
+  "punctuality_pct_min": 96.1,
+  "punctuality_note": "CMQ 2025 FR1 fascia rilevante (All.6 CdS Marche-Trenitalia 2019-2033). Riga completa in contract_rows.",
+  "trips_coverage_pct_min": 99.8,
+  "coverage_note": "Regolarita CMQ annua circolati/programmati (All.6 pp.4-5).",
+  "cancelled_pct_max": 0.2,
+  "cancelled_note": "Derivata da regolarita 99.8% (100-99.8). Il contratto non fissa una % soppresse a se.",
+  "complaints_per_10k_max": 3.0,
+  "complaints_note": "Indicatore solo demo: in All.6 reclami/risposte sono monitorati senza soglia per-10k-km."
+ },
+ "months": [
+  {
+   "m": "2026-01",
+   "scheduled": 7620,
+   "operated": 7597,
+   "cancelled": 23,
+   "punctual": 7308,
+   "km": 318500,
+   "complaints": 21
+  },
+  {
+   "m": "2026-02",
+   "scheduled": 6980,
+   "operated": 6973,
+   "cancelled": 7,
+   "punctual": 6680,
+   "km": 289200,
+   "complaints": 18
+  },
+  {
+   "m": "2026-03",
+   "scheduled": 7740,
+   "operated": 7709,
+   "cancelled": 31,
+   "punctual": 7431,
+   "km": 322800,
+   "complaints": 19
+  },
+  {
+   "m": "2026-04",
+   "scheduled": 7410,
+   "operated": 7395,
+   "cancelled": 15,
+   "punctual": 7092,
+   "km": 305100,
+   "complaints": 26
+  },
+  {
+   "m": "2026-05",
+   "scheduled": 7750,
+   "operated": 7742,
+   "cancelled": 8,
+   "punctual": 7440,
+   "km": 324900,
+   "complaints": 15
+  },
+  {
+   "m": "2026-06",
+   "scheduled": 7480,
+   "operated": 7443,
+   "cancelled": 37,
+   "punctual": 7116,
+   "km": 311400,
+   "complaints": 22
+  },
+  {
+   "m": "2026-07",
+   "scheduled": 7320,
+   "operated": 7305,
+   "cancelled": 15,
+   "punctual": 7035,
+   "km": 306800,
+   "complaints": 17
+  },
+  {
+   "m": "2026-08",
+   "scheduled": 6980,
+   "operated": 6959,
+   "cancelled": 21,
+   "punctual": 6681,
+   "km": 288500,
+   "complaints": 31
+  },
+  {
+   "m": "2026-09",
+   "scheduled": 7630,
+   "operated": 7622,
+   "cancelled": 8,
+   "punctual": 7332,
+   "km": 319600,
+   "complaints": 16
+  }
+ ],
+ "contract_rows": [
+  {
+   "linea": "FR1",
+   "fascia": "rilevante (lun-ven 6-9 arrivi, 17-20 partenze)",
+   "puntualita_0_5_min_pct": 96.1,
+   "anno": 2025,
+   "penale_euro_per_decimo": 75
+  },
+  {
+   "linea": "FR1",
+   "fascia": "non rilevante",
+   "puntualita_0_5_min_pct": 93.5,
+   "anno": 2025,
+   "penale_euro_per_decimo": 50
+  },
+  {
+   "linea": "FR2",
+   "fascia": "rilevante",
+   "puntualita_0_5_min_pct": 93.1,
+   "anno": 2025,
+   "penale_euro_per_decimo": 75
+  },
+  {
+   "linea": "FR2",
+   "fascia": "non rilevante",
+   "puntualita_0_5_min_pct": 93.7,
+   "anno": 2025,
+   "penale_euro_per_decimo": 50
+  }
+ ],
+ "penalties": {
+  "regolarita_euro_per_decimo_sotto_99_8": 5000,
+  "tetto_penali_totali": "1.0% del corrispettivo annuo PEF (Art.18 CdS)",
+  "fonte": "Allegato 6 CMQ al Contratto di Servizio Regione Marche-Trenitalia 2019-2033"
+ }
+}

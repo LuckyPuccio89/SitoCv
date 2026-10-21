@@ -1,0 +1,122 @@
+{
+  "generated_at": "2026-10-14",
+  "source": "FERMATE REALI da feed GTFS ufficiale Trenitalia via MobilityDatabase mdb-1319 (CC-BY) + dati.toscana.it trenitalia.gtfs. Corse/posizioni SIMULATE: il feed contiene solo 2 trip sulla tratta, nessun GTFS-RT bus Conerobus/ATMA esposto.",
+  "sources": {
+    "feed": "https://mobilitydatabase.org/feeds/gtfs/mdb-1319",
+    "catalog": "https://github.com/MobilityData/mobility-database-catalogs",
+    "download": "https://dati.toscana.it/dataset/8bb8f8fe-fe7d-41d0-90dc-49f2456180d1/resource/4f85393b-357d-443d-8378-65de4198505f/download/trenitalia.gtfs",
+    "agency": "TRENITALIA S.p.A., http://trenitalia.it, Europe/Rome",
+    "realtime_treni": "Viaggiatreno (viaggiatreno.it) per ritardi reali stazione Ancona/Senigallia",
+    "bus_orari_pdf": "https://www.conerobus.it/servizi-tpl"
+  },
+  "routes": [
+    {
+      "id": "R-ADR",
+      "name": "Regionale Adriatica Fano - Ancona (tratta demo)",
+      "color": "#00F0FF",
+      "stops": [
+        "FAN",
+        "MAR",
+        "SEN",
+        "FAL",
+        "ANC"
+      ],
+      "note": "tratta costiera reale; nel feed e limitata a 2 trip lunghi Firenze-Ancona via Foligno"
+    },
+    {
+      "id": "R-LOC",
+      "name": "Locale Senigallia - Ancona (demo bus/extraurbano)",
+      "color": "#00FF41",
+      "stops": [
+        "SEN",
+        "FAL",
+        "ANC"
+      ],
+      "note": "fermate rail reali usate come proxy; bus ATMA/Conerobus senza GTFS open"
+    }
+  ],
+  "stops": [
+    {
+      "id": "FAN",
+      "gtfs_stop_id": "S07105_1",
+      "name": "Fano",
+      "lat": 43.84294,
+      "lon": 13.02482,
+      "km": 0.0
+    },
+    {
+      "id": "MAR",
+      "gtfs_stop_id": "S07107_1",
+      "name": "Marotta Mondolfo",
+      "lat": 43.76968,
+      "lon": 13.13737,
+      "km": 12.2
+    },
+    {
+      "id": "SEN",
+      "gtfs_stop_id": "S07108_1",
+      "name": "Senigallia",
+      "lat": 43.71622,
+      "lon": 13.2217,
+      "km": 21.2
+    },
+    {
+      "id": "FAL",
+      "gtfs_stop_id": "S07111_1",
+      "name": "Falconara M.",
+      "lat": 43.63057,
+      "lon": 13.39736,
+      "km": 38.2
+    },
+    {
+      "id": "ANC",
+      "gtfs_stop_id": "S07113_1",
+      "name": "Ancona",
+      "lat": 43.6077,
+      "lon": 13.49759,
+      "km": 46.7
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "REG-304277",
+      "route": "R-ADR",
+      "km": 23.0,
+      "speed_kmh": 85,
+      "status": "in_service",
+      "next_stop": "FAL",
+      "delay_min": 0,
+      "note": "trip reale 6627_304277 testa Ancona (Firenze->Ancona 05:55->11:40), posizione simulata"
+    },
+    {
+      "id": "REG-304278",
+      "route": "R-ADR",
+      "km": 5.0,
+      "speed_kmh": 80,
+      "status": "in_service",
+      "next_stop": "MAR",
+      "delay_min": 2,
+      "note": "trip reale 6627_304278, posizione simulata"
+    },
+    {
+      "id": "BUS-201",
+      "route": "R-LOC",
+      "km": 28.0,
+      "speed_kmh": 55,
+      "status": "in_service",
+      "next_stop": "FAL",
+      "delay_min": 0,
+      "note": "demo extraurbano, nessun GTFS bus open"
+    },
+    {
+      "id": "BUS-202",
+      "route": "R-LOC",
+      "km": 39.5,
+      "speed_kmh": 0,
+      "status": "at_stop",
+      "next_stop": "FAL",
+      "delay_min": 1,
+      "note": "demo extraurbano, nessun GTFS bus open"
+    }
+  ]
+}

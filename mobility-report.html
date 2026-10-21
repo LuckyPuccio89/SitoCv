@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="mrep.meta_title">Infomobility GTFS + KPI ART - Rapporto Tecnico - Stefano Pucci</title>
+  <meta name="description" data-i18n-title="mrep.meta_desc" content="Rapporto tecnico del progetto Infomobility GTFS e KPI ART: fermate reali Trenitalia, partenze live Viaggiatreno, framework ART e Regione Marche.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/style.css?v=20261013b">
+  <style>
+    .report-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; margin: 0 0 32px; }
+    .report-table th { text-align: left; color: var(--cyan); font-weight: 600; letter-spacing: 0.12em; font-size: 0.6rem; padding: 10px 12px; border: 1px solid var(--border); background: rgba(0,240,255,0.04); }
+    .report-table td { padding: 9px 12px; border: 1px solid var(--border); color: var(--steel); vertical-align: top; }
+    .report-table td:first-child { color: var(--text); }
+    .report-table tr:hover td { background: rgba(0,240,255,0.03); }
+    .report-table a { color: var(--cyan); word-break: break-all; }
+    .codeblock { border: 1px solid var(--border); background: rgba(13,13,15,0.6); padding: 20px 22px; margin: 0 0 32px; overflow-x: auto; }
+    .codeblock pre { font-family: var(--font-mono); font-size: 0.72rem; line-height: 1.65; color: var(--terminal); margin: 0; white-space: pre; }
+    .report-h { font-size: 0.95rem; color: #fff; font-family: var(--font-sans); font-weight: 600; margin: 40px 0 16px; }
+    .report-h::before { content: '> '; color: var(--cyan); }
+    .report-p { font-size: 0.8rem; color: var(--text-dim); line-height: 1.7; max-width: 760px; margin-bottom: 16px; }
+    .report-p b, .report-p code { color: var(--text); }
+    .report-p code { background: rgba(0,240,255,0.06); padding: 1px 6px; font-size: 0.72rem; }
+  </style>
+</head>
+<body class="grid-bg">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">stefano_pucci</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+        <li><a href="projects.html" class="active" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="firewall.html" data-i18n="nav.firewall">FIREWALL</a></li>
+        <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">CONTATTI</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn lang-btn-it active" data-lang="it" data-i18n="nav.lang_it">ITA</button>
+        <button class="lang-btn lang-btn-en" data-lang="en" data-i18n="nav.lang_en">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">
+          <span class="line"></span>
+          <span data-i18n="mrep.label">RAPPORTO_TECNICO</span>
+        </div>
+        <h2 data-i18n-html="mrep.title">Infomobility GTFS + <span>KPI ART</span></h2>
+        <p data-i18n="mrep.desc">&gt; Verificato il 14/10/2026 — fermate reali, live Viaggiatreno, framework ART/Marche, zero dipendenze</p>
+      </div>
+
+      <div class="project-featured" style="margin-bottom:40px;">
+        <div class="project-featured-badge">
+          <span class="status">
+            <span class="status-dot"></span>
+            <span data-i18n="mrep.status">IN_PRODUZIONE</span>
+          </span>
+          <span class="project-year" data-i18n="mrep.date">Ottobre 2026</span>
+        </div>
+        <p class="project-featured-desc" style="margin-bottom:0;">
+          <p data-i18n="mrep.intro" style="font-size:0.82rem;color:var(--text-dim);line-height:1.7;max-width:760px;margin-bottom:0;">Due demo stile Pluservice sullo stesso sito statico Apache: mappa AVM/AVL con fermate ferroviarie reali Fano-Ancona e tabellone partenze live, più dashboard KPI in stile Piattaforma ART con verifica soglie. Dati veri dove esistono feed aperti, simulazione dichiarata dove non esistono.</p>
+        </p>
+        <div class="project-specs" style="margin-top:24px;margin-bottom:0;">
+          <div class="project-spec">
+            <span class="project-spec-value" data-i18n="mrep.spec1_value">5 reali</span>
+            <span class="project-spec-label" data-i18n="mrep.spec1_label">FERMATE_GTFS</span>
+          </div>
+          <div class="project-spec">
+            <span class="project-spec-value" data-i18n="mrep.spec2_value">44 live</span>
+            <span class="project-spec-label" data-i18n="mrep.spec2_label">PARTENZE_5MIN</span>
+          </div>
+          <div class="project-spec">
+            <span class="project-spec-value" data-i18n="mrep.spec3_value">9 mesi</span>
+            <span class="project-spec-label" data-i18n="mrep.spec3_label">SERIE_KPI</span>
+          </div>
+          <div class="project-spec">
+            <span class="project-spec-value" data-i18n="mrep.spec4_value">0</span>
+            <span class="project-spec-label" data-i18n="mrep.spec4_label">DIPENDENZE</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-tech" style="margin-bottom:8px;">
+        <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
+        <div class="project-tech-list">
+          <span class="tag">GTFS static</span>
+          <span class="tag">Viaggiatreno REST</span>
+          <span class="tag">SVG live</span>
+          <span class="tag">Canvas vanilla</span>
+          <span class="tag">Python cron</span>
+          <span class="tag">Apache static</span>
+          <span class="tag">ART 154/2019</span>
+          <span class="tag">Del. 16/2018</span>
+        </div>
+      </div>
+
+      <h3 class="report-h" data-i18n="mrep.s1t">OBIETTIVO_E_CONTESTO</h3>
+      <p class="report-p" data-i18n="mrep.s1d">Pluservice produce Superdriver (ERP vettori), Telemaco (bigliettazione) e myCicero (MaaS), con soluzioni di monitoraggio ITS/AVM, infomobilità e Piattaforma KPI per le delibere ART. Questo progetto replica in miniatura due di quelle aree sul portfolio personale: <b>infomobilità real-time</b> sulla tratta costiera marchigiana e <b>controllo KPI</b> in stile ART.</p>
+      <p class="report-p" data-i18n="mrep.s1d2">Vincolo di progetto: sito 100% statico su Apache (zero backend, zero chiavi API nel repo), doppia lingua ITA/EN, stesso tema terminale delle altre pagine.</p>
+
+      <h3 class="report-h" data-i18n="mrep.s2t">FONTI_DATI_REALI</h3>
+      <table class="report-table">
+        <tr><th data-i18n="mrep.th_src">FONTE</th><th data-i18n="mrep.th_det">DETTAGLIO / LICENZA</th><th data-i18n="mrep.th_use">USO_NEL_PROGETTO</th></tr>
+        <tr><td>MobilityDatabase mdb-1319</td><td><a href="https://mobilitydatabase.org/feeds/gtfs/mdb-1319" target="_blank" rel="noopener">mobilitydatabase.org/feeds/gtfs/mdb-1319</a><br><span data-i18n="mrep.f1d">Feed ufficiale Trenitalia + bus Marche, licenza CC-BY, 5.9 MB</span></td><td data-i18n="mrep.f1u">5 fermate Fano-Ancona con stop_id, lat/lon reali in api/gtfs.json</td></tr>
+        <tr><td>dati.toscana.it trenitalia.gtfs</td><td><span data-i18n="mrep.f2d">Mirror diretto dello stesso feed, scaricato e ispezionato il 14/10/2026</span></td><td data-i18n="mrep.f2u">313 stop, 2 trip sulla tratta (Firenze-Ancona via Foligno, trip 6627_304277/78)</td></tr>
+        <tr><td>Viaggiatreno Infomobilita</td><td><span data-i18n="mrep.f3d">REST pubblico non ufficiale, base /infomobilita/resteasy/viaggiatreno, verificato il 14/10/2026</span></td><td data-i18n="mrep.f3u">44 partenze live (Fano 10, Senigallia 10, Falconara 12, Ancona 12) in api/realtime.json</td></tr>
+        <tr><td>Conerobus / ATMA</td><td><a href="https://www.conerobus.it/servizi-tpl" target="_blank" rel="noopener">conerobus.it/servizi-tpl</a><br><span data-i18n="mrep.f4d">Solo orari PDF, nessun feed GTFS/GTFS-RT pubblico</span></td><td data-i18n="mrep.f4u">Bus extraurbano solo simulato, dichiarato in api/gtfs.json</td></tr>
+        <tr><td>ART Del. 154/2019 + monitoraggi</td><td><a href="https://www.autorita-trasporti.it/delibere/delibera-n-154-2019" target="_blank" rel="noopener">Delibera 154/2019</a> · <a href="https://www.autorita-trasporti.it/monitoraggi-on-line" target="_blank" rel="noopener">monitoraggi-on-line</a><br><span data-i18n="mrep.f5d">Misure 12/16 TPL strada+ferro, rilevazione 2026 scadenza 16/11/2026</span></td><td data-i18n="mrep.f5u">Struttura KPI: puntualità, regolarità, soppresse, reclami/10k km</td></tr>
+        <tr><td>Regione Marche – Ferro</td><td><a href="https://www.regione.marche.it/Regione-Utile/Trasporti/Trasporto-ferroviario" target="_blank" rel="noopener">Trasporto-ferroviario</a><br><span data-i18n="mrep.f6d">CdS Trenitalia 2019-2033 (~4.5M treni*km/anno), Misura 10 Del. 16/2018, report qualità 2015-2025</span></td><td data-i18n="mrep.f6u">Riferimento contrattuale reale; soglie demo configurabili in api/kpi.json</td></tr>
+      </table>
+
+      <h3 class="report-h" data-i18n="mrep.s3t">ARCHITETTURA_FLUSSO_DATI</h3>
+      <div class="codeblock"><pre>[GTFS zip mdb-1319] --tools/gtfs-to-json.py--> [api/gtfs.json: 5 fermate reali + corse demo]
+[Viaggiatreno REST] --cron 5min tools/viaggiatreno-poll.py--> [api/realtime.json: 44 partenze]
+[api/kpi.json: 9 mesi + soglie demo] --js/kpi.js (canvas vanilla)--> [kpi-demo.html]
+[api/gtfs.json] --js/gtfs.js (SVG, tick 2s)--> [mappa + tabellone simulato]
+[api/realtime.json] --js/gtfs-live.js (refresh 5min)--> [badge LIVE/STALE/SIMULATO + partenze]
+Apache statico: nessun backend, nessun segreto, scrittura atomica via tmp+rename</pre></div>
+
+      <h3 class="report-h" data-i18n="mrep.work_title">LAVORO_SVOLTO</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">01</span>
+          <h3 data-i18n="mrep.w1t">Feed GTFS reale</h3>
+          <p data-i18n="mrep.w1d">Individuato mdb-1319 nel catalogo MobilityData, scaricato (5.9 MB), ispezionati 313 stop: 5 stazioni della costa con coordinate e stop_id reali.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">02</span>
+          <h3 data-i18n="mrep.w2t">Mappa + simulazione AVM</h3>
+          <p data-i18n="mrep.w2d">gtfs-demo.html con SVG schematico data-driven, 4 corse animate ogni 2s, filtri di linea, ETA e ritardi calcolati in JS vanilla.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">03</span>
+          <h3 data-i18n="mrep.w3t">Dashboard KPI ART</h3>
+          <p data-i18n="mrep.w3d">kpi-demo.html: 4 card con verifica soglie, grafici canvas senza librerie, tabella mensile con export CSV locale.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">04</span>
+          <h3 data-i18n="mrep.w4t">Quadro ART/Marche</h3>
+          <p data-i18n="mrep.w4d">Mappate delibere 16/2018, 154/2019, 53/2024 e documenti CdS Marche-Trenitalia; soglie marcate come demo configurabili, mai spacciate per ufficiali.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">05</span>
+          <h3 data-i18n="mrep.w5t">Endpoint live trovato</h3>
+          <p data-i18n="mrep.w5d">Base corretta /infomobilita/resteasy/viaggiatreno (quella documentata online risponde 403-refresh); ID stazioni uguali al prefisso GTFS: S07105/108/111/113.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">06</span>
+          <h3 data-i18n="mrep.w6t">Poller cron</h3>
+          <p data-i18n="mrep.w6d">tools/viaggiatreno-poll.py con scrittura atomica e tolleranza ai guasti (a stazione fallita non cancella le altre; se falliscono tutte non tocca il file).</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">07</span>
+          <h3 data-i18n="mrep.w7t">Pannello LIVE nel sito</h3>
+          <p data-i18n="mrep.w7d">js/gtfs-live.js con selettore stazione, badge LIVE/STALE/SIMULATO in base alla freschezza e refresh allineato al cron.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">08</span>
+          <h3 data-i18n="mrep.w8t">Provenienza riproducibile</h3>
+          <p data-i18n="mrep.w8d">tools/gtfs-to-json.py rigenera le fermate dallo zip ufficiale; verificato output identico al feed (nome canonico Marotta Mondolfo).</p>
+        </div>
+      </div>
+
+      <h3 class="report-h" data-i18n="mrep.lim_title">LIMITI_NOTI</h3>
+      <table class="report-table">
+        <tr><th data-i18n="mrep.th_lim">LIMITE</th><th data-i18n="mrep.th_mit">MITIGAZIONE</th></tr>
+        <tr><td data-i18n="mrep.l1p">Il feed GTFS ha solo 2 trip sulla tratta, nessun GTFS-RT</td><td data-i18n="mrep.l1s">Posizioni mezzi simulate, trip ID reali citati nel JSON</td></tr>
+        <tr><td data-i18n="mrep.l2p">Bus Conerobus/ATMA senza feed aperto (solo PDF)</td><td data-i18n="mrep.l2s">Extraurbano dichiarato come demo, fermate rail usate come proxy</td></tr>
+        <tr><td data-i18n="mrep.l3p">Viaggiatreno non ufficiale, senza SLA</td><td data-i18n="mrep.l3s">Poll lato server, badge STALE/SIMULATO, sito mai rotto se cade</td></tr>
+        <tr><td data-i18n="mrep.l4p">Soglie KPI dimostrative, non del CdS specifico</td><td data-i18n="mrep.l4s">Etichettate demo in JSON e pagina, da sostituire con allegato CMQ reale</td></tr>
+      </table>
+
+      <h3 class="report-h" data-i18n="mrep.iss_title">PROBLEMI_RISOLTI</h3>
+      <table class="report-table">
+        <tr><th data-i18n="mrep.th_prob">PROBLEMA</th><th data-i18n="mrep.th_sol">SOLUZIONE</th></tr>
+        <tr><td data-i18n="mrep.i1p">MobilityDatabase JS-only, API con auth</td><td data-i18n="mrep.i1s">Catalogo GitHub pubblico + mirror GCS/dati.toscana.it, nessun token</td></tr>
+        <tr><td data-i18n="mrep.i2p">Endpoint Viaggiatreno documentato risponde pagina refresh</td><td data-i18n="mrep.i2s">Trovata base /infomobilita/resteasy con tentativi su 3 varianti</td></tr>
+        <tr><td data-i18n="mrep.i3p">PDF ART con font subset, testo non estraibile</td><td data-i18n="mrep.i3s">Framework ricostruito da pagine HTML ART/Regione, niente soglie inventate</td></tr>
+        <tr><td data-i18n="mrep.i4p">Lombardia RdA PDF irraggiungibile (208 byte)</td><td data-i18n="mrep.i4s">Sostituito con documenti Marche verificati e link diretti ai PDF</td></tr>
+      </table>
+
+      <h3 class="report-h" data-i18n="mrep.chk_title">VERIFICA_COLLAUDO</h3>
+      <table class="report-table">
+        <tr><th data-i18n="mrep.th_chk">CONTROLLO</th><th data-i18n="mrep.th_res">ESITO_14/10/2026</th></tr>
+        <tr><td data-i18n="mrep.c1k">Pagine e API su HTTP locale</td><td data-i18n="mrep.c1v">200 su gtfs-demo, kpi-demo, gtfs/kpi/realtime.json, js, projects</td></tr>
+        <tr><td data-i18n="mrep.c2k">Partenze live</td><td data-i18n="mrep.c2v">44 partenze (10+10+12+12), snapshot fresco &lt; 1 min</td></tr>
+        <tr><td data-i18n="mrep.c3k">Rigenerazione fermate da zip</td><td data-i18n="mrep.c3v">Output identico al feed ufficiale (5 stop_id verificati)</td></tr>
+        <tr><td data-i18n="mrep.c4k">Apache configtest</td><td data-i18n="mrep.c4v">Syntax OK</td></tr>
+        <tr><td data-i18n="mrep.c5k">Chiavi i18n ITA/EN</td><td data-i18n="mrep.c5v">Tutte le chiavi mrep.* presenti in entrambe le lingue</td></tr>
+      </table>
+
+      <h3 class="report-h" data-i18n="mrep.next_title">PROSSIMI_PASSI</h3>
+      <p class="report-p" data-i18n="mrep.next_desc">Attivare il cron in produzione · parsing orari PDF Conerobus per il bus reale · soglie dal CdS Marche-Trenitalia via intranet Pluservice · arrivi oltre alle partenze · possibile migrazione NeTEx/SIRI verso il NAP nazionale.</p>
+
+      <div class="project-links-list" style="margin-top:32px;">
+        <a href="gtfs-demo.html" class="btn btn-sm"><span data-i18n="mrep.btn_gtfs">DEMO_GTFS_LIVE</span></a>
+        <a href="kpi-demo.html" class="btn btn-sm btn-outline"><span data-i18n="mrep.btn_kpi">DEMO_KPI_ART</span></a>
+        <a href="projects.html" class="btn btn-sm btn-outline"><span data-i18n="report.btn_back">←_PROGETTI</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2026 Stefano Pucci</p>
+        <p class="footer-tagline" data-i18n-html="footer.tagline">built with &lt;html&gt; &bull; <span class="prompt-symbol">whoami</span></p>
+        <div class="footer-links">
+          <a href="mailto:stefano.informatico@gmail.com" class="footer-link">Email</a>
+          <span class="footer-sep">|</span>
+          <a href="https://www.linkedin.com/in/stefano-pucci-08210a19a/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+          <span class="footer-sep">|</span>
+          <a href="cv/cv-stefano-pucci.pdf" download class="footer-link">CV</a>
+          <span class="footer-sep">|</span>
+          <a href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js?v=20261019b"></script>
+  <script src="js/report-i18n.js?v=20261019"></script>
+  <script src="js/main.js?v=20261013b"></script>
+</body>
+</html>

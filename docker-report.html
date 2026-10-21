@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="docker.meta_title">Docker Containers - Rapporto Tecnico - Stefano Pucci</title>
+  <meta name="description" data-i18n-title="docker.meta_desc" content="Rapporto tecnico degli stack Docker: monitoraggio con Uptime Kuma, Prometheus e Grafana, ambiente dev con code-server e FileBrowser.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/style.css?v=20261013b">
+  <style>
+    .report-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; margin: 0 0 32px; }
+    .report-table th { text-align: left; color: var(--cyan); font-weight: 600; letter-spacing: 0.12em; font-size: 0.6rem; padding: 10px 12px; border: 1px solid var(--border); background: rgba(0,240,255,0.04); }
+    .report-table td { padding: 9px 12px; border: 1px solid var(--border); color: var(--steel); vertical-align: top; }
+    .report-table td:first-child { color: var(--text); white-space: nowrap; }
+    .report-table tr:hover td { background: rgba(0,240,255,0.03); }
+    .codeblock { border: 1px solid var(--border); background: rgba(13,13,15,0.6); padding: 20px 22px; margin: 0 0 32px; overflow-x: auto; }
+    .codeblock pre { font-family: var(--font-mono); font-size: 0.72rem; line-height: 1.65; color: var(--terminal); margin: 0; white-space: pre; }
+    .report-h { font-size: 0.95rem; color: #fff; font-family: var(--font-sans); font-weight: 600; margin: 40px 0 16px; }
+    .report-h::before { content: '> '; color: var(--cyan); }
+    .report-p { font-size: 0.8rem; color: var(--text-dim); line-height: 1.7; max-width: 760px; margin-bottom: 16px; }
+    .report-p b, .report-p code { color: var(--text); }
+    .report-p code { background: rgba(0,240,255,0.06); padding: 1px 6px; font-size: 0.72rem; }
+  </style>
+</head>
+<body class="grid-bg">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">stefano_pucci</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+        <li><a href="projects.html" class="active" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="firewall.html" data-i18n="nav.firewall">FIREWALL</a></li>
+        <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">CONTATTI</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn lang-btn-it active" data-lang="it" data-i18n="nav.lang_it">ITA</button>
+        <button class="lang-btn lang-btn-en" data-lang="en" data-i18n="nav.lang_en">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">
+          <span class="line"></span>
+          <span data-i18n="docker.label">RAPPORTO_TECNICO</span>
+        </div>
+        <h2 data-i18n-html="docker.title">Docker <span>Containers</span></h2>
+        <p data-i18n="docker.desc">&gt; 2 stack compose: monitoring (Uptime Kuma, Prometheus, Grafana) + sito/dev (code-server, FileBrowser)</p>
+      </div>
+
+      <div class="project-featured" style="margin-bottom:40px;">
+        <div class="project-featured-badge">
+          <span class="status">
+            <span class="status-dot"></span>
+            <span data-i18n="docker.status">IN_PRODUZIONE</span>
+          </span>
+          <span class="project-year" data-i18n="docker.date">Ottobre 2026</span>
+        </div>
+        <p class="project-featured-desc" style="margin-bottom:0;">
+          <p data-i18n="docker.intro" style="font-size:0.82rem;color:var(--text-dim);line-height:1.7;max-width:760px;margin-bottom:0;">Monitoraggio e ambiente di sviluppo del sito in container Docker sullo stesso host che serve queste pagine: Uptime Kuma per i check di disponibilità, Prometheus con exporter per le metriche, Grafana per le dashboard, code-server per modificare il sito dal browser e FileBrowser per gestire i file — con /var/www/html montato in bind dentro i container di sviluppo.</p>
+        </p>
+        <div class="project-specs" style="margin-top:24px;margin-bottom:0;">
+          <div class="project-spec">
+            <span class="project-spec-value" data-i18n="docker.spec1_value">7</span>
+            <span class="project-spec-label" data-i18n="docker.spec1_label">CONTAINER</span>
+          </div>
+          <div class="project-spec">
+            <span class="project-spec-value" data-i18n="docker.spec2_value">2</span>
+            <span class="project-spec-label" data-i18n="docker.spec2_label">STACK_COMPOSE</span>
+          </div>
+          <div class="project-spec">
+            <span class="project-spec-value" data-i18n="docker.spec3_value">~2.4GB</span>
+            <span class="project-spec-label" data-i18n="docker.spec3_label">MEM_LIMIT</span>
+          </div>
+          <div class="project-spec">
+            <span class="project-spec-value" data-i18n="docker.spec4_value">unless-stopped</span>
+            <span class="project-spec-label" data-i18n="docker.spec4_label">RESTART</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-tech" style="margin-bottom:8px;">
+        <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
+        <div class="project-tech-list">
+          <span class="tag">Docker</span>
+          <span class="tag">Compose</span>
+          <span class="tag">Uptime Kuma</span>
+          <span class="tag">Prometheus</span>
+          <span class="tag">Node Exporter</span>
+          <span class="tag">Blackbox</span>
+          <span class="tag">Grafana</span>
+          <span class="tag">code-server</span>
+          <span class="tag">FileBrowser</span>
+        </div>
+      </div>
+
+      <h3 class="report-h" data-i18n="docker.arch_title">ARCHITETTURA</h3>
+      <div class="codeblock"><pre>STACK monitoring (docker-compose, rete bridge di default)
+  uptime-kuma :3001 ──► check HTTP/TCP dei servizi (dati: uptime_data)
+  prometheus :9090 ──scrape──► node-exporter:9100 (metriche host, rete interna)
+                           └─► blackbox:9115 (probe esterne, rete interna)
+  grafana :3000 ──datasource──► prometheus:9090 (dati: grafana_data)
+  config: /opt/monitoring/prometheus.yml montato in sola lettura
+  probe attiva: blackbox http_2xx verso http://198.51.100.10/ (esempio; job blackbox-http)
+
+STACK sito-dev (docker-compose, rete bridge di default)
+  code-server :8444 ──► workspace = /var/www/html (bind, lettura-scrittura)
+  filebrowser :8082 ──► /srv = /var/www/html (bind, lettura-scrittura)</pre></div>
+
+      <h3 class="report-h" data-i18n="docker.svc_title">SERVIZI</h3>
+      <table class="report-table">
+        <tr><th data-i18n="docker.th_svc">SERVIZIO</th><th data-i18n="docker.th_img">IMMAGINE</th><th data-i18n="docker.th_ports">PORTE</th><th data-i18n="docker.th_role">RUOLO</th></tr>
+        <tr><td>uptime-kuma</td><td>louislam/uptime-kuma:1</td><td>3001:3001</td><td data-i18n="docker.d1">Monitoraggio disponibilità via check HTTP/TCP, 256MB, dati in uptime_data</td></tr>
+        <tr><td>prometheus</td><td>prom/prometheus:latest</td><td>9090:9090</td><td data-i18n="docker.d2">Raccolta metriche, retention 7 giorni / 2GB, 512MB, config da /opt/monitoring</td></tr>
+        <tr><td>node-exporter</td><td>prom/node-exporter:latest</td><td data-i18n="docker.na">— (solo rete interna)</td><td data-i18n="docker.d3">Metriche host via /proc /sys / montati in sola lettura, 128MB, nessuna porta pubblicata</td></tr>
+        <tr><td>blackbox</td><td>prom/blackbox-exporter:latest</td><td data-i18n="docker.na">— (solo rete interna)</td><td data-i18n="docker.d4">Probe HTTP verso il sito per Prometheus, 64MB, modulo http_2xx integrato</td></tr>
+        <tr><td>grafana</td><td>grafana/grafana-oss:latest</td><td>3000:3000</td><td data-i18n="docker.d5">Dashboard su datasource Prometheus, 384MB, dati in grafana_data</td></tr>
+        <tr><td>code-server</td><td>lscr.io/linuxserver/code-server:latest</td><td>8444:8443</td><td data-i18n="docker.d6">VS Code nel browser sul sito live, 1GB RAM / 0.8 CPU, UID/GID 33, TZ Europe/Rome</td></tr>
+        <tr><td>filebrowser</td><td>filebrowser/filebrowser:s6</td><td>8082:80</td><td data-i18n="docker.d7">File manager web sulla docroot, 64MB, UID/GID 33</td></tr>
+      </table>
+
+      <h3 class="report-h" data-i18n="docker.vol_title">VOLUMI</h3>
+      <table class="report-table">
+        <tr><th data-i18n="docker.th_vol">VOLUME</th><th data-i18n="docker.th_mount">MOUNT</th></tr>
+        <tr><td>uptime_data</td><td>/app/data (uptime-kuma)</td></tr>
+        <tr><td>prometheus_data</td><td>/prometheus (prometheus)</td></tr>
+        <tr><td>grafana_data</td><td>/var/lib/grafana (grafana)</td></tr>
+        <tr><td>sito_config</td><td>/config (code-server)</td></tr>
+        <tr><td>filebrowser_data</td><td>/config (filebrowser)</td></tr>
+        <tr><td data-i18n="docker.v6n">/var/www/html (bind)</td><td data-i18n="docker.v6m">/config/workspace + /srv — accesso live al sito</td></tr>
+        <tr><td data-i18n="docker.v7n">/opt/monitoring/prometheus.yml (bind, ro)</td><td data-i18n="docker.v7m">/etc/prometheus/prometheus.yml — target di scrape</td></tr>
+        <tr><td data-i18n="docker.v8n">/proc /sys / (bind, ro)</td><td data-i18n="docker.v8m">metriche host per node-exporter</td></tr>
+      </table>
+
+      <h3 class="report-h" data-i18n="docker.sec_title">NOTE_SICUREZZA</h3>
+      <table class="report-table">
+        <tr><th data-i18n="docker.th_note">NOTA</th><th data-i18n="docker.th_detail">DETTAGLIO</th></tr>
+        <tr><td data-i18n="docker.s1n">Password code-server placeholder</td><td data-i18n="docker.s1d">PASSWORD=CAMBIA-PASSWORD-FORTE nel compose: impostare una password forte prima di esporre la porta 8444</td></tr>
+        <tr><td data-i18n="docker.s2n">Docroot montata in scrittura</td><td data-i18n="docker.s2d">code-server e FileBrowser vedono /var/www/html con UID/GID 33 (www-data): chi accede modifica il sito live</td></tr>
+        <tr><td data-i18n="docker.s3n">5 porte pubblicate sull'host</td><td data-i18n="docker.s3d">3000 · 3001 · 9090 · 8444 · 8082: tenerle dietro firewall/LAN, non esporle tal quali su internet</td></tr>
+        <tr><td data-i18n="docker.s4n">Tag :latest non pinnati</td><td data-i18n="docker.s4d">prometheus, exporter, grafana e code-server seguono latest: valutare il pin per build riproducibili</td></tr>
+      </table>
+
+      <h3 class="report-h" data-i18n="docker.next_title">PROSSIMI_PASSI</h3>
+      <p class="report-p" data-i18n="docker.next_desc">Montare blackbox.yml e completare prometheus.yml con i target node-exporter:9100 e blackbox:9115 · backup schedulato dei 5 volumi named + /opt/monitoring · reverse proxy TLS (Apache esistente) davanti a Grafana e Uptime Kuma al posto delle porte dirette · pin delle immagini :latest.</p>
+
+      <div class="project-links-list" style="margin-top:32px;">
+        <a href="projects.html" class="btn btn-sm btn-outline"><span data-i18n="docker.btn_back">←_PROGETTI</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2026 Stefano Pucci</p>
+        <p class="footer-tagline" data-i18n-html="footer.tagline">built with &lt;html&gt; &bull; <span class="prompt-symbol">whoami</span></p>
+        <div class="footer-links">
+          <a href="mailto:stefano.informatico@gmail.com" class="footer-link">Email</a>
+          <span class="footer-sep">|</span>
+          <a href="https://www.linkedin.com/in/stefano-pucci-08210a19a/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+          <span class="footer-sep">|</span>
+          <a href="cv/cv-stefano-pucci.pdf" download class="footer-link">CV</a>
+          <span class="footer-sep">|</span>
+          <a href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js?v=20261019b"></script>
+  <script src="js/docker-i18n.js?v=20261019"></script>
+  <script src="js/main.js?v=20261013b"></script>
+</body>
+</html>

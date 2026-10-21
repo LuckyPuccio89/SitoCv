@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.security">Report di Sicurezza - Stefano Pucci</title>
+  <meta name="description" content="Report di sicurezza dell'homelab: IP bloccati, attacchi rilevati e mitigazioni applicate.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/style.css?v=20261013b">
+  <style>
+    .card { margin-bottom: 24px; }
+    .sec-list { list-style: none; padding: 0; margin: 0; }
+    .sec-list li { position: relative; padding-left: 18px; margin-bottom: 10px; color: var(--steel); font-size: .82rem; line-height: 1.6; }
+    .sec-list li::before { content: '>'; position: absolute; left: 0; color: var(--cyan); }
+    .sec-list li code { color: var(--cyan); background: rgba(0,240,255,.06); padding: 1px 5px; font-size: .74rem; }
+    .sec-note { font-size: .72rem; color: var(--text-dim); font-style: italic; }
+    .sec-warn h3 { color: #ff6b6b; }
+    .report-table { width: 100%; border-collapse: collapse; font-size: .72rem; margin: 0 0 16px; }
+    .report-table th { text-align: left; color: var(--cyan); font-weight: 600; letter-spacing: .12em; font-size: .6rem; padding: 10px 12px; border: 1px solid var(--border); background: rgba(0,240,255,.04); }
+    .report-table td { padding: 9px 12px; border: 1px solid var(--border); color: var(--steel); vertical-align: top; }
+    .report-table td:first-child { color: var(--text); white-space: nowrap; }
+    .report-table tr:hover td { background: rgba(0,240,255,.03); }
+  </style>
+</head>
+<body class="grid-bg">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">stefano_pucci</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+        <li><a href="projects.html" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="firewall.html" data-i18n="nav.firewall">FIREWALL</a></li>
+        <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">CONTATTI</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn lang-btn-it active" data-lang="it" data-i18n="nav.lang_it">ITA</button>
+        <button class="lang-btn lang-btn-en" data-lang="en" data-i18n="nav.lang_en">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label"><span class="line"></span><span data-i18n="sec.label">SICUREZZA</span></div>
+        <h2 data-i18n-html="sec.title">Report <span>di sicurezza</span></h2>
+        <p data-i18n="sec.desc">&gt; Monitoraggio e mitigazione degli accessi non autorizzati rilevati sul sito pubblico</p>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="sec.stats_h">Statistiche</h3>
+        <ul class="sec-list">
+          <li data-i18n-html="sec.stat1">45 IP dannosi bloccati all'indirizzo MikroTik (address-list <code>attackers</code>).</li>
+          <li data-i18n="sec.stat2">22 paesi interessati.</li>
+          <li data-i18n="sec.stat3">7 segnalazioni abuse inviate via Gmail (autenticate) &mdash; consegna SPF/DKIM ok.</li>
+          <li data-i18n="sec.stat4">Fail2ban attivo su Zentyal (jails sshd + apache-scanner).</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="sec.table_h">Top 10 IP pi&ugrave; aggressivi (per numero di tentativi)</h3>
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th data-i18n="sec.th_ip">IP</th>
+              <th data-i18n="sec.th_hits"># Tentativi</th>
+              <th data-i18n="sec.th_country">Paese</th>
+              <th data-i18n="sec.th_act">Attivit&agrave; rilevata</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>87.120.104.29</td><td>2911</td><td>Norway</td><td data-i18n="sec.a1">Scanner .env/.git, UA Googlebot falsificato</td></tr>
+            <tr><td>79.124.58.82</td><td>650</td><td>Bulgaria</td><td data-i18n="sec.a2">Scanner WP-config / .env, .git</td></tr>
+            <tr><td>190.171.189.85</td><td>147</td><td>Chile</td><td data-i18n="sec.a3">Tentativo RCE Apache /cgi-bin &hellip; /bin/sh</td></tr>
+            <tr><td>44.217.139.227</td><td>128</td><td>United States</td><td data-i18n="sec.a4">Tool "Go Web Pentest Tool" / phpMyAdmin</td></tr>
+            <tr><td>91.92.242.37</td><td>126</td><td>The Netherlands</td><td data-i18n="sec.a5">Scanner .env</td></tr>
+            <tr><td>45.138.12.24</td><td>123</td><td>Hong Kong</td><td data-i18n="sec.a6">Navigazione normale + /js/i18n.js</td></tr>
+            <tr><td>5.61.209.106</td><td>75</td><td>The Netherlands</td><td data-i18n="sec.a7">Exploit Hikvision /SDK/webLanguage</td></tr>
+            <tr><td>45.198.224.125</td><td>74</td><td>Sweden</td><td data-i18n="sec.a8">Scanner (VPSVAULT)</td></tr>
+            <tr><td>195.182.16.23</td><td>59</td><td>Germany</td><td data-i18n="sec.a9">Scanner (Amarutu)</td></tr>
+            <tr><td>77.237.70.13</td><td>49</td><td>Iran</td><td data-i18n="sec.a10">Scanner (Respina)</td></tr>
+          </tbody>
+        </table>
+        <p class="sec-note" data-i18n-html="sec.more">e altri 35 IP bloccati (elenco completo nell'indirizzo-list MikroTik <code>attackers</code>).</p>
+      </div>
+
+      <div class="card sec-warn">
+        <h3 data-i18n="sec.warn_h">Avviso di sicurezza</h3>
+        <p data-i18n="sec.warn_p">Gli attacker hanno provato accessi di vario tipo: scansione di directory sensibili (.env, .git, wp-config), tentativi di RCE su Apache, exploit per telecamere Hikvision e router OpenWrt, e scansioni di phpMyAdmin. Sebbene il firewall MikroTik blocchi ora questi indirizzi, &egrave; sempre buona pratica:</p>
+        <ul class="sec-list">
+          <li data-i18n="sec.b1">Usa password forti e uniche per tutti i servizi (SSH, web, router).</li>
+          <li data-i18n="sec.b2">Tieni aggiornato il firmware di MikroTik, Zentyal e tutte le applicazioni.</li>
+          <li data-i18n="sec.b3">Disabilita i servizi non necessari (telnet, UPnP, ecc.) sull'interfaccia WAN.</li>
+          <li data-i18n="sec.b4">Monitora i log (fail2ban, MikroTik firewall) e revochi eventuali App Password esposte.</li>
+          <li data-i18n="sec.b5">Se gestisci un sito pubblico, considera l'uso di un WAF o di servizi di protezione DDoS.</li>
+        </ul>
+        <p data-i18n="sec.warn_end">Questo report &egrave; stato generato automaticamente sui log di rete e Apache (access.log). Gli IP segnalati sono stati bloccati in via permanente all'ingresso della rete.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-content">
+    <p>&copy; 2026 Stefano Pucci</p>
+    <div class="footer-links"><a href="projects.html" class="footer-link">Progetti</a><span class="footer-sep">|</span><a href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" class="footer-link">GitHub</a></div>
+  </div></div></footer>
+
+  <script src="js/i18n.js?v=20261019b"></script>
+  <script src="js/main.js?v=20261013b"></script>
+</body>
+</html>
