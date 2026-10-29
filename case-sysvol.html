@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.sysvol">SYSVOL: 3 giorni per una riga di Samba - Stefano Pucci</title>
+  <meta name="description" content="Case study: GPO ACL corrotte su Zentyal/Samba. Diagnosi, root cause in python/samba/ntacls.py (sd2 = sd), script di fix e verifica con sysvolcheck." data-i18n-title="cs.meta_desc">
+  <meta property="og:title" content="SYSVOL: 3 giorni per una riga di Samba" data-i18n-title="title.sysvol">
+  <meta property="og:description" content="GPO ACL corrotte su Zentyal/Samba: la causa era una riga nel codice. Diagnosi, fix e verifica." data-i18n-title="cs.meta_desc">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://pucci-homelab.duckdns.org/case-sysvol.html">
+  <meta property="og:site_name" content="Stefano Pucci">
+  <meta property="og:image" content="https://pucci-homelab.duckdns.org/img/og-case-sysvol.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SYSVOL: 3 giorni per una riga di Samba">
+  <meta name="twitter:description" content="GPO ACL corrotte su Zentyal/Samba: la causa era una riga nel codice.">
+  <meta name="twitter:image" content="https://pucci-homelab.duckdns.org/img/og-case-sysvol.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css?v=20261026d">
+  <style>
+    .cs-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:16px 0 4px}
+    .cs-metrics div{border:1px solid var(--border);padding:12px 8px;text-align:center;background:rgba(0,240,255,.02)}
+    .cs-metrics strong{display:block;font-family:var(--font-mono);font-size:1.5rem;color:var(--cyan);line-height:1.2}
+    .cs-metrics span{display:block;font-size:.58rem;color:var(--steel);letter-spacing:.06em;margin-top:4px}
+    .cs-code{background:#07070b;border:1px solid var(--border);border-left:2px solid var(--cyan);padding:16px;overflow-x:auto;margin:14px 0}
+    .cs-code code{font-family:var(--font-mono);font-size:.74rem;color:#c8d0dc;line-height:1.7;white-space:pre}
+    .cs-code .cmt{color:#5f6b7d}
+    .cs-code .hl{color:#ffb020}
+    .cs-cap{font-size:.6rem;color:var(--text-dim);letter-spacing:.08em;margin:0 0 6px}
+    .cs-verify{list-style:none;padding:0;margin:0}
+    .cs-verify li{position:relative;padding-left:24px;margin-bottom:9px;color:var(--steel);font-size:.8rem;line-height:1.55}
+    .cs-verify li::before{content:'OK';position:absolute;left:0;top:1px;font-family:var(--font-mono);font-size:.56rem;color:var(--terminal);border:1px solid rgba(0,255,65,.3);padding:1px 3px}
+    .cs-num{list-style:none;counter-reset:cs;padding:0;margin:0}
+    .cs-num li{counter-increment:cs;position:relative;padding-left:30px;margin-bottom:10px;color:var(--steel);font-size:.82rem;line-height:1.6}
+    .cs-num li::before{content:counter(cs,decimal-leading-zero);position:absolute;left:0;top:0;font-family:var(--font-mono);font-size:.66rem;color:var(--cyan)}
+    .cs-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .cs-note{font-size:.66rem;color:var(--text-dim);font-family:var(--font-mono);margin-top:10px}
+    .cs-tldr{border-left:2px solid var(--terminal);background:rgba(0,255,65,.03);padding:16px 18px;margin:0 0 8px}
+    .cs-tldr h3{margin-top:0}
+    .cs-tldr p{color:var(--steel);font-size:.84rem;line-height:1.7;margin:0}
+  </style>
+</head>
+<body class="grid-bg">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">stefano_pucci</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+        <li><a href="projects.html" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="pluservice.html" data-i18n="nav.pluservice">PLUSERVICE</a></li>
+        <li><a href="firewall.html" data-i18n="nav.firewall">FIREWALL</a></li>
+        <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">CONTATTI</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn lang-btn-it active" data-lang="it" data-i18n="nav.lang_it">ITA</button>
+        <button class="lang-btn lang-btn-en" data-lang="en" data-i18n="nav.lang_en">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label"><span class="line"></span><span data-i18n="cs.label">CASE_STUDY_01</span></div>
+        <h2 data-i18n-html="cs.title">SYSVOL: 3 giorni per <span>una riga di Samba</span></h2>
+        <p data-i18n="cs.desc">&gt; Le GPO non si applicavano. La causa non era la configurazione: era una riga nel codice di Samba.</p>
+      </div>
+
+      <div class="card">
+        <div class="cs-tldr">
+          <h3 data-i18n="cs.tldr_h">TL;DR</h3>
+          <p data-i18n="cs.tldr">Le GPO ACL su SYSVOL erano corrotte e samba-tool ntacl sysvolcheck falliva. Dopo aver escluso configurazione, permessi e DNS, la causa è emersa nel codice: in python/samba/ntacls.py la funzione setntacl() usa sd2 = sd, quindi il Security Descriptor viene scritto senza la normalizzazione attesa. Il bug è ancora presente in v4-24-stable, v4-25-stable e master. Ho scritto uno script idempotente che riscrive le ACL corrette: sysvolcheck ora esce 0.</p>
+        </div>
+        <div class="cs-metrics">
+          <div><strong>3</strong><span data-i18n="cs.m1">GIORNI</span></div>
+          <div><strong>1</strong><span data-i18n="cs.m2">ROOT CAUSE</span></div>
+          <div><strong>0</strong><span data-i18n="cs.m3">ERRORI SYSVOLCHECK</span></div>
+          <div><strong>3</strong><span data-i18n="cs.m4">BRANCH VERIFICATI</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="cs.ctx_h">CONTESTO</h3>
+        <p data-i18n="cs.ctx">Dominio Active Directory home-pucci.lan su Zentyal 8.1.2 (Ubuntu 24.04.5), Samba 4.19.5. SYSVOL ospita le GPO; il monitoraggio Prometheus/Grafana controlla già DC, DNS e servizi. Il sintomo è arrivato dagli alert: GPO non applicate e sysvolcheck in errore.</p>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="cs.prob_h">IL PROBLEMA</h3>
+        <p data-i18n="cs.prob">samba-tool ntacl sysvolcheck segnalava Security Descriptor non corrispondenti su SYSVOL. Le GPO venivano lette in modo incoerente dai client, e i tentativi di ripristino peggioravano la situazione: un reset ha anche causato un blocco della risoluzione DNS, risolto riavviando il servizio.</p>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="cs.inv_h">LA DIAGNOSI</h3>
+        <ol class="cs-num">
+          <li data-i18n="cs.inv1">Ho congelato i cambi e salvato una copia di SYSVOL e del database Samba prima di toccare altro.</li>
+          <li data-i18n="cs.inv2">Con samba-tool ntacl get ho confrontato le ACL reali con quelle attese, notando che owner e DACL non venivano materializzati come previsto.</li>
+          <li data-i18n="cs.inv3">Ho escluso DNS, time sync, permessi POSIX e configurazione di smb.conf: il problema si ripresentava identico dopo ogni reset.</li>
+          <li data-i18n="cs.inv4">Ho letto il codice di setntacl() in python/samba/ntacls.py e confrontato lo stesso file su v4-24-stable, v4-25-stable e master: la riga incriminata è identica in tutti e tre.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="cs.root_h">LA ROOT CAUSE</h3>
+        <p data-i18n="cs.root">Nella funzione setntacl() il Security Descriptor viene assegnato con sd2 = sd e poi scritto così com'è, senza la conversione che serve a materializzare correttamente owner e DACL su SYSVOL. Il risultato è che le ACL persistite non corrispondono a quelle attese da sysvolcheck, e ogni reset riparte da uno stato incoerente.</p>
+        <p class="cs-cap" data-i18n="cs.code_cap">python/samba/ntacls.py — setntacl() (estratto)</p>
+        <div class="cs-code"><code><span class="cmt"># estratto semplificato</span>
+def setntacl(samdb, path, sd, ...):
+    ...
+    <span class="hl">sd2 = sd</span>          <span class="cmt"># il Security Descriptor non viene normalizzato</span>
+    ...
+    samdb.setntacl(path, <span class="hl">sd2</span>, ...)
+    <span class="cmt"># risultato: owner/DACL persistiti non corrispondono a quelli attesi</span></code></div>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="cs.fix_h">IL FIX</h3>
+        <ol class="cs-num">
+          <li data-i18n="cs.fix1">Ho scritto fix_gpo_acl.py: legge il Security Descriptor atteso, lo applica con samba-tool ntacl set usando un SDDL esplicito e verifica il risultato. È idempotente e supporta --check e --dry-run.</li>
+          <li data-i18n="cs.fix2">Prima del fix: backup del database Samba e snapshot della VM. Poi applicazione su collaudo, verifica delle GPO con un client di test, quindi produzione.</li>
+          <li data-i18n="cs.fix3">Il bug 14927 (allowed_ace_types) è un problema diverso, corretto in Samba 4.23: non è la causa di questo caso.</li>
+        </ol>
+        <p class="cs-note" data-i18n="cs.fix_note">Script: /opt/ad-monitoring/tools/fix_gpo_acl.py (--check, --dry-run)</p>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="cs.ver_h">VERIFICA</h3>
+        <ul class="cs-verify">
+          <li data-i18n="cs.v1">samba-tool ntacl sysvolcheck esce 0, senza errori</li>
+          <li data-i18n="cs.v2">GPO applicate sul client di test dopo gpupdate /force</li>
+          <li data-i18n="cs.v3">Alert Prometheus su AD/SYSVOL rientrato</li>
+          <li data-i18n="cs.v4">Risoluzione DNS stabile dopo il riavvio del servizio</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="cs.lesson_h">COSA FAREI DIVERSAMENTE</h3>
+        <ul class="cs-verify">
+          <li data-i18n="cs.l1">Avrei catturato l'output di sysvolcheck prima di qualsiasi reset: mi sarebbe servito come baseline.</li>
+          <li data-i18n="cs.l2">Avrei provato il fix su un DC di collaudo con una GPO di test, invece di scoprire il blocco DNS in produzione.</li>
+          <li data-i18n="cs.l3">Aggiungerei sysvolcheck al monitoraggio periodico: oggi l'ho reso un controllo schedulato, non solo un comando manuale.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="cs.next_h">PROSSIMI PASSI</h3>
+        <p data-i18n="cs.next">Il workaround resta necessario finché la riga non viene corretta upstream: ricontrollo a ogni rilascio di Samba e tengo il fix versionato. Il prossimo passo è un test automatico che fallisca se sysvolcheck non è pulito.</p>
+        <div class="cs-links">
+          <a class="btn btn-sm btn-outline" href="https://github.com/samba-team/samba/blob/master/python/samba/ntacls.py" target="_blank" rel="noopener" data-i18n="cs.src_link">SORGENTE SAMBA (ntacls.py)</a>
+          <a class="btn btn-sm btn-outline" href="ad-monitoring.html" data-i18n="cs.mon_link">MONITORAGGIO AD</a>
+          <a class="btn btn-sm btn-ghost" href="projects.html" data-i18n="cs.back">TUTTI_I_PROGETTI</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2026 Stefano Pucci</p>
+        <p class="footer-tagline" data-i18n-html="footer.tagline">Debian &bull; Apache &bull; Docker &bull; Prometheus &bull; Grafana &bull; <span class="prompt-symbol">whoami</span></p>
+        <div class="footer-links">
+          <a href="mailto:stefano.informatico@gmail.com" class="footer-link">Email</a>
+          <span class="footer-sep">|</span>
+          <a href="https://www.linkedin.com/in/stefano-pucci-08210a19a/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+          <span class="footer-sep">|</span>
+          <a href="cv/cv-stefano-pucci.pdf" download class="footer-link">CV</a>
+          <span class="footer-sep">|</span>
+          <a href="recruiter.html" class="footer-link">Recruiter</a>
+          <span class="footer-sep">|</span>
+          <a href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js?v=20261026"></script>
+  <script src="js/pages-i18n.js?v=20261026"></script>
+  <script src="js/main.js?v=20261023"></script>
+</body>
+</html>

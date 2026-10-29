@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.labsql">Palestra PostgreSQL - Stefano Pucci</title>
+  <meta name="description" content="Palestra PostgreSQL su dati aziendali fittizi: documentazione, esercizi a livelli, verifica automatica. Senza timer.">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css?v=20261024a">
+  <style>
+    .qt-wrap{width:760px;max-width:100%;margin:0 auto}
+    #sql-screen{height:380px;min-height:380px;max-height:380px}
+    @media(max-width:768px){#sql-screen{height:300px;min-height:300px;max-height:300px}}
+    .qt-table{width:100%;border-collapse:collapse;font-size:.68rem;margin:6px 0 4px}
+    .qt-table th{color:#00F0FF;text-align:left;padding:4px 8px;border-bottom:1px solid rgba(0,240,255,.25);
+      font-weight:600;letter-spacing:.08em;font-size:.6rem;white-space:nowrap}
+    .qt-table td{padding:4px 8px;border-bottom:1px solid rgba(0,255,65,.12);color:#00FF41;
+      font-family:'Courier New',Consolas,monospace;vertical-align:top}
+    .qt-title{border:1px solid rgba(0,240,255,.35);background:rgba(0,240,255,.06);
+      color:#00F0FF;text-align:center;font-weight:700;letter-spacing:.18em;
+      font-size:.72rem;padding:8px 6px;margin:10px 0 2px}
+    .sql-input{width:100%;background:rgba(13,13,15,.6);border:1px solid var(--border);color:#00FF41;
+      font-family:'Courier New',Consolas,monospace;font-size:.78rem;padding:12px 14px;min-height:76px;resize:vertical}
+    .sql-input:focus{border-color:rgba(0,240,255,.4);outline:none}
+    .lvl-row{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+    .lvl-btn.done{border-color:rgba(0,255,65,.5);color:#00FF41}
+    .demo-note{font-size:.72rem;color:#6a6a7a;margin-top:12px}
+    .report-table{width:100%;border-collapse:collapse;font-size:.72rem;margin:0 0 24px}
+    .report-table th{text-align:left;color:var(--cyan);font-size:.6rem;letter-spacing:.12em;
+      padding:10px 12px;border:1px solid var(--border);background:rgba(0,240,255,.04)}
+    .report-table td{padding:9px 12px;border:1px solid var(--border);color:var(--steel);vertical-align:top}
+    .report-table td:first-child{color:var(--text);white-space:nowrap}
+    .report-h{font-size:.95rem;color:#fff;font-family:var(--font-sans);font-weight:600;margin:40px 0 16px}
+    .report-h::before{content:'> ';color:var(--cyan)}
+  </style>
+  <meta property="og:title" content="Palestra PostgreSQL - Stefano Pucci">
+  <meta property="og:description" content="Palestra PostgreSQL su dati aziendali fittizi: documentazione, esercizi a livelli, verifica automatica. Senza timer.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pucci-homelab.duckdns.org/lab-sql.html">
+  <meta property="og:image" content="https://pucci-homelab.duckdns.org/img/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Stefano Pucci — Portfolio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Palestra PostgreSQL - Stefano Pucci">
+  <meta name="twitter:description" content="Palestra PostgreSQL su dati aziendali fittizi: documentazione, esercizi a livelli, verifica automatica. Senza timer.">
+  <meta name="twitter:image" content="https://pucci-homelab.duckdns.org/img/og-home.png">
+</head>
+<body class="grid-bg">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">stefano_pucci</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="index.html" data-i18n="nav.about">ABOUT</a></li>
+        <li><a href="index.html" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="pluservice.html" data-i18n="nav.pluservice">PLUSERVICE</a></li>
+        <li><a href="index.html" data-i18n="nav.firewall">FIREWALL</a></li>
+        <li><a href="index.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
+        <li><a href="index.html" data-i18n="nav.contact">CONTATTI</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn lang-btn-it active" data-lang="it">ITA</button>
+        <button class="lang-btn lang-btn-en" data-lang="en">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label"><span class="line"></span><span data-i18n="lab.label">PALESTRA_SQL</span></div>
+        <h2 data-i18n-html="lab.title">SQL su dati <span>aziendali</span></h2>
+        <p data-i18n="lab.desc">&gt; Fase 0: ricostruisci il database aziendale vero passo passo — Fase 1: 6 query senza timer, verifica automatica</p>
+      </div>
+
+      <div class="qt-wrap">
+        <div class="retro-terminal" style="max-width:100%;margin:0">
+          <div class="term-crt">
+            <div class="term-screen" id="sql-screen"><div class="term-output" id="sql-out"></div></div>
+            <div class="term-brand">STEFANO PUCCI — PG LAB v3.0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lvl-row" id="lvl-row"></div>
+
+      <textarea id="sql-input" class="sql-input" spellcheck="false">-- F0: crea il tuo schema
+CREATE SCHEMA IF NOT EXISTS lab_azienda;</textarea>
+      <div class="project-links-list" style="margin-top:12px">
+        <button id="sql-run" class="btn btn-sm"><span data-i18n="lab.run">ESEGUI_QUERY</span></button>
+        <button id="sql-hint" class="btn btn-sm btn-outline"><span data-i18n="lab.hint">SUGGERIMENTO</span></button>
+        <button id="sql-solution" class="btn btn-sm btn-outline"><span data-i18n="lab.solution">SOLUZIONE</span></button>
+        <button id="sql-reset" class="btn btn-sm btn-outline"><span data-i18n="lab.reset">RESET_FASE0</span></button>
+      </div>
+      <p class="demo-note" data-i18n="lab.note">Fase 0 scrive nella tua sandbox (solo database lab_*); Fase 1 legge il DB condiviso pg_demo, max 100 righe. Progressi salvati nel browser. Esercizi in italiano.</p>
+
+      <h3 class="report-h" data-i18n="lab.schema">SCHEMA_DATI</h3>
+      <table class="report-table">
+        <tr><th data-i18n="lab.th_t">TABELLA</th><th data-i18n="lab.th_c">COLONNE</th><th data-i18n="lab.th_n">RIGHE</th></tr>
+        <tr><td>sedi</td><td>id, nome, citta, indirizzo</td><td>3</td></tr>
+        <tr><td>dipendenti</td><td>matricola, nome, cognome, ruolo, sede_id, assunto, stipendio</td><td>8</td></tr>
+        <tr><td>clienti</td><td>id, ragione_sociale, citta, tipo, dal</td><td>5</td></tr>
+        <tr><td>mezzi</td><td>targa, modello, anno, km, stato</td><td>5</td></tr>
+        <tr><td>linee</td><td>codice, descrizione, km</td><td>3</td></tr>
+        <tr><td>corse</td><td>id, linea, mezzo, data, passeggeri, ritardo_min</td><td>8</td></tr>
+        <tr><td>biglietti</td><td>id, corsa_id, tipo, prezzo, canale</td><td>12</td></tr>
+        <tr><td>manutenzioni</td><td>id, mezzo, data, tipo, costo</td><td>4</td></tr>
+      </table>
+
+      <h3 class="report-h" data-i18n="lab.syn">SINTASSI_SUPPORTATA</h3>
+      <table class="report-table">
+        <tr><th data-i18n="lab.th_c">COSTRUTTO</th><th data-i18n="lab.th_t">ESEMPIO</th></tr>
+        <tr><td>SELECT · WHERE · ORDER BY · LIMIT</td><td><code>SELECT nome FROM dipendenti WHERE ruolo='autista' ORDER BY nome LIMIT 5</code></td></tr>
+        <tr><td>JOIN</td><td><code>SELECT c.id, l.descrizione FROM corse c JOIN linee l ON l.codice=c.linea</code></td></tr>
+        <tr><td>GROUP BY + COUNT/SUM/AVG</td><td><code>SELECT tipo, COUNT(*) FROM biglietti GROUP BY tipo</code></td></tr>
+      </table>
+
+      <div class="project-links" style="margin-top:24px">
+        <div class="project-links-list">
+          <a href="index.html" class="btn btn-sm btn-outline"><span data-i18n="lab.back">TORNA_A_PROGETTI</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-content">
+    <p>&copy; 2026 Stefano Pucci</p>
+    <div class="footer-links"><a href="index.html" class="footer-link">Progetti</a><span class="footer-sep">|</span><a href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" class="footer-link">GitHub</a></div>
+  </div></div></footer>
+
+  <script src="js/i18n.js?v=20261026"></script>
+  <script src="js/query.js?v=20261024a"></script>
+    <script src="js/terminal.js?v=20261024a"></script>
+    <script src="js/main.js?v=20261024a"></script>
+  <script src="js/lab-sql.js?v=20261024a"></script>
+</body>
+</html>

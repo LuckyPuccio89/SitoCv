@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.pluservice">Per Pluservice - Stefano Pucci</title>
+  <meta name="description" content="Candidatura per Pluservice SRL: demo TPL su dati reali, architettura del laboratorio, numeri e metodo di lavoro.">
+  <meta property="og:title" content="Per Pluservice — Stefano Pucci">
+  <meta property="og:description" content="Demo TPL su dati reali, homelab AD e laboratorio SQL: cosa porto a Pluservice.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pucci-homelab.duckdns.org/pluservice.html">
+  <meta property="og:site_name" content="Stefano Pucci">
+  <meta property="og:image" content="https://pucci-homelab.duckdns.org/img/og-pluservice.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Per Pluservice — Stefano Pucci">
+  <meta name="twitter:description" content="Demo TPL su dati reali, homelab AD e laboratorio SQL.">
+  <meta name="twitter:image" content="https://pucci-homelab.duckdns.org/img/og-pluservice.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css?v=20261023b">
+  <style>
+    .ps-list{list-style:none;padding:0;margin:0}
+    .ps-list li{position:relative;padding-left:18px;margin-bottom:10px;color:var(--steel);font-size:.82rem;line-height:1.6}
+    .ps-list li::before{content:'>';position:absolute;left:0;color:var(--cyan)}
+    .ps-list li code{color:var(--cyan);background:rgba(0,240,255,.06);padding:1px 5px;font-size:.74rem}
+    .ps-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:8px}
+    .ps-kpi div{border:1px solid var(--border);padding:14px 10px;text-align:center}
+    .ps-kpi strong{display:block;font-size:1.5rem;color:var(--cyan);line-height:1.2}
+    .ps-kpi span{font-size:.64rem;color:var(--steel);letter-spacing:.06em}
+    .ps-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  </style>
+</head>
+<body class="grid-bg">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">stefano_pucci</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+        <li><a href="projects.html" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="pluservice.html" data-i18n="nav.pluservice" class="active">PLUSERVICE</a></li>
+        <li><a href="firewall.html" data-i18n="nav.firewall">FIREWALL</a></li>
+        <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">CONTATTI</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn lang-btn-it active" data-lang="it" data-i18n="nav.lang_it">ITA</button>
+        <button class="lang-btn lang-btn-en" data-lang="en" data-i18n="nav.lang_en">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label"><span class="line"></span><span data-i18n="ps.label">CANDIDATURA</span></div>
+        <h2 data-i18n-html="ps.title">Per <span>Pluservice</span></h2>
+        <p data-i18n="ps.desc">&gt; Sistemista Linux e infrastruttura: portfolio pratico su dati TPL e operations</p>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="ps.why_h">Perché Pluservice</h3>
+        <ul class="ps-list">
+          <li data-i18n="ps.why1">Ho costruito demo sul vostro dominio: GTFS e NeTEx, AVM/AVL, KPI di esercizio e infomobilità, partendo da dati reali.</li>
+          <li data-i18n="ps.why2">So far girare l'infrastruttura che li sostiene: Active Directory, DNS, Apache, Docker, PostgreSQL e monitoraggio Prometheus/Grafana.</li>
+          <li data-i18n="ps.why3">Lavoro per problemi, non per tentativi: alert, postmortem e hardening documentati su ogni intervento.</li>
+          <li data-i18n="ps.why4">Tutto riproducibile: configurazioni versionate, script idempotenti e collaudo prima della produzione.</li>
+        </ul>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3 data-i18n="ps.d1t">Demo TPL</h3>
+          <p data-i18n="ps.d1d">Mappa AVM/AVL con fermate reali e dashboard KPI in stile Pluservice.</p>
+          <a class="btn btn-sm btn-outline" href="mobility-report.html" data-i18n="ps.open">APRI</a>
+        </div>
+        <div class="card">
+          <h3 data-i18n="ps.d2t">SQL Lab</h3>
+          <p data-i18n="ps.d2d">PostgreSQL 15, API Python e sandbox isolata per sessione, senza PHP.</p>
+          <a class="btn btn-sm btn-outline" href="lab-sql.html" data-i18n="ps.open">APRI</a>
+        </div>
+        <div class="card">
+          <h3 data-i18n="ps.d3t">Homelab</h3>
+          <p data-i18n="ps.d3d">Proxmox, OPNsense, Zentyal AD, Docker, TLS e hardening Apache.</p>
+          <a class="btn btn-sm btn-outline" href="homelab-report.html" data-i18n="ps.open">APRI</a>
+        </div>
+        <div class="card">
+          <h3 data-i18n="ps.d4t">Monitoraggio</h3>
+          <p data-i18n="ps.d4d">Prometheus e Grafana con alert su Active Directory e SYSVOL.</p>
+          <a class="btn btn-sm btn-outline" href="ad-monitoring.html" data-i18n="ps.open">APRI</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="ps.arch_h">Architettura del laboratorio</h3>
+        <ul class="ps-list">
+          <li data-i18n="ps.a1">Proxmox VE come hypervisor, con VM separate per edge, dominio e servizi.</li>
+          <li data-i18n="ps.a2">OPNsense sul bordo: firewall stateful, NAT, VPN e segmentazione in VLAN.</li>
+          <li data-i18n="ps.a3">Zentyal 8 come domain controller: Active Directory, DNS integrato, DHCP e GPO.</li>
+          <li data-i18n="ps.a4">Host Docker: Prometheus, Grafana, Uptime Kuma, Portainer, code-server, FileBrowser.</li>
+          <li data-i18n="ps.a5">Apache con TLS, reverse proxy e hardening; PostgreSQL 15 per il laboratorio SQL.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="ps.num_h">Numeri</h3>
+        <div class="ps-kpi">
+          <div><strong>21</strong><span data-i18n="ps.k1">pagine online</span></div>
+          <div><strong>7</strong><span data-i18n="ps.k2">container attivi</span></div>
+          <div><strong>8</strong><span data-i18n="ps.k3">tabelle nel lab SQL</span></div>
+          <div><strong>3</strong><span data-i18n="ps.k4">feed TPL reali</span></div>
+          <div><strong>0</strong><span data-i18n="ps.k5">pacchetti pendenti</span></div>
+          <div><strong>60s</strong><span data-i18n="ps.k6">intervallo di monitoraggio</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="ps.how_h">Come lavoro</h3>
+        <ul class="ps-list">
+          <li data-i18n="ps.h1">Prima osservo: metriche e log prima di toccare qualsiasi cosa.</li>
+          <li data-i18n="ps.h2">Cambio con backup, test in collaudo e rollback pronto.</li>
+          <li data-i18n="ps.h3">Minimo privilegio: utenti e ruoli separati, nessun segreto nel codice.</li>
+          <li data-i18n="ps.h4">Documento tutto: runbook, postmortem e changelog del sito.</li>
+          <li data-i18n="ps.h5">Verifico end-to-end: non basta che il servizio parta.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="ps.cta_h">Parliamone</h3>
+        <p data-i18n="ps.cta">Sono disponibile per un colloquio tecnico: posso mostrare dal vivo laboratorio, demo TPL e codice.</p>
+        <div class="ps-cta">
+          <a class="btn btn-sm" href="contact.html" data-i18n="ps.btn_contact">CONTATTI</a>
+          <a class="btn btn-sm btn-outline" href="cv/cv-stefano-pucci.pdf" data-i18n="ps.btn_cv">SCARICA CV</a>
+          <a class="btn btn-sm btn-outline" href="recruiter.html">PROFILO RECRUITER</a>
+          <a class="btn btn-sm btn-outline" href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" data-i18n="ps.btn_gh">GITHUB</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-content">
+    <p>&copy; 2026 Stefano Pucci</p>
+    <div class="footer-links"><a href="projects.html" class="footer-link">Progetti</a><span class="footer-sep">|</span><a href="recruiter.html" class="footer-link">Recruiter</a><span class="footer-sep">|</span><a href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" class="footer-link">GitHub</a></div>
+  </div></div></footer>
+
+  <script src="js/i18n.js?v=20261026"></script>
+  <script src="js/main.js?v=20261023"></script>
+</body>
+</html>

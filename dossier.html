@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Dossier — Stefano Pucci, Sistemista Junior</title>
+  <style>
+    :root{--ink:#111318;--muted:#5a6472;--line:#d7dce3;--accent:#0a7c8a;--soft:#f3f6f8}
+    *{box-sizing:border-box}
+    body{margin:0;background:#e9edf1;color:var(--ink);font-family:"Segoe UI",Arial,sans-serif;font-size:10.5pt;line-height:1.5}
+    .page{width:210mm;min-height:297mm;margin:0 auto;background:#fff;padding:14mm 15mm;page-break-after:always}
+    .page:last-child{page-break-after:auto}
+    header{border-bottom:2px solid var(--accent);padding-bottom:8mm;margin-bottom:7mm}
+    h1{margin:0;font-size:23pt;letter-spacing:-.02em}
+    .role{color:var(--accent);font-size:11pt;font-weight:600;margin-top:2mm;letter-spacing:.04em;text-transform:uppercase}
+    .contact{color:var(--muted);font-size:9pt;margin-top:3mm}
+    .contact span{margin-right:5mm;white-space:nowrap}
+    h2{font-size:10pt;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin:7mm 0 3mm;border-bottom:1px solid var(--line);padding-bottom:1.5mm}
+    p{margin:0 0 2.5mm}
+    .lead{font-size:10.5pt;background:var(--soft);border-left:3px solid var(--accent);padding:4mm 5mm}
+    .chips{display:flex;gap:3mm;flex-wrap:wrap;margin:4mm 0 0}
+    .chip{border:1px solid var(--line);padding:2.5mm 4mm;font-size:8.5pt;color:var(--muted)}
+    .chip b{display:block;color:var(--ink);font-size:10pt;margin-top:.5mm}
+    .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:2mm;margin:3mm 0 0}
+    .kpi{border:1px solid var(--line);text-align:center;padding:2.5mm 1mm}
+    .kpi b{display:block;font-size:14pt;color:var(--accent);line-height:1.1}
+    .kpi span{font-size:6.5pt;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+    .proofs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3mm}
+    .proof{border:1px solid var(--line);padding:3.5mm}
+    .proof h3{margin:0 0 1.5mm;font-size:9.5pt}
+    .proof p{margin:0;font-size:8.5pt;color:var(--muted)}
+    .proof .n{font-family:Consolas,monospace;color:var(--accent);font-size:8pt;margin-top:2mm}
+    ul{margin:0;padding-left:4mm}
+    li{margin-bottom:1.5mm}
+    .two{display:grid;grid-template-columns:1.15fr .85fr;gap:6mm}
+    .box{border:1px solid var(--line);padding:4mm}
+    .box h3{margin:0 0 2mm;font-size:9.5pt}
+    .mono{font-family:Consolas,monospace;font-size:8.5pt;background:var(--soft);padding:1mm 2mm}
+    .muted{color:var(--muted);font-size:8.5pt}
+    .foot{margin-top:8mm;border-top:1px solid var(--line);padding-top:3mm;color:var(--muted);font-size:7.5pt;display:flex;justify-content:space-between}
+    .tl{list-style:none;padding:0;margin:0}
+    .tl li{padding-left:6mm;position:relative;margin-bottom:2.5mm;font-size:9pt}
+    .tl li::before{content:"";position:absolute;left:0;top:2mm;width:2.2mm;height:2.2mm;border-radius:50%;background:var(--accent)}
+    .tag{display:inline-block;border:1px solid var(--line);padding:.6mm 2mm;font-size:7.5pt;color:var(--muted);margin:0 1mm 1mm 0}
+    @page{size:A4;margin:0}
+    @media print{body{background:#fff}.page{margin:0;box-shadow:none}}
+    @media screen{.page{box-shadow:0 2px 14px rgba(0,0,0,.12);margin:8mm auto}}
+  </style>
+  <meta property="og:title" content="Dossier — Stefano Pucci, Sistemista Junior">
+  <meta property="og:description" content="Portfolio professionale di Stefano Pucci.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pucci-homelab.duckdns.org/dossier.html">
+  <meta property="og:image" content="https://pucci-homelab.duckdns.org/img/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Stefano Pucci — Portfolio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dossier — Stefano Pucci, Sistemista Junior">
+  <meta name="twitter:description" content="Portfolio professionale di Stefano Pucci.">
+  <meta name="twitter:image" content="https://pucci-homelab.duckdns.org/img/og-home.png">
+</head>
+<body>
+
+<div class="page">
+  <header>
+    <h1>Stefano Pucci</h1>
+    <div class="role">Sistemista Junior — Linux &amp; Infrastruttura</div>
+    <div class="contact">
+      <span>stefano.informatico@gmail.com</span>
+      <span>+39 371 394 6209</span>
+      <span>Mondolfo (PU)</span><br>
+      <span>pucci-homelab.duckdns.org/recruiter.html</span>
+      <span>linkedin.com/in/stefano-pucci-08210a19a</span>
+      <span>github.com/LuckyPuccio89</span>
+    </div>
+  </header>
+
+  <p class="lead">Sistemista Linux con laboratorio reale e case study verificabili. Cerco un ruolo junior in infrastruttura: disponibilità immediata, modalità ibrida. Il portfolio è il curriculum: ogni numero in questo dossier è cliccabile e controllabile online.</p>
+
+  <div class="chips">
+    <div class="chip">RUOLO<b>Sistemista Junior</b></div>
+    <div class="chip">DISPONIBILITÀ<b>Immediata</b></div>
+    <div class="chip">MODALITÀ<b>Ibrido</b></div>
+    <div class="chip">BASE<b>Mondolfo (PU)</b></div>
+  </div>
+
+  <h2>Numeri</h2>
+  <div class="kpis">
+    <div class="kpi"><b>21</b><span>pagine online</span></div>
+    <div class="kpi"><b>7</b><span>container</span></div>
+    <div class="kpi"><b>8</b><span>tabelle SQL</span></div>
+    <div class="kpi"><b>3</b><span>feed TPL</span></div>
+    <div class="kpi"><b>0</b><span>patch pendenti</span></div>
+    <div class="kpi"><b>60s</b><span>monitoraggio</span></div>
+  </div>
+
+  <h2>Tre prove</h2>
+  <div class="proofs">
+    <div class="proof">
+      <h3>Infrastruttura che gira</h3>
+      <p>Proxmox, OPNsense e Zentyal AD con 7 container, TLS, backup e monitoraggio ogni 60 secondi. Il sito è ospitato lì.</p>
+      <div class="n">7 container · 60s · 0 patch</div>
+    </div>
+    <div class="proof">
+      <h3>Incidente risolto</h3>
+      <p>SYSVOL con ACL corrotte: causa isolata in una riga del codice di Samba, fix idempotente, sysvolcheck a 0.</p>
+      <div class="n">3 giorni · 1 root cause · 0 errori</div>
+    </div>
+    <div class="proof">
+      <h3>Dati TPL e SQL</h3>
+      <p>3 feed reali (GTFS, NeTEx, Viaggiatreno), dashboard KPI, PostgreSQL con API Python e sandbox per sessione.</p>
+      <div class="n">3 feed · 8 tabelle · PHP 403</div>
+    </div>
+  </div>
+
+  <h2>Stack</h2>
+  <div class="two">
+    <div class="box">
+      <h3>Sistemi e rete</h3>
+      <p class="muted">Linux (Debian/Ubuntu), Windows Server, Active Directory, Proxmox VE, TCP/IP, VLAN, NAT, VPN, OPNsense, hardening, TLS/PKI.</p>
+    </div>
+    <div class="box">
+      <h3>Servizi e automazione</h3>
+      <p class="muted">Apache, Docker/Compose, PostgreSQL, MySQL, Samba, Prometheus/Grafana, Bash, Python, Git, cron, script idempotenti, runbook.</p>
+    </div>
+  </div>
+
+  <div class="foot"><span>Dossier portfolio — 26/10/2026</span><span>pucci-homelab.duckdns.org</span></div>
+</div>
+
+<div class="page">
+  <h2>Case study: SYSVOL, 3 giorni per una riga di Samba</h2>
+  <p>Dominio Active Directory <span class="mono">home-pucci.lan</span> su Zentyal 8.1.2 (Ubuntu 24.04.5), Samba 4.19.5. Le GPO non si applicavano e <span class="mono">samba-tool ntacl sysvolcheck</span> falliva: Security Descriptor non corrispondenti su SYSVOL.</p>
+  <ul class="tl">
+    <li>Backup di SYSVOL e database Samba prima di qualsiasi modifica.</li>
+    <li>Confronto tra ACL reali e attese con <span class="mono">ntacl get</span>: owner e DACL non materializzati come previsto.</li>
+    <li>Esclusi DNS, time sync, permessi POSIX e <span class="mono">smb.conf</span>: il problema tornava identico dopo ogni reset.</li>
+    <li>Causa nel codice: in <span class="mono">python/samba/ntacls.py</span>, <span class="mono">setntacl()</span> usa <span class="mono">sd2 = sd</span> e scrive il Security Descriptor senza normalizzazione. Presente in v4-24-stable, v4-25-stable e master.</li>
+    <li>Fix idempotente (<span class="mono">fix_gpo_acl.py</span>) con SDDL esplicito, <span class="mono">--check</span> e <span class="mono">--dry-run</span>; test su collaudo, poi produzione.</li>
+    <li>Verifica: <span class="mono">sysvolcheck</span> esce 0, GPO applicate, alert Prometheus rientrato, DNS stabile.</li>
+  </ul>
+  <p class="muted">Dettaglio completo: <span class="mono">pucci-homelab.duckdns.org/case-sysvol.html</span></p>
+
+  <h2>Cosa cerco</h2>
+  <ul>
+    <li>Ruolo da Sistemista Junior in un team che gestisce infrastruttura vera.</li>
+    <li>Contratto a tempo indeterminato o apprendistato; disponibilità immediata.</li>
+    <li>Modalità ibrida, con sede raggiungibile dalle Marche.</li>
+  </ul>
+
+  <h2>Verifica delle affermazioni</h2>
+  <div class="two">
+    <div class="box">
+      <h3>Pagine</h3>
+      <p class="muted">
+        /recruiter.html — profilo in 60 secondi<br>
+        /case-sysvol.html — case study completo<br>
+        /homelab-report.html — as-built del laboratorio<br>
+        /lab-sql.html — laboratorio PostgreSQL<br>
+        /mobility-report.html — demo TPL<br>
+        /changelog.html — storico del sito
+      </p>
+    </div>
+    <div class="box">
+      <h3>Contatti</h3>
+      <p class="muted">
+        Email: stefano.informatico@gmail.com<br>
+        Telefono: +39 371 394 6209<br>
+        LinkedIn: /in/stefano-pucci-08210a19a<br>
+        GitHub: /LuckyPuccio89<br>
+        CV: pucci-homelab.duckdns.org/cv/cv-stefano-pucci.pdf
+      </p>
+    </div>
+  </div>
+
+  <p style="margin-top:6mm">Rispondo entro 24 ore. Posso mostrare dal vivo laboratorio, demo TPL e codice.</p>
+
+  <div class="foot"><span>Documento generato dal portfolio, non un PDF statico</span><span>26/10/2026</span></div>
+</div>
+
+</body>
+</html>

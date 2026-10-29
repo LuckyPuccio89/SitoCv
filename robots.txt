@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Sitemap: https://pucci-homelab.duckdns.org/sitemap.xml

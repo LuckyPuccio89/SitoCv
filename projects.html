@@ -5,8 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="title.projects">Progetti - Stefano Pucci</title>
   <meta name="description" content="Progetti di Stefano Pucci — Sito web portfolio CV, infrastrutture IT e networking.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
-  <link rel="stylesheet" href="css/style.css?v=20261013b">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css?v=20261026c">
+  <meta property="og:title" content="Progetti - Stefano Pucci">
+  <meta property="og:description" content="Progetti di Stefano Pucci — Sito web portfolio CV, infrastrutture IT e networking.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pucci-homelab.duckdns.org/projects.html">
+  <meta property="og:image" content="https://pucci-homelab.duckdns.org/img/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Stefano Pucci — Portfolio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Progetti - Stefano Pucci">
+  <meta name="twitter:description" content="Progetti di Stefano Pucci — Sito web portfolio CV, infrastrutture IT e networking.">
+  <meta name="twitter:image" content="https://pucci-homelab.duckdns.org/img/og-home.png">
 </head>
 <body class="grid-bg">
   <nav class="navbar">
@@ -16,6 +30,7 @@
         <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
         <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
         <li><a href="projects.html" class="active" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="pluservice.html" data-i18n="nav.pluservice">PLUSERVICE</a></li>
         <li><a href="firewall.html" data-i18n="nav.firewall">FIREWALL</a></li>
         <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">CONTATTI</a></li>
@@ -39,409 +54,279 @@
         <div class="project-links-list" style="margin-top:16px;"><a href="changelog.html" class="btn btn-sm btn-outline"><span data-i18n="cl.label">CHANGELOG</span></a></div>
       </div>
 
-      <div class="project-featured">
-        <div class="project-featured-badge">
-          <span class="status">
-            <span class="status-dot"></span>
-            <span data-i18n="projects.status_done">COMPLETATO</span>
-          </span>
-          <span class="project-year" data-i18n="projects.homelab_year">Ottobre 2026</span>
-        </div>
-        <h3 class="project-featured-title" data-i18n="projects.homelab_title">Home Lab Data Center</h3>
-        <p class="project-featured-subtitle" data-i18n="projects.homelab_sub">Infrastruttura home lab con firewall, directory service e hosting TLS</p>
-        <div class="project-featured-desc">
-          <p data-i18n="projects.homelab_desc">
-            Progettazione e realizzazione di un data center domestico su singolo nodo Proxmox con firewall OPNsense,
-            domain controller Zentyal AD, segmentazione VLAN e hosting TLS dei servizi web — completato a ottobre 2026.
-            Il rapporto tecnico completo documenta architettura, configurazioni e lezioni apprese.
-          </p>
-        </div>
+      <div class="tech-matrix" aria-label="Matrice tecnica progetti">
+        <div class="matrix-head" data-i18n="projects.mx_label">MATRICE_TECNICA</div>
 
-        <div class="project-tech">
-          <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
-          <div class="project-tech-list">
-            <span class="tag">Proxmox</span>
-            <span class="tag">OPNsense</span>
-            <span class="tag">Zentyal</span>
-            <span class="tag">VLAN</span>
-            <span class="tag">Apache TLS</span>
+        <div class="matrix-group">
+          <div class="matrix-group-head">
+            <span class="mg-name" data-i18n="projects.mx_net">NETWORKING</span>
+            <span class="mg-count">01 &middot; CONFIG_READY</span>
+          </div>
+          <div class="matrix-grid">
+            <article class="matrix-item">
+              <div class="matrix-item-top">
+                <span class="matrix-badge">NET</span>
+                <span class="matrix-status">[ CONFIG_READY ]</span>
+              </div>
+              <h4 class="matrix-title"><a href="mikrotik-ftth-italia.html">MikroTik FTTH Italia</a></h4>
+              <p class="matrix-abs" data-i18n="projects.mx_mt_abs">RouterOS 7 su FTTH: VLAN di accesso 802.1Q (835/836), client PPPoE, FastTrack, protezione DoS e firewall stateful.</p>
+              <div class="matrix-tags">
+                <span class="tag">mikrotik-ftth-italia.html</span>
+                <span class="tag" data-i18n="projects.mx_net_stack">RouterOS 7 &middot; PPPoE &middot; VLAN &middot; FastTrack &middot; DoS</span>
+              </div>
+            </article>
           </div>
         </div>
 
-        <div class="project-links">
-          <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
-          <div class="project-links-list">
-            <a href="homelab-report.html" class="btn btn-sm btn-outline"><span data-i18n="projects.btn_report">LEGGI_RAPPORTO</span></a>
+        <div class="matrix-group">
+          <div class="matrix-group-head">
+            <span class="mg-name" data-i18n="projects.mx_sys">SISTEMI &amp; OBSERVABILITY</span>
+            <span class="mg-count">04 &middot; METRICS_ACTIVE</span>
+          </div>
+          <div class="matrix-grid">
+            <article class="matrix-item">
+              <div class="matrix-item-top">
+                <span class="matrix-badge">SYS</span>
+                <span class="matrix-status">[ CASE_STUDY ]</span>
+              </div>
+              <h4 class="matrix-title"><a href="case-sysvol.html">SYSVOL ACL — Samba</a></h4>
+              <p class="matrix-abs" data-i18n="projects.mx_sysvol_abs">GPO ACL corrotte su Zentyal/Samba: diagnosi, root cause in ntacls.py (sd2 = sd) e fix idempotente con sysvolcheck a 0.</p>
+              <div class="matrix-tags">
+                <span class="tag">case-sysvol.html</span>
+                <span class="tag" data-i18n="projects.mx_sysvol_stack">Samba 4.19 &middot; Zentyal &middot; SYSVOL &middot; Python</span>
+              </div>
+            </article>
+            <article class="matrix-item">
+              <div class="matrix-item-top">
+                <span class="matrix-badge">SYS</span>
+                <span class="matrix-status">[ METRICS_ACTIVE ]</span>
+              </div>
+              <h4 class="matrix-title"><a href="ad-monitoring.html">Active Directory Monitoring</a></h4>
+              <p class="matrix-abs" data-i18n="projects.mx_ad_abs">Samba AD su Zentyal con exporter Python in sola lettura, metriche Prometheus sanificate e dashboard Grafana.</p>
+              <div class="matrix-tags">
+                <span class="tag">ad-monitoring.html</span>
+                <span class="tag" data-i18n="projects.mx_ad_stack">Samba 4.19 &middot; Python &middot; Prometheus &middot; Grafana</span>
+              </div>
+            </article>
+            <article class="matrix-item">
+              <div class="matrix-item-top">
+                <span class="matrix-badge">SYS</span>
+                <span class="matrix-status">[ REPORT_READY ]</span>
+              </div>
+              <h4 class="matrix-title"><a href="homelab-report.html">Home Lab Data Center</a></h4>
+              <p class="matrix-abs" data-i18n="projects.mx_hl_abs">Nodo Proxmox, OPNsense, Zentyal AD e hosting TLS: architettura, VLAN e report as-built.</p>
+              <div class="matrix-tags">
+                <span class="tag">homelab-report.html</span>
+                <span class="tag" data-i18n="projects.mx_hl_stack">Proxmox VE &middot; OPNsense &middot; Zentyal &middot; TLS</span>
+              </div>
+            </article>
+            <article class="matrix-item">
+              <div class="matrix-item-top">
+                <span class="matrix-badge">SYS</span>
+                <span class="matrix-status">[ STACK_UP ]</span>
+              </div>
+              <h4 class="matrix-title"><a href="docker-report.html">Docker &mdash; Monitoring &amp; Dev</a></h4>
+              <p class="matrix-abs" data-i18n="projects.mx_dk_abs">Sette container in due stack compose: monitoraggio Prometheus/Grafana e ambiente di sviluppo.</p>
+              <div class="matrix-tags">
+                <span class="tag">docker-report.html</span>
+                <span class="tag" data-i18n="projects.mx_dk_stack">Docker &middot; Compose &middot; Grafana &middot; code-server</span>
+              </div>
+            </article>
           </div>
         </div>
 
-        <div class="project-featured" style="margin-top:48px;">
-          <div class="project-featured-badge">
-            <span class="status">
-              <span class="status-dot"></span>
-              <span data-i18n="projects.status_done">COMPLETATO</span>
-            </span>
-            <span class="project-year" data-i18n="projects.docker_year">Ottobre 2026</span>
+        <div class="matrix-group">
+          <div class="matrix-group-head">
+            <span class="mg-name" data-i18n="projects.mx_data">DATA PIPELINE</span>
+            <span class="mg-count">02 &middot; DAEMON_READY</span>
           </div>
-          <h3 class="project-featured-title" data-i18n="projects.docker_title">Docker — Monitoring &amp; Dev</h3>
-          <p class="project-featured-subtitle" data-i18n="projects.docker_sub">7 container in 2 stack compose: monitoraggio e sviluppo del sito</p>
-          <div class="project-featured-desc">
-            <p data-i18n="projects.docker_desc">
-              Due stack Docker Compose sull'host del sito: monitoraggio con Uptime Kuma, Prometheus, exporter e Grafana,
-              più ambiente di sviluppo con code-server e FileBrowser sulla docroot live — con limiti di memoria,
-              restart automatico e volumi dedicati.
-            </p>
-          </div>
-
-          <div class="project-tech">
-            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
-            <div class="project-tech-list">
-              <span class="tag">Docker</span>
-              <span class="tag">Compose</span>
-              <span class="tag">Uptime Kuma</span>
-              <span class="tag">Prometheus</span>
-              <span class="tag">Grafana</span>
-              <span class="tag">code-server</span>
-              <span class="tag">FileBrowser</span>
-            </div>
-          </div>
-
-          <div class="project-links">
-            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
-            <div class="project-links-list">
-              <a href="docker-report.html" class="btn btn-sm btn-outline"><span data-i18n="projects.btn_docker">RAPPORTO_DOCKER</span></a>
-            </div>
+          <div class="matrix-grid">
+            <article class="matrix-item">
+              <div class="matrix-item-top">
+                <span class="matrix-badge">DATA</span>
+                <span class="matrix-status">[ DAEMON_READY ]</span>
+              </div>
+              <h4 class="matrix-title"><a href="gtfs-demo.html">Infomobility GTFS Live</a></h4>
+              <p class="matrix-abs" data-i18n="projects.mx_gtfs_abs">Partenze Viaggiatreno Fano-Ancona, poller Python su cron, snapshot JSON e fallback simulato.</p>
+              <div class="matrix-tags">
+                <span class="tag">gtfs-demo.html</span>
+                <span class="tag" data-i18n="projects.mx_gtfs_stack">Python 3 &middot; PostgreSQL &middot; JSON &middot; cron</span>
+              </div>
+            </article>
+            <article class="matrix-item">
+              <div class="matrix-item-top">
+                <span class="matrix-badge">DATA</span>
+                <span class="matrix-status">[ PIPELINE_READY ]</span>
+              </div>
+              <h4 class="matrix-title"><a href="mobility-report.html">Mobility Report</a></h4>
+              <p class="matrix-abs" data-i18n="projects.mx_mob_abs">Pipeline dati sulla mobilit&agrave;: feed GTFS, KPI di puntualit&agrave; e report interattivi.</p>
+              <div class="matrix-tags">
+                <span class="tag">mobility-report.html</span>
+                <span class="tag" data-i18n="projects.mx_mob_stack">GTFS &middot; Python &middot; PostgreSQL &middot; SVG</span>
+              </div>
+            </article>
           </div>
         </div>
 
-        <div class="project-featured" style="margin-top:48px;">
-          <div class="project-featured-badge">
-            <span class="status">
-              <span class="status-dot"></span>
-              <span data-i18n="projects.status_done">COMPLETATO</span>
-            </span>
-            <span class="project-year" data-i18n="projects.gtfs_year">Ottobre 2026</span>
+        <div class="matrix-group">
+          <div class="matrix-group-head">
+            <span class="mg-name" data-i18n="projects.mx_labs">LABORATORI</span>
+            <span class="mg-count">03 &middot; LAB_READY</span>
           </div>
-          <h3 class="project-featured-title" data-i18n="projects.gtfs_title">Infomobility GTFS Live</h3>
-          <p class="project-featured-subtitle" data-i18n="projects.gtfs_sub">Fermate reali GTFS + partenze live Viaggiatreno Fano-Ancona</p>
-          <div class="project-featured-desc">
-            <p data-i18n="projects.gtfs_desc">
-              Demo stile monitoraggio ITS Pluservice: fermate reali mdb-1319 (stop_id, lat/lon), 2 linee, 4 corse animate ogni 2s. Il feed ha solo 2 trip: posizioni simulate, documentate in api/gtfs.json.
-            </p>
-          </div>
-
-          <div class="project-tech">
-            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
-            <div class="project-tech-list">
-              <span class="tag">GTFS-like JSON</span>
-              <span class="tag">SVG live</span>
-              <span class="tag">AVM/AVL sim</span>
-              <span class="tag">Vanilla JS</span>
-            </div>
-          </div>
-
-          <div class="project-links">
-            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
-            <div class="project-links-list">
-              <a href="gtfs-demo.html" class="btn btn-sm"><span data-i18n="projects.btn_demo">APRI_DEMO</span></a>
-              <a href="mobility-report.html" class="btn btn-sm btn-outline"><span data-i18n="projects.btn_mrep">RAPPORTO_DETTAGLIATO</span></a>
-              <a href="api/gtfs.json" class="btn btn-sm btn-outline" target="_blank" rel="noopener">API_JSON</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-featured" style="margin-top:48px;">
-          <div class="project-featured-badge">
-            <span class="status">
-              <span class="status-dot"></span>
-              <span data-i18n="projects.status_done">COMPLETATO</span>
-            </span>
-            <span class="project-year" data-i18n="projects.kpi_year">Ottobre 2026</span>
-          </div>
-          <h3 class="project-featured-title" data-i18n="projects.kpi_title">KPI Platform ART</h3>
-          <p class="project-featured-subtitle" data-i18n="projects.kpi_sub">Dashboard delibere ART: puntualita, copertura, soppresse, reclami</p>
-          <div class="project-featured-desc">
-            <p data-i18n="projects.kpi_desc">
-              Demo stile KPI Platform Pluservice: 9 mesi di dati da api/kpi.json, verifica automatica soglie, grafici canvas vanilla e tabella con export CSV locale.
-            </p>
-          </div>
-
-          <div class="project-tech">
-            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
-            <div class="project-tech-list">
-              <span class="tag">ART KPI</span>
-              <span class="tag">Canvas charts</span>
-              <span class="tag">CSV export</span>
-              <span class="tag">Vanilla JS</span>
-            </div>
-          </div>
-
-          <div class="project-links">
-            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
-            <div class="project-links-list">
-              <a href="kpi-demo.html" class="btn btn-sm"><span data-i18n="projects.btn_demo">APRI_DEMO</span></a>
-              <a href="mobility-report.html" class="btn btn-sm btn-outline"><span data-i18n="projects.btn_mrep">RAPPORTO_DETTAGLIATO</span></a>
-              <a href="api/kpi.json" class="btn btn-sm btn-outline" target="_blank" rel="noopener">API_JSON</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-featured" style="margin-top:48px;">
-          <div class="project-featured-badge">
-            <span class="status">
-              <span class="status-dot"></span>
-              <span data-i18n="projects.status_done">COMPLETATO</span>
-            </span>
-            <span class="project-year" data-i18n="projects.kpi_year">Ottobre 2026</span>
-          </div>
-          <h3 class="project-featured-title" data-i18n="projects.gym_title">Palestre Web</h3>
-          <p class="project-featured-subtitle" data-i18n="projects.gym_sub">Terminali didattici: SQL su DB aziendale, HTML e CSS sul sito vero</p>
-          <div class="project-featured-desc">
-            <p data-i18n="projects.gym_desc">
-              Tre palestre senza timer con verifica automatica: Fase 0 ricostruisci il database lab_azienda in sandbox Docker, poi query sul DB condiviso; ricomponi schede, tabelle e form in HTML; rivesti il terminale in CSS.
-            </p>
-          </div>
-
-          <div class="project-tech">
-            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
-            <div class="project-tech-list">
-              <span class="tag">MySQL Docker</span>
-              <span class="tag">PHP sandbox</span>
-              <span class="tag">HTML live</span>
-              <span class="tag">CSS computed</span>
-              <span class="tag">Vanilla JS</span>
-            </div>
-          </div>
-
-          <div class="project-links">
-            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
-            <div class="project-links-list">
-              <a href="lab-sql.html" class="btn btn-sm"><span data-i18n="projects.btn_labsql">PALESTRA_SQL</span></a>
-              <a href="lab-html.html" class="btn btn-sm btn-outline"><span data-i18n="projects.btn_labhtml">PALESTRA_HTML</span></a>
-              <a href="lab-css.html" class="btn btn-sm btn-outline"><span data-i18n="projects.btn_labcss">PALESTRA_CSS</span></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-featured" style="margin-top:48px;">
-          <div class="project-featured-badge">
-            <span class="status">
-              <span class="status-dot"></span>
-              <span data-i18n="projects.status_done">COMPLETATO</span>
-            </span>
-            <span class="project-year" data-i18n="projects.mikrotik_year">Ottobre 2026</span>
-          </div>
-          <h3 class="project-featured-title" data-i18n="mt.card_title">MikroTik hEX S &mdash; FTTH Italia</h3>
-          <p class="project-featured-subtitle" data-i18n="mt.card_sub">Tutorial di configurazione router per le fibre italiane (PPPoE + VLAN)</p>
-          <div class="project-featured-desc">
-            <p data-i18n="mt.card_desc">
-              Guida passo-passo per configurare un router MikroTik (RouterOS 7) su FTTH italiana: ONT, VLAN di accesso
-              (802.1Q), client PPPoE, NAT, DHCP/DNS e firewall di base &mdash; con tabella dei parametri per i principali
-              operatori e sezione troubleshooting. Nessun indirizzo o credenziale reale pubblicato.
-            </p>
-          </div>
-
-          <div class="project-tech">
-            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
-            <div class="project-tech-list">
-              <span class="tag">MikroTik</span>
-              <span class="tag">RouterOS 7</span>
-              <span class="tag">PPPoE</span>
-              <span class="tag">VLAN 802.1Q</span>
-              <span class="tag">FTTH</span>
-            </div>
-          </div>
-
-          <div class="project-tech" style="margin-top:20px;">
-            <span class="section-label-inline" data-i18n="mt.card_what">COSE_FATTE</span>
-            <ul style="list-style:none;padding:0;margin:12px 0 0;font-size:.82rem;line-height:1.9;color:var(--text-dim);">
-              <li><span style="color:var(--terminal)">&#10003;</span> <span data-i18n="mt.card_w1">Tutorial FTTH pubblicato e indicizzato in sitemap</span></li>
-              <li><span style="color:var(--terminal)">&#10003;</span> <span data-i18n="mt.card_w2">Configurazione di rete e firewall rafforzata (amministrazione solo dalla rete locale)</span></li>
-              <li><span style="color:var(--terminal)">&#10003;</span> <span data-i18n="mt.card_w3">Firewall stateful con blocco di default a valle delle regole di inoltro</span></li>
-              <li><span style="color:var(--terminal)">&#10003;</span> <span data-i18n="mt.card_w4">HTTPS pubblico con certificato valido e redirect http&rarr;https</span></li>
-              <li><span style="color:var(--terminal)">&#10003;</span> <span data-i18n="mt.card_w5">Accesso al sito stabile anche dalla rete interna</span></li>
-              <li><span style="color:var(--terminal)">&#10003;</span> <span data-i18n="mt.card_w6">VPN di amministrazione remota verificata</span></li>
-              <li><span style="color:var(--terminal)">&#10003;</span> <span data-i18n="mt.card_w7">Backup di configurazione eseguiti prima e dopo le modifiche</span></li>
-            </ul>
-          </div>
-
-          <div class="project-links">
-            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
-            <div class="project-links-list">
-              <a href="mikrotik-ftth-italia.html" class="btn btn-sm" data-i18n="mt.card_open">APRI_TUTORIAL</a>
-              <a href="changelog.html" class="btn btn-sm btn-outline">COSE_FATTE</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-featured" style="margin-top:48px;">
-          <div class="project-featured-badge">
-            <span class="status">
-              <span class="status-dot"></span>
-              <span data-i18n="projects.status_live">LIVE</span>
-            </span>
-            <span class="project-year" data-i18n="projects.firewall_year">Ottobre 2026</span>
-          </div>
-          <h3 class="project-featured-title" data-i18n="projects.firewall_title">Firewall Live &mdash; OPNsense &amp; MikroTik</h3>
-          <p class="project-featured-subtitle" data-i18n="projects.firewall_sub">Dashboard di monitoraggio in tempo reale con refresh ogni 30 secondi</p>
-          <div class="project-featured-desc">
-            <p data-i18n="projects.firewall_desc">
-              Pagina pubblica con dati reali e sanitizzati dai due firewall: disponibilit&agrave;, risorse, connessioni,
-              contatori e attacchi rilevati. Backend Prometheus + Grafana, credenziali fuori dalla docroot e pannello
-              Grafana raggiungibile solo dalla rete locale.
-            </p>
-          </div>
-
-          <div class="project-tech">
-            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
-            <div class="project-tech-list">
-              <span class="tag">OPNsense</span>
-              <span class="tag">MikroTik</span>
-              <span class="tag">Prometheus</span>
-              <span class="tag">Grafana</span>
-              <span class="tag">Python</span>
-            </div>
-          </div>
-
-          <div class="project-links">
-            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
-            <div class="project-links-list">
-              <a href="firewall.html" class="btn btn-sm" data-i18n="projects.firewall_btn">APRI_DASHBOARD</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-featured" style="margin-top:48px;">
-          <div class="project-featured-badge">
-            <span class="status">
-              <span class="status-dot"></span>
-              <span data-i18n="projects.status_live">LIVE</span>
-            </span>
-            <span class="project-year" data-i18n="projects.ad_year">Ottobre 2026</span>
-          </div>
-          <h3 class="project-featured-title" data-i18n="projects.ad_title">Active Directory Live</h3>
-          <p class="project-featured-subtitle" data-i18n="projects.ad_sub">Monitoraggio live del domain controller Samba 4.19 su Zentyal</p>
-          <div class="project-featured-desc">
-            <p data-i18n="projects.ad_desc">
-              Pagina pubblica con dati aggregati e sanitizzati dal domain controller: utenti attivi e bloccati,
-              servizi, record SRV, autenticazioni, dbcheck e alert. Exporter Python in sola lettura, Prometheus
-              e 16 regole Grafana con notifica email; nessun nome utente o IP pubblicato.
-            </p>
-          </div>
-
-          <div class="project-tech">
-            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
-            <div class="project-tech-list">
-              <span class="tag">Samba 4.19</span>
-              <span class="tag">Zentyal</span>
-              <span class="tag">Prometheus</span>
-              <span class="tag">Grafana</span>
-              <span class="tag">Python</span>
-            </div>
-          </div>
-
-          <div class="project-links">
-            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
-            <div class="project-links-list">
-              <a href="ad-monitoring.html" class="btn btn-sm" data-i18n="projects.ad_btn">APRI_DASHBOARD</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-featured" style="margin-top:48px;">
-          <div class="project-featured-badge">
-            <span class="status">
-              <span class="status-dot"></span>
-              <span data-i18n="projects.status_done">COMPLETATO</span>
-            </span>
-            <span class="project-year" data-i18n="projects.security_year">Ottobre 2026</span>
-          </div>
-          <h3 class="project-featured-title" data-i18n="projects.security_title">Report di Sicurezza</h3>
-          <p class="project-featured-subtitle" data-i18n="projects.security_sub">Attacchi rilevati, IP bloccati e mitigazioni sull'homelab esposto</p>
-          <div class="project-featured-desc">
-            <p data-i18n="projects.security_desc">
-              Analisi degli accessi non autorizzati al sito pubblico: 45 IP dannosi bloccati nell'address-list MikroTik, 22 paesi, segnalazioni abuse inviate e Fail2ban attivo su Zentyal.
-            </p>
-          </div>
-
-          <div class="project-tech">
-            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
-            <div class="project-tech-list">
-              <span class="tag">MikroTik</span>
-              <span class="tag">Fail2ban</span>
-              <span class="tag">Zentyal</span>
-              <span class="tag">Apache</span>
-            </div>
-          </div>
-
-          <div class="project-links">
-            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
-            <div class="project-links-list">
-              <a href="security.html" class="btn btn-sm"><span data-i18n="projects.security_btn">APRI_REPORT</span></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-featured" style="margin-top:48px;">
-          <div class="project-featured-badge">
-            <span class="status">
-              <span class="status-dot"></span>
-              <span data-i18n="projects.status_done">COMPLETATO</span>
-            </span>
-            <span class="project-year">Luglio 2026</span>
-          </div>
-          <h3 class="project-featured-title" data-i18n="projects.featured_title">Portfolio CV &mdash; Sito Personale</h3>
-          <p class="project-featured-subtitle" data-i18n="projects.featured_sub">Sito web professionale con curriculum e contatti</p>
-          <div class="project-featured-desc">
-            <p data-i18n="projects.featured_desc">
-              Progettazione e realizzazione di un sito web portfolio professionale per presentare competenze tecniche,
-              certificazioni e progetti nel campo dell'IT e networking. Sito statico a tema terminale/cyberpunk
-              con griglia, effetti scanline e pulsazioni, costruito interamente con HTML, CSS e JavaScript vanilla.
-            </p>
-          </div>
-
-          <div class="project-specs">
-            <div class="project-spec">
-              <span class="project-spec-value" data-i18n="projects.spec1_value">Statico</span>
-              <span class="project-spec-label" data-i18n="projects.spec1_label">TIPO</span>
-            </div>
-            <div class="project-spec">
-              <span class="project-spec-value" data-i18n="projects.spec2_value">100%</span>
-              <span class="project-spec-label" data-i18n="projects.spec2_label">MOBILE READY</span>
-            </div>
-            <div class="project-spec">
-              <span class="project-spec-value" data-i18n="projects.spec3_value">7</span>
-              <span class="project-spec-label" data-i18n="projects.spec3_label">PAGINE</span>
-            </div>
-            <div class="project-spec">
-              <span class="project-spec-value" data-i18n="projects.spec4_value">0</span>
-              <span class="project-spec-label" data-i18n="projects.spec4_label">DIPENDENZE</span>
-            </div>
-          </div>
-
-          <div class="project-tech">
-            <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
-            <div class="project-tech-list">
-              <span class="tag">HTML5</span>
-              <span class="tag">CSS3</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">EmailJS</span>
-              <span class="tag">Responsive</span>
-            </div>
-          </div>
-
-          <div class="project-links">
-            <span class="section-label-inline" data-i18n="projects.links_label">LINK</span>
-            <div class="project-links-list">
-              <a href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                <span data-i18n="projects.btn_source">CODICE_SORGENTE</span>
-              </a>
-              <a href="index.html" class="btn btn-sm"><span data-i18n="projects.btn_visit">VISITA_SITO</span></a>
-            </div>
+          <div class="matrix-grid">
+            <article class="matrix-item">
+              <div class="matrix-item-top">
+                <span class="matrix-badge">LAB</span>
+                <span class="matrix-status">[ LAB_READY ]</span>
+              </div>
+              <h4 class="matrix-title"><a href="lab-sql.html">Lab SQL</a></h4>
+              <p class="matrix-abs" data-i18n="projects.mx_lab_sql_abs">Palestre didattiche con terminale: SQL su database aziendale, setup HTML base, annotazioni e script di avvio.</p>
+              <div class="matrix-tags">
+                <span class="tag">lab-sql.html</span>
+                <span class="tag" data-i18n="projects.mx_lab_stack">HTML &middot; CSS &middot; SQL &middot; JS</span>
+              </div>
+            </article>
+            <article class="matrix-item">
+              <div class="matrix-item-top">
+                <span class="matrix-badge">LAB</span>
+                <span class="matrix-status">[ LAB_READY ]</span>
+              </div>
+              <h4 class="matrix-title"><a href="lab-html.html">Lab HTML</a></h4>
+              <p class="matrix-abs" data-i18n="projects.mx_lab_html_abs">Palestre didattiche con terminale: ambiente HTML, creazione pagine e strutture semantiche, validazione markup.</p>
+              <div class="matrix-tags">
+                <span class="tag">lab-html.html</span>
+                <span class="tag" data-i18n="projects.mx_lab_stack">HTML5 &middot; semantica &middot; form</span>
+              </div>
+            </article>
+            <article class="matrix-item">
+              <div class="matrix-item-top">
+                <span class="matrix-badge">LAB</span>
+                <span class="matrix-status">[ LAB_READY ]</span>
+              </div>
+              <h4 class="matrix-title"><a href="lab-css.html">Lab CSS</a></h4>
+              <p class="matrix-abs" data-i18n="projects.mx_lab_css_abs">Palestre didattiche con terminale: CSS3, flexbox & grid, layout responsive, animazioni e best practice styling.</p>
+              <div class="matrix-tags">
+                <span class="tag">lab-css.html</span>
+                <span class="tag" data-i18n="projects.mx_lab_stack">CSS3 &middot; flex &middot; grid</span>
+              </div>
+            </article>
           </div>
         </div>
       </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="topology">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label"><span class="line"></span><span>TOPOLOGIA_HOMELAB</span></div>
+        <h2>Topologia <span>Rete</span></h2>
+        <p>Internet &rarr; router di bordo &rarr; firewall &rarr; hypervisor &rarr; servizi. Clicca un nodo per aprire il case study.</p>
+      </div>
+      <style>
+        #topology svg { width: 100%; height: auto; display: block; }
+        #topology .topo-node { cursor: pointer; }
+        #topology .topo-node rect { fill: #12121a; stroke: #2a3446; stroke-width: 1.6; }
+        #topology .topo-node:hover rect { stroke: #00e5ff; }
+        #topology .topo-node text { font-family: "JetBrains Mono", Consolas, monospace; fill: #e6e6f0; }
+        #topology .topo-t { font-size: 17px; font-weight: 700; }
+        #topology .topo-node text.topo-s { font-size: 11.5px; fill: #8e9aaf; }
+        #topology .topo-link { stroke: #2a3446; stroke-width: 2; fill: none; }
+      </style>
+      <svg viewBox="0 0 1200 640" role="img" aria-label="Topologia della rete homelab">
+        <defs>
+          <marker id="topo-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#2a3446"/>
+          </marker>
+        </defs>
+
+        <path class="topo-link" d="M 210 110 H 330" marker-end="url(#topo-arrow)"/>
+        <path class="topo-link" d="M 530 110 H 650" marker-end="url(#topo-arrow)"/>
+        <path class="topo-link" d="M 850 110 V 200 H 600 V 250" marker-end="url(#topo-arrow)"/>
+        <path class="topo-link" d="M 600 350 V 420 H 150 V 460"/>
+        <path class="topo-link" d="M 600 350 V 420 H 450 V 460"/>
+        <path class="topo-link" d="M 600 350 V 420 H 750 V 460"/>
+        <path class="topo-link" d="M 600 350 V 420 H 1050 V 460"/>
+
+        <a href="firewall.html" class="topo-node">
+          <title>Internet (WAN) - dettagli firewall</title>
+          <g>
+            <rect x="60" y="75" width="150" height="70" rx="10"/>
+            <text class="topo-t" x="135" y="106" text-anchor="middle">INTERNET</text>
+            <text class="topo-s" x="135" y="126" text-anchor="middle">WAN / FTTH</text>
+          </g>
+        </a>
+
+        <a href="mikrotik-ftth-italia.html" class="topo-node">
+          <title>MikroTik hEX S - PPPoE e VLAN</title>
+          <g>
+            <rect x="330" y="75" width="200" height="70" rx="10"/>
+            <text class="topo-t" x="430" y="106" text-anchor="middle">MikroTik hEX S</text>
+            <text class="topo-s" x="430" y="126" text-anchor="middle">PPPoE · VLAN 802.1Q</text>
+          </g>
+        </a>
+
+        <a href="firewall.html" class="topo-node">
+          <title>OPNsense - firewall perimetrale</title>
+          <g>
+            <rect x="650" y="75" width="200" height="70" rx="10"/>
+            <text class="topo-t" x="750" y="106" text-anchor="middle">OPNsense</text>
+            <text class="topo-s" x="750" y="126" text-anchor="middle">Firewall · NAT · IDS</text>
+          </g>
+        </a>
+
+        <a href="homelab-report.html" class="topo-node">
+          <title>Proxmox VE - hypervisor</title>
+          <g>
+            <rect x="450" y="250" width="300" height="100" rx="10"/>
+            <text class="topo-t" x="600" y="292" text-anchor="middle">Proxmox VE</text>
+            <text class="topo-s" x="600" y="314" text-anchor="middle">Hypervisor · VM e container</text>
+            <text class="topo-s" x="600" y="332" text-anchor="middle">homelab.home-pucci.lan</text>
+          </g>
+        </a>
+
+        <a href="ad-monitoring.html" class="topo-node">
+          <title>Samba AD - Active Directory Live</title>
+          <g>
+            <rect x="60" y="460" width="180" height="90" rx="10"/>
+            <text class="topo-t" x="150" y="496" text-anchor="middle">Samba AD</text>
+            <text class="topo-s" x="150" y="516" text-anchor="middle">Zentyal 8 · Samba 4.19</text>
+            <text class="topo-s" x="150" y="534" text-anchor="middle">DNS · Kerberos</text>
+          </g>
+        </a>
+
+        <a href="homelab-report.html" class="topo-node">
+          <title>Stack di monitoraggio</title>
+          <g>
+            <rect x="360" y="460" width="180" height="90" rx="10"/>
+            <text class="topo-t" x="450" y="496" text-anchor="middle">Monitoring</text>
+            <text class="topo-s" x="450" y="516" text-anchor="middle">Prometheus · Grafana</text>
+            <text class="topo-s" x="450" y="534" text-anchor="middle">Uptime Kuma · Exporters</text>
+          </g>
+        </a>
+
+        <a href="index.html" class="topo-node">
+          <title>Sito web - Apache</title>
+          <g>
+            <rect x="660" y="460" width="180" height="90" rx="10"/>
+            <text class="topo-t" x="750" y="496" text-anchor="middle">Web</text>
+            <text class="topo-s" x="750" y="516" text-anchor="middle">Apache · TLS Let's Encrypt</text>
+            <text class="topo-s" x="750" y="534" text-anchor="middle">pucci-homelab</text>
+          </g>
+        </a>
+
+        <a href="docker-report.html" class="topo-node">
+          <title>Servizi Docker</title>
+          <g>
+            <rect x="960" y="460" width="180" height="90" rx="10"/>
+            <text class="topo-t" x="1050" y="496" text-anchor="middle">Docker</text>
+            <text class="topo-s" x="1050" y="516" text-anchor="middle">Portainer · OpenVSCode</text>
+            <text class="topo-s" x="1050" y="534" text-anchor="middle">FileBrowser · PostgreSQL</text>
+          </g>
+        </a>
+      </svg>
+      <p class="demo-note" style="margin-top:16px;">Nodi cliccabili: ogni riquadro apre il case study o il report tecnico corrispondente.</p>
     </div>
   </section>
 
@@ -449,7 +334,7 @@
     <div class="container">
       <div class="footer-content">
         <p>&copy; 2026 Stefano Pucci</p>
-        <p class="footer-tagline" data-i18n-html="footer.tagline">built with &lt;html&gt; &bull; <span class="prompt-symbol">whoami</span></p>
+        <p class="footer-tagline" data-i18n-html="footer.tagline">Debian &bull; Apache &bull; Docker &bull; Prometheus &bull; Grafana &bull; <span class="prompt-symbol">whoami</span></p>
         <div class="footer-links">
           <a href="mailto:stefano.informatico@gmail.com" class="footer-link">Email</a>
           <span class="footer-sep">|</span>
@@ -463,10 +348,10 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js?v=20261019b"></script>
-  <script src="js/report-i18n.js?v=20261019"></script>
-  <script src="js/mikrotik-i18n.js?v=20261019"></script>
-  <script src="js/ad-i18n.js?v=20261021a"></script>
-  <script src="js/main.js?v=20261013b"></script>
+  <script src="js/i18n.js?v=20261026"></script>
+  <script src="js/report-i18n.js?v=20261026"></script>
+  <script src="js/mikrotik-i18n.js?v=20261026"></script>
+  <script src="js/pages-i18n.js?v=20261026"></script>
+  <script src="js/main.js?v=20261023"></script>
 </body>
 </html>

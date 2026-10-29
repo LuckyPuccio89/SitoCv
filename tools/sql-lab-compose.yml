@@ -1,0 +1,28 @@
+# PostgreSQL palestra in Docker (staging + prod): dati aziendali + sandbox lab_*.
+# Avvio:  docker compose -f tools/sql-lab-compose.yml up -d
+# Dump:   pg_dump -U lab_user -d lab_demo > /tmp/azienda_demo.sql
+# Import: docker exec -i tpl-sql-lab psql -U lab_user -d lab_demo < /tmp/azienda_demo.sql
+# Utenti: vedi tools/sql/03-lab-sandbox.sql (host) — nel container gli stessi GRANT con host '%'.
+# PHP prova prima 127.0.0.1:5432 (lab_docker_dsn), poi fallback host PG. Root pw in /etc/tpl-demo/docker-lab-root.pw (600).
+services:
+  sql-lab:
+    image: postgres:15
+    container_name: tpl-sql-lab
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB=lab_demo
+      POSTGRES_USER=lab_user
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_root
+    secrets:
+      - postgres_root
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - tpl-sql-lab-data:/var/lib/postgresql/data
+
+secrets:
+  postgres_root:
+    file: /etc/tpl-demo/docker-lab-root.pw
+
+volumes:
+  tpl-sql-lab-data:

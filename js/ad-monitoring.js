@@ -197,6 +197,8 @@
       });
   }
 
+
+
   document.addEventListener('click', function (ev) {
     if (ev.target.closest && ev.target.closest('.lang-btn')) {
       setTimeout(function () { if (latest) render(latest); else load(); }, 80);

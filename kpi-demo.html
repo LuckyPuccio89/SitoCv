@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.kpi">KPI ART Dashboard - Stefano Pucci</title>
+  <meta name="description" content="Demo piattaforma KPI delibere ART: puntualità, copertura corse, soppresse, reclami.">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css?v=20261023b">
+  <style>
+    .demo-table{width:100%;border-collapse:collapse;font-size:.75rem}
+    .demo-table th,.demo-table td{border:1px solid rgba(30,30,46,.4);padding:8px 10px;text-align:left}
+    .demo-table th{color:#00F0FF;font-size:.62rem;letter-spacing:.1em;background:rgba(0,240,255,.04)}
+    .demo-table td{color:#c0c0d0}
+    .demo-table td.num{text-align:right;font-variant-numeric:tabular-nums}
+    .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+    .filter-row .btn-sm.active{background:#00F0FF;color:#0D0D0F}
+    canvas.chart{width:100%;display:block;border:1px solid rgba(30,30,46,.4);background:rgba(13,13,15,.5)}
+    #kpi-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+    @media(max-width:768px){#kpi-cards{grid-template-columns:repeat(2,1fr)}}
+    .demo-note{font-size:.72rem;color:#6a6a7a;margin-top:12px}
+  </style>
+  <meta property="og:title" content="KPI ART Dashboard - Stefano Pucci">
+  <meta property="og:description" content="Demo piattaforma KPI delibere ART: puntualità, copertura corse, soppresse, reclami.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pucci-homelab.duckdns.org/kpi-demo.html">
+  <meta property="og:image" content="https://pucci-homelab.duckdns.org/img/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Stefano Pucci — Portfolio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KPI ART Dashboard - Stefano Pucci">
+  <meta name="twitter:description" content="Demo piattaforma KPI delibere ART: puntualità, copertura corse, soppresse, reclami.">
+  <meta name="twitter:image" content="https://pucci-homelab.duckdns.org/img/og-home.png">
+</head>
+<body class="grid-bg">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">stefano_pucci</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+        <li><a href="projects.html" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="pluservice.html" data-i18n="nav.pluservice">PLUSERVICE</a></li>
+        <li><a href="firewall.html" data-i18n="nav.firewall">FIREWALL</a></li>
+        <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">CONTATTI</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn lang-btn-it active" data-lang="it">ITA</button>
+        <button class="lang-btn lang-btn-en" data-lang="en">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label"><span class="line"></span><span data-i18n="kpi.label">ART_KPI_DEMO</span></div>
+        <h2 data-i18n-html="kpi.title">KPI Platform <span>ART 2026</span></h2>
+        <p data-i18n="kpi.desc">&gt; Framework ART 154/2019 + Del.16/2018 + CdS Marche-Trenitalia: calcolo + soglie demo da api/kpi.json</p>
+      </div>
+
+      <div id="kpi-cards"><p style="color:#8E9AAF">loading…</p></div>
+
+      <div class="section-label" style="margin:32px 0 16px;"><span class="line"></span><span data-i18n="kpi.chart1">CORSE_PROGRAMMATE_VS_EFFETTUATE</span></div>
+      <canvas id="chart-trips" class="chart" height="260"></canvas>
+
+      <div class="section-label" style="margin:32px 0 16px;"><span class="line"></span><span data-i18n="kpi.chart2">PUNTUALITA_MENSILE_VS_SOGLIA</span></div>
+      <canvas id="chart-punct" class="chart" height="220"></canvas>
+
+      <div class="section-label" style="margin:32px 0 16px;"><span class="line"></span><span data-i18n="kpi.table">DETTAGLIO_MENSILE</span></div>
+      <div style="overflow-x:auto">
+      <table class="demo-table">
+        <thead><tr><th data-i18n="kpi.th_m">MESE</th><th>PROGR.</th><th>EFFETT.</th><th>SOPPR.</th><th>PUNT.%</th><th>SOPP.%</th><th>KM</th><th>RECL.</th></tr></thead>
+        <tbody id="kpi-table-body"><tr><td colspan="8">loading…</td></tr></tbody>
+      </table>
+      </div>
+      <p class="demo-note" data-i18n="kpi.note">Dati fittizi gen-set 2026. Soglie: puntualità ≥90%, copertura ≥98%, soppresse ≤1.5%, reclami ≤3/10k km. Canvas vanilla, nessun Chart.js, export CSV locale.</p>
+
+      <div class="project-links" style="margin-top:24px">
+        <div class="project-links-list">
+          <a href="projects.html" class="btn btn-sm btn-outline"><span data-i18n="kpi.back">TORNA_A_PROGETTI</span></a>
+          <button id="kpi-csv" class="btn btn-sm"><span data-i18n="kpi.csv">ESPORTA_CSV</span></button>
+          <a href="api/kpi.json" class="btn btn-sm btn-outline" target="_blank" rel="noopener">API_JSON</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-content">
+    <p>&copy; 2026 Stefano Pucci</p>
+    <div class="footer-links"><a href="projects.html" class="footer-link">Progetti</a><span class="footer-sep">|</span><a href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" class="footer-link">GitHub</a></div>
+  </div></div></footer>
+
+  <script src="js/i18n.js?v=20261026"></script>
+  <script src="js/main.js?v=20261023"></script>
+  <script src="js/kpi.js?v=20261014"></script>
+</body>
+</html>

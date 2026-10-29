@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="report.meta_title">Home Lab Data Center - Rapporto Tecnico - Stefano Pucci</title>
+  <meta name="description" data-i18n-title="report.meta_desc" content="Rapporto tecnico as-built dell'Home Lab Data Center: Proxmox, OPNsense, Zentyal, VLAN, NAT, Let's Encrypt.">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css?v=20261023b">
+  <style>
+    .report-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; margin: 0 0 32px; }
+    .report-table th { text-align: left; color: var(--cyan); font-weight: 600; letter-spacing: 0.12em; font-size: 0.6rem; padding: 10px 12px; border: 1px solid var(--border); background: rgba(0,240,255,0.04); }
+    .report-table td { padding: 9px 12px; border: 1px solid var(--border); color: var(--steel); vertical-align: top; }
+    .report-table td:first-child { color: var(--text); white-space: nowrap; }
+    .report-table tr:hover td { background: rgba(0,240,255,0.03); }
+    .codeblock { border: 1px solid var(--border); background: rgba(13,13,15,0.6); padding: 20px 22px; margin: 0 0 32px; overflow-x: auto; }
+    .codeblock pre { font-family: var(--font-mono); font-size: 0.72rem; line-height: 1.65; color: var(--terminal); margin: 0; white-space: pre; }
+    .report-h { font-size: 0.95rem; color: #fff; font-family: var(--font-sans); font-weight: 600; margin: 40px 0 16px; }
+    .report-h::before { content: '> '; color: var(--cyan); }
+    .report-p { font-size: 0.8rem; color: var(--text-dim); line-height: 1.7; max-width: 760px; margin-bottom: 16px; }
+    .report-p b, .report-p code { color: var(--text); }
+    .report-p code { background: rgba(0,240,255,0.06); padding: 1px 6px; font-size: 0.72rem; }
+  </style>
+  <meta property="og:title" content="Home Lab Data Center - Rapporto Tecnico - Stefano Pucci">
+  <meta property="og:description" content="Portfolio professionale di Stefano Pucci.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pucci-homelab.duckdns.org/homelab-report.html">
+  <meta property="og:image" content="https://pucci-homelab.duckdns.org/img/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Stefano Pucci — Portfolio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Home Lab Data Center - Rapporto Tecnico - Stefano Pucci">
+  <meta name="twitter:description" content="Portfolio professionale di Stefano Pucci.">
+  <meta name="twitter:image" content="https://pucci-homelab.duckdns.org/img/og-home.png">
+</head>
+<body class="grid-bg">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">stefano_pucci</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+        <li><a href="projects.html" class="active" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="pluservice.html" data-i18n="nav.pluservice">PLUSERVICE</a></li>
+        <li><a href="firewall.html" data-i18n="nav.firewall">FIREWALL</a></li>
+        <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">CONTATTI</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn lang-btn-it active" data-lang="it" data-i18n="nav.lang_it">ITA</button>
+        <button class="lang-btn lang-btn-en" data-lang="en" data-i18n="nav.lang_en">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">
+          <span class="line"></span>
+          <span data-i18n="report.label">RAPPORTO_TECNICO</span>
+        </div>
+        <h2 data-i18n-html="report.title">Home Lab <span>Data Center</span></h2>
+        <p data-i18n="report.desc">&gt; As-built verificato il 12/10/2026 â€” base single-nodo, sviluppi futuri: cluster, VXLAN, Ansible</p>
+      </div>
+
+      <div class="project-featured" style="margin-bottom:40px;">
+        <div class="project-featured-badge">
+          <span class="status">
+            <span class="status-dot"></span>
+            <span data-i18n="report.status">IN_PRODUZIONE</span>
+          </span>
+          <span class="project-year" data-i18n="report.date">Ottobre 2026</span>
+        </div>
+        <p class="project-featured-desc" style="margin-bottom:0;">
+          <p data-i18n="report.intro" style="font-size:0.82rem;color:var(--text-dim);line-height:1.7;max-width:760px;margin-bottom:0;">Rete segmentata con firewall dedicato, controller di dominio, hosting web TLS e accesso da internet â€” tutto su un laptop Proxmox con una sola scheda di rete, usando VLAN, NAT e API. Questo stesso sito Ã¨ ospitato sull'infrastruttura descritta.</p>
+        </p>
+        <div class="project-specs" style="margin-top:24px;margin-bottom:0;">
+          <div class="project-spec">
+            <span class="project-spec-value" data-i18n="report.spec1_value">Single-Node</span>
+            <span class="project-spec-label" data-i18n="report.spec1_label">TIPO</span>
+          </div>
+          <div class="project-spec">
+            <span class="project-spec-value" data-i18n="report.spec2_value">VLAN 20</span>
+            <span class="project-spec-label" data-i18n="report.spec2_label">RETE_SERVER</span>
+          </div>
+          <div class="project-spec">
+            <span class="project-spec-value" data-i18n="report.spec3_value">OPNsense+API</span>
+            <span class="project-spec-label" data-i18n="report.spec3_label">FIREWALL</span>
+          </div>
+          <div class="project-spec">
+            <span class="project-spec-value" data-i18n="report.spec4_value">Let's Encrypt</span>
+            <span class="project-spec-label" data-i18n="report.spec4_label">TLS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-tech" style="margin-bottom:8px;">
+        <span class="section-label-inline" data-i18n="projects.tech_label">TECH_STACK</span>
+        <div class="project-tech-list">
+          <span class="tag">Proxmox VE</span>
+          <span class="tag">OPNsense 26.7</span>
+          <span class="tag">Zentyal 8.1</span>
+          <span class="tag">Ubuntu 24.04</span>
+          <span class="tag">VLAN</span>
+          <span class="tag">NAT</span>
+          <span class="tag">REST API</span>
+          <span class="tag">Apache</span>
+          <span class="tag">Let's Encrypt</span>
+          <span class="tag">DuckDNS</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Samba AD</span>
+          <span class="tag">GitHub</span>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin:0 0 12px;">
+        <span class="line"></span>
+        <span data-i18n="topo.label">TOPOLOGIA_RETE</span>
+      </div>
+      <div class="topo-wrap">
+        <svg class="topo-svg" viewBox="0 0 960 330" role="img" aria-labelledby="topo-title-hl">
+          <title id="topo-title-hl">WAN FTTH OpenFiber &rarr; ONT/SFP VLAN 836 &rarr; MikroTik RouterOS 7 &rarr; Proxmox VE (VM OPNsense + VM Zentyal) &rarr; VLAN 20 &rarr; Active Directory</title>
+          <rect x="16" y="125" width="150" height="70" fill="#0b0b10" stroke="#00ff66" stroke-width="1.5"/>
+          <text x="91" y="155" text-anchor="middle" fill="#00ff66" font-family="monospace" font-size="13">WAN FTTH</text>
+          <text x="91" y="175" text-anchor="middle" fill="#8E9AAF" font-family="monospace" font-size="11">OpenFiber</text>
+
+          <rect x="186" y="125" width="150" height="70" fill="#0b0b10" stroke="#00ff66" stroke-width="1.5"/>
+          <text x="261" y="155" text-anchor="middle" fill="#00ff66" font-family="monospace" font-size="13">ONT / SFP</text>
+          <text x="261" y="175" text-anchor="middle" fill="#ffb000" font-family="monospace" font-size="11">VLAN 836</text>
+
+          <rect x="356" y="125" width="150" height="70" fill="#0b0b10" stroke="#00ff66" stroke-width="1.5"/>
+          <text x="431" y="155" text-anchor="middle" fill="#00ff66" font-family="monospace" font-size="13">MikroTik</text>
+          <text x="431" y="175" text-anchor="middle" fill="#8E9AAF" font-family="monospace" font-size="11">RouterOS 7</text>
+
+          <rect x="546" y="85" width="398" height="160" fill="#0b0b10" stroke="#00ff66" stroke-width="1.5"/>
+          <text x="745" y="110" text-anchor="middle" fill="#00ff66" font-family="monospace" font-size="13">Proxmox VE</text>
+          <text x="745" y="127" text-anchor="middle" fill="#8E9AAF" font-family="monospace" font-size="10">host / vmbr0 (VLAN-aware)</text>
+
+          <rect x="566" y="150" width="150" height="66" fill="none" stroke="#ffb000" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <text x="641" y="177" text-anchor="middle" fill="#ffb000" font-family="monospace" font-size="12">OPNsense</text>
+          <text x="641" y="195" text-anchor="middle" fill="#8E9AAF" font-family="monospace" font-size="10">firewall VM &middot; .1</text>
+
+          <rect x="774" y="150" width="160" height="66" fill="none" stroke="#00ff66" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <text x="854" y="177" text-anchor="middle" fill="#00ff66" font-family="monospace" font-size="12">Zentyal</text>
+          <text x="854" y="195" text-anchor="middle" fill="#8E9AAF" font-family="monospace" font-size="10">AD / DNS VM &middot; .10</text>
+
+          <line x1="716" y1="196" x2="766" y2="196" stroke="#ffb000" stroke-width="1.5"/>
+          <polygon points="774,196 762,191 762,201" fill="#ffb000"/>
+          <text x="745" y="186" text-anchor="middle" fill="#ffb000" font-family="monospace" font-size="9">VLAN 20</text>
+
+          <line x1="166" y1="160" x2="178" y2="160" stroke="#00ff66" stroke-width="1.5"/>
+          <polygon points="186,160 174,155 174,165" fill="#00ff66"/>
+          <line x1="336" y1="160" x2="348" y2="160" stroke="#00ff66" stroke-width="1.5"/>
+          <polygon points="356,160 344,155 344,165" fill="#00ff66"/>
+          <line x1="506" y1="160" x2="538" y2="160" stroke="#00ff66" stroke-width="1.5"/>
+          <polygon points="546,160 534,155 534,165" fill="#00ff66"/>
+        </svg>
+      </div>
+      <p class="topo-caption" data-i18n="topo.caption">MikroTik inoltra il traffico a Proxmox VE: la VM OPNsense fa da firewall e la VM Zentyal (AD) sta dietro di essa, sulla VLAN 20 del bridge vmbr0. Nessun'altra VLAN lato LAN.</p>
+
+      <h3 class="report-h" data-i18n="report.arch_title">ARCHITETTURA</h3>
+      <div class="codeblock"><pre>INTERNET (IP statico + DDNS)
+   | :80/:443
+ Router 203.0.113.1 (esempio) --forward--> OPNsense WAN 203.0.113.60 (esempio)
+   | NAT 8080-&gt;198.51.100.10:80, 10443-&gt;198.51.100.10:443 (via API)
+ OPNsense LAN 198.51.100.1 (esempio; VLAN 20, tag su Proxmox)
+   |--- Zentyal 198.51.100.10 (esempio; AD example.lan, Apache, LE, Docker)
+   |--- Nodo mgmt 198.51.100.62 (esempio; forward admin 8443/4443)
+ [IP di esempio - RFC 5737, non reali]</pre></div>
+
+      <table class="report-table">
+        <tr><th data-i18n="report.th_host">HOST</th><th data-i18n="report.th_ip">IP / RETE</th><th data-i18n="report.th_role">RUOLO</th></tr>
+        <tr><td>lab (Proxmox)</td><td>203.0.113.61/26 (esempio) Â· vmbr0.20 198.51.100.62 (esempio)</td><td data-i18n="report.r1">Hypervisor single-NIC, bridge VLAN-aware, lid-switch disattivato</td></tr>
+        <tr><td>VM 100 Firewall</td><td>WAN 203.0.113.60 (esempio) Â· LAN 198.51.100.1/26 (esempio)</td><td data-i18n="report.r2">OPNsense, NAT/port-forward, regole WAN (nessuna VLAN interna)</td></tr>
+        <tr><td>VM 101 Homelab</td><td>198.51.100.10/26 (esempio) via 198.51.100.1</td><td data-i18n="report.r3">Zentyal AD example.lan, Apache + sito CV, cert LE, Docker</td></tr>
+      </table>
+
+      <h3 class="report-h" data-i18n="report.work_title">LAVORO_SVOLTO</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">01</span>
+          <h3 data-i18n="report.w1t">Rete e VLAN</h3>
+          <p data-i18n="report.w1d">vmbr0 VLAN-aware, VLAN 20 per i server, PVID verificati su bridge/fdb. Tagging solo su Proxmox.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">02</span>
+          <h3 data-i18n="report.w2t">Virtualizzazione</h3>
+          <p data-i18n="report.w2d">OPNsense (WAN/LAN per MAC) e Ubuntu/Zentyal (eth0 via netplan, guest-agent, LXDE).</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">03</span>
+          <h3 data-i18n="report.w3t">Firewall as-code</h3>
+          <p data-i18n="report.w3d">NAT 8080â†’80 e 10443â†’443 creati via REST API con regole WAN associate; Block private networks rimosso dopo diagnosi sugli stati.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">04</span>
+          <h3 data-i18n="report.w4t">Dominio example.lan</h3>
+          <p data-i18n="report.w4d">Realm non rinominabile: DB Samba azzerato con backup, riprovisionamento da wizard, zero utenti persi.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">05</span>
+          <h3 data-i18n="report.w5t">Sito + TLS</h3>
+          <p data-i18n="report.w5d">Sito clonato da GitHub su Apache, vhost dedicato, certificato Let's Encrypt in DNS-01 con rinnovo automatico.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">06</span>
+          <h3 data-i18n="report.w6t">Test end-to-end</h3>
+          <p data-i18n="report.w6d">Sito raggiungibile da internet via DuckDNS, HTTPS 200 e redirect 301 da :80, certificato valido.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">07</span>
+          <h3 data-i18n="report.w7t">Redirect httpâ†’https</h3>
+          <p data-i18n="report.w7d">Vhost :80 ridotto a Redirect permanent verso https:// (cert DNS-01, nessuna challenge su :80); verificato 301 + HTTPS 200.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">08</span>
+          <h3 data-i18n="report.w8t">Backup automatici</h3>
+          <p data-i18n="report.w8d">Script giornaliero via cron (03:00): tar di /var/www/html + /etc/letsencrypt in /var/backups/site, retention 7 giorni.</p>
+          <p><strong>Test di restore (29/10/2026):</strong> 131 file, 1.9 MB estratti dall'archivio in 0.01 s. RPO 24 h (snapshot giornaliero 03:00), retention 7 giorni.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">09</span>
+          <h3 data-i18n="report.w9t">Dominio verificato</h3>
+          <p data-i18n="report.w9d">dbcheck 0 errori su 3848 oggetti, utenti presenti, record A risolti, TGT Kerberos valido â€” backend dominio sano.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">10</span>
+          <h3 data-i18n="report.w10t">OpenVPN per admin remota</h3>
+          <p data-i18n="report.w10d">Istanza OpenVPN sul firewall OPNsense attiva â€” admin remota funzionante (connessione in uso).</p>
+        </div>
+      </div>
+
+      <h3 class="report-h" data-i18n="report.iss_title">PROBLEMI_RISOLTI</h3>
+      <table class="report-table">
+        <tr><th data-i18n="report.th_prob">PROBLEMA</th><th data-i18n="report.th_sol">SOLUZIONE</th></tr>
+        <tr><td data-i18n="report.i1p">GUI OPNsense: HTTP_REFERER does not match</td><td data-i18n="report.i1s">Login senza referrer + flag nohttpreferercheck e hostname alternativo</td></tr>
+        <tr><td data-i18n="report.i2p">NAT esterno 000 con regole applicate</td><td data-i18n="report.i2s">Rimosso Block private networks su WAN (sorgenti di lab)</td></tr>
+        <tr><td data-i18n="report.i3p">sed -i fallito in console OPNsense (BSD/tcsh)</td><td data-i18n="report.i3s">Console evitata: fix via browser e REST API</td></tr>
+        <tr><td data-i18n="report.i4p">Hook DuckDNS con txt= vuoto</td><td data-i18n="report.i4s">Riscritto via base64, verificato prima dell'emissione</td></tr>
+        <tr><td data-i18n="report.i5p">Backup Zentyal senza file del sito</td><td data-i18n="report.i5s">Sito recuperato dal repo GitHub, non dal backup</td></tr>
+        <tr><td data-i18n="report.i6p">File .md e comandi con quote nidificate</td><td data-i18n="report.i6s">Trasferimenti via base64/HTTP invece di heredoc innestati</td></tr>
+      </table>
+
+      <div class="project-links-list" style="margin-top:32px;">
+        <a href="projects.html" class="btn btn-sm btn-outline"><span data-i18n="report.btn_back">â†_PROGETTI</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2026 Stefano Pucci</p>
+        <p class="footer-tagline" data-i18n-html="footer.tagline">Debian &bull; Apache &bull; Docker &bull; Prometheus &bull; Grafana &bull; <span class="prompt-symbol">whoami</span></p>
+        <div class="footer-links">
+          <a href="mailto:stefano.informatico@gmail.com" class="footer-link">Email</a>
+          <span class="footer-sep">|</span>
+          <a href="https://www.linkedin.com/in/stefano-pucci-08210a19a/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+          <span class="footer-sep">|</span>
+          <a href="cv/cv-stefano-pucci.pdf" download class="footer-link">CV</a>
+          <span class="footer-sep">|</span>
+          <a href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js?v=20261026"></script>
+  <script src="js/report-i18n.js?v=20261026"></script>
+  <script src="js/main.js?v=20261023"></script>
+</body>
+</html>

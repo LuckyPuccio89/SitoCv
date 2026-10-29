@@ -1,0 +1,746 @@
+{
+  "generated_at": "2026-10-22",
+  "source": {
+    "files": [
+      "/home/stefano/Desktop/ad-monitoring/deploy/IT-ITI3-ADRIABUS-NeTEx_L1.xml",
+      "/tmp/opencode/netex/IT-ITI3-ATMA_L1.xml"
+    ],
+    "operator": "Adriabus spa",
+    "operators": [
+      "Adriabus spa",
+      "Soc. Consortile A.T.M.A."
+    ],
+    "participant": "REGIONE MARCHE",
+    "publication_timestamp": "2026-07-09T11:39:37",
+    "netex_level": "L1+ (EPIP)",
+    "valid_from": "2026-07-06",
+    "valid_to": "2026-12-31",
+    "note": "Convertito da NeTEx profilo italiano con tools/netex-to-json.py"
+  },
+  "stats": {
+    "stops": 56,
+    "lines": 1,
+    "journeys": 0
+  },
+  "stops": [
+    {
+      "id": "ADRIABUS_FP1000",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FP1000",
+      "name": "Pesaro Stazione FF.SS.",
+      "lat": 43.9061660766602,
+      "lon": 12.9060840606689,
+      "km": 0.0
+    },
+    {
+      "id": "ADRIABUS_FP0040",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FP0040",
+      "name": "Matteotti",
+      "lat": 43.9084892272949,
+      "lon": 12.914924621582,
+      "km": 0.8
+    },
+    {
+      "id": "ADRIABUS_FP6640",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FP6640",
+      "name": "Cavallotti 2 Vittoria",
+      "lat": 43.9081878662109,
+      "lon": 12.9209270477295,
+      "km": 1.2
+    },
+    {
+      "id": "ADRIABUS_FP6650",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FP6650",
+      "name": "Delle Marche 1 S.Marta",
+      "lat": 43.9045333862305,
+      "lon": 12.9282608032227,
+      "km": 2.0
+    },
+    {
+      "id": "ADRIABUS_FP6661",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FP6661",
+      "name": "Delle Marche 2 sottopasso 1",
+      "lat": 43.9035224914551,
+      "lon": 12.9306497573853,
+      "km": 2.2
+    },
+    {
+      "id": "ADRIABUS_FP6670",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FP6670",
+      "name": "Delle Marche 3 Crista",
+      "lat": 43.9018173217773,
+      "lon": 12.9336748123169,
+      "km": 2.5
+    },
+    {
+      "id": "ADRIABUS_FP6680",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FP6680",
+      "name": "Delle Marche 4 Sottopasso 3",
+      "lat": 43.8933715820313,
+      "lon": 12.9456825256348,
+      "km": 3.8
+    },
+    {
+      "id": "ADRIABUS_FP6690",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FP6690",
+      "name": "Delle Marche 5 Sottopasso 4",
+      "lat": 43.890495300293,
+      "lon": 12.9490623474121,
+      "km": 4.2
+    },
+    {
+      "id": "ADRIABUS_FP6700",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FP6700",
+      "name": "Delle Marche 6 Sottopasso 5",
+      "lat": 43.8883323669434,
+      "lon": 12.9518346786499,
+      "km": 4.6
+    },
+    {
+      "id": "ADRIABUS_FF0661",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0661",
+      "name": "Fosso Sejore",
+      "lat": 43.8793334960938,
+      "lon": 12.9640474319458,
+      "km": 6.0
+    },
+    {
+      "id": "ADRIABUS_FF0662",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0662",
+      "name": "Adriatica Nord  4",
+      "lat": 43.8759803771973,
+      "lon": 12.9691600799561,
+      "km": 6.5
+    },
+    {
+      "id": "ADRIABUS_FF0658",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0658",
+      "name": "Adriatica Nord 3 Husquarna",
+      "lat": 43.8729591369629,
+      "lon": 12.9740800857544,
+      "km": 7.0
+    },
+    {
+      "id": "ADRIABUS_FF0657",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0657",
+      "name": "Adriatica Nord 2 hotel",
+      "lat": 43.8656883239746,
+      "lon": 12.9850749969482,
+      "km": 8.2
+    },
+    {
+      "id": "ADRIABUS_FF0665",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0665",
+      "name": "Adriatica Nord  1 distrib.",
+      "lat": 43.8621482849121,
+      "lon": 12.9905586242676,
+      "km": 8.8
+    },
+    {
+      "id": "ADRIABUS_FF0666",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0666",
+      "name": "Romagna 2 Gimarra park",
+      "lat": 43.8572006225586,
+      "lon": 12.9977331161499,
+      "km": 9.6
+    },
+    {
+      "id": "ADRIABUS_FF0667",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0667",
+      "name": "Romagna 1 distr.",
+      "lat": 43.8534774780273,
+      "lon": 13.0043201446533,
+      "km": 10.3
+    },
+    {
+      "id": "ADRIABUS_FF0668",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0668",
+      "name": "IaMaggio 2 Banca",
+      "lat": 43.8493881225586,
+      "lon": 13.0083045959473,
+      "km": 10.9
+    },
+    {
+      "id": "ADRIABUS_FF0759",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0759",
+      "name": "1aMaggio 1",
+      "lat": 43.8479537963867,
+      "lon": 13.0103187561035,
+      "km": 11.1
+    },
+    {
+      "id": "ADRIABUS_FF1002",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF1002",
+      "name": "Pincio Rimembranze Stallo C",
+      "lat": 43.8436317443848,
+      "lon": 13.0134696960449,
+      "km": 11.6
+    },
+    {
+      "id": "ADRIABUS_FF1004",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF1004",
+      "name": "Fano Stazione",
+      "lat": 43.8423271179199,
+      "lon": 13.0253486633301,
+      "km": 12.6
+    },
+    {
+      "id": "ADRIABUS_FF0953",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0953",
+      "name": "Pisacane Distributore",
+      "lat": 43.8401069641113,
+      "lon": 13.0287733078003,
+      "km": 13.0
+    },
+    {
+      "id": "ADRIABUS_FF0954",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0954",
+      "name": "Pisacane Casa Cantoniera",
+      "lat": 43.8383522033691,
+      "lon": 13.0319471359253,
+      "km": 13.3
+    },
+    {
+      "id": "ADRIABUS_FF0979",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0979",
+      "name": "Piceno 1",
+      "lat": 43.8351669311523,
+      "lon": 13.0381059646606,
+      "km": 13.9
+    },
+    {
+      "id": "ADRIABUS_FF0956",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0956",
+      "name": "Piceno Piadineria",
+      "lat": 43.8327865600586,
+      "lon": 13.0421152114868,
+      "km": 14.3
+    },
+    {
+      "id": "ADRIABUS_FF0359",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0359",
+      "name": "Ponte Metauro",
+      "lat": 43.8295822143555,
+      "lon": 13.0481853485107,
+      "km": 14.9
+    },
+    {
+      "id": "ADRIABUS_FF0958",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0958",
+      "name": "Metaurilia",
+      "lat": 43.8219223022461,
+      "lon": 13.0621585845947,
+      "km": 16.3
+    },
+    {
+      "id": "ADRIABUS_FF0976",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0976",
+      "name": "Adriatica Sud 2 Metaurilia",
+      "lat": 43.8189544677734,
+      "lon": 13.0662050247192,
+      "km": 16.8
+    },
+    {
+      "id": "ADRIABUS_FF0960",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0960",
+      "name": "Adriatica Sud 3 Metaurilia",
+      "lat": 43.8157577514648,
+      "lon": 13.0701942443848,
+      "km": 17.3
+    },
+    {
+      "id": "ADRIABUS_FF0961",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0961",
+      "name": "Adriatica Sud 5 Metaurilia",
+      "lat": 43.8127098083496,
+      "lon": 13.0739440917969,
+      "km": 17.7
+    },
+    {
+      "id": "ADRIABUS_FF0962",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0962",
+      "name": "Adriatica Sud 6 Metaurilia",
+      "lat": 43.8092041015625,
+      "lon": 13.0784864425659,
+      "km": 18.2
+    },
+    {
+      "id": "ADRIABUS_FF0972",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0972",
+      "name": "Adriatica Sud 7 Torrette Camping",
+      "lat": 43.8059196472168,
+      "lon": 13.083212852478,
+      "km": 18.8
+    },
+    {
+      "id": "ADRIABUS_FF0971",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0971",
+      "name": "Torrette di Fano",
+      "lat": 43.8000946044922,
+      "lon": 13.0912818908691,
+      "km": 19.7
+    },
+    {
+      "id": "ADRIABUS_FF0965",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0965",
+      "name": "Adriatica Sud 9 Ponte Sasso tubi",
+      "lat": 43.7910270690918,
+      "lon": 13.1039886474609,
+      "km": 21.1
+    },
+    {
+      "id": "ADRIABUS_FF0966",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0966",
+      "name": "Adriatica Sud 10 Ponte Sasso",
+      "lat": 43.7870483398438,
+      "lon": 13.1094388961792,
+      "km": 21.7
+    },
+    {
+      "id": "ADRIABUS_FF0967",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FF0967",
+      "name": "Ponte Sasso Distributore",
+      "lat": 43.7844848632813,
+      "lon": 13.1133794784546,
+      "km": 22.2
+    },
+    {
+      "id": "ADRIABUS_FMF040",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FMF040",
+      "name": "Marotta ex Marotta Macchine",
+      "lat": 43.7805099487305,
+      "lon": 13.1197462081909,
+      "km": 22.8
+    },
+    {
+      "id": "ADRIABUS_FMF042",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FMF042",
+      "name": "Marotta Garden",
+      "lat": 43.774585723877,
+      "lon": 13.1286649703979,
+      "km": 23.8
+    },
+    {
+      "id": "ADRIABUS_FMF044",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ADRIABUS_FMF044",
+      "name": "Marotta Vecchia Osteria",
+      "lat": 43.772087097168,
+      "lon": 13.1325998306274,
+      "km": 24.2
+    },
+    {
+      "id": "ATMA_6223",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_6223",
+      "name": "MAROTTA STAZIONE F.S.",
+      "lat": 43.769718170166,
+      "lon": 13.1366739273071,
+      "km": 24.7
+    },
+    {
+      "id": "ATMA_6410",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_6410",
+      "name": "MAROTTA AGIP",
+      "lat": 43.7651863098145,
+      "lon": 13.1440868377686,
+      "km": 25.4
+    },
+    {
+      "id": "ATMA_6413",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_6413",
+      "name": "MAROTTA ALBERTO ABB..",
+      "lat": 43.7625923156738,
+      "lon": 13.1484804153442,
+      "km": 25.9
+    },
+    {
+      "id": "ATMA_6417",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_6417",
+      "name": "MAROTTA CLAP.",
+      "lat": 43.7595443725586,
+      "lon": 13.1534490585327,
+      "km": 26.4
+    },
+    {
+      "id": "ATMA_6419",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_6419",
+      "name": "MAROTTA STOK HOUSE.",
+      "lat": 43.7555465698242,
+      "lon": 13.1595296859741,
+      "km": 27.1
+    },
+    {
+      "id": "ATMA_6421",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_6421",
+      "name": "MAROTTA PONTE CESANO.",
+      "lat": 43.7511329650879,
+      "lon": 13.1660032272339,
+      "km": 27.8
+    },
+    {
+      "id": "ATMA_6423",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_6423",
+      "name": "CESANO DISTRIBUTORE Q 8",
+      "lat": 43.745044708252,
+      "lon": 13.1757392883301,
+      "km": 28.8
+    },
+    {
+      "id": "ATMA_6424",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_6424",
+      "name": "CESANO ZONA INDUSTRIALE",
+      "lat": 43.7378082275391,
+      "lon": 13.1875925064087,
+      "km": 30.1
+    },
+    {
+      "id": "ATMA_6427",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_6427",
+      "name": "CESANELLA P.LE MICHELANGELO",
+      "lat": 43.730541229248,
+      "lon": 13.1973361968994,
+      "km": 31.2
+    },
+    {
+      "id": "ATMA_7002",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_7002",
+      "name": "SENIGALLIA STAZIONEF.S.",
+      "lat": 43.7159538269043,
+      "lon": 13.2212905883789,
+      "km": 33.7
+    },
+    {
+      "id": "ATMA_21040",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_21040",
+      "name": "SENIGALLIA  P.ZZA DIAZ",
+      "lat": 43.7124786376953,
+      "lon": 13.2253847122192,
+      "km": 34.2
+    },
+    {
+      "id": "ATMA_7006",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_7006",
+      "name": "SENIGALLIA CASA CANTONIERAR",
+      "lat": 43.7093925476074,
+      "lon": 13.2306137084961,
+      "km": 34.8
+    },
+    {
+      "id": "ATMA_7011",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_7011",
+      "name": "SENIGALLIA CIARNIN",
+      "lat": 43.7008361816406,
+      "lon": 13.2443399429321,
+      "km": 36.2
+    },
+    {
+      "id": "ATMA_7014",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_7014",
+      "name": "MARZOCCA - CENTRO R",
+      "lat": 43.6775856018066,
+      "lon": 13.2869882583618,
+      "km": 40.5
+    },
+    {
+      "id": "ATMA_7024",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_7024",
+      "name": "MARINA DI MONTEMARCIANO",
+      "lat": 43.6505126953125,
+      "lon": 13.3440504074097,
+      "km": 46.0
+    },
+    {
+      "id": "ATMA_20026",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_20026",
+      "name": "FALCONARA STAZIONE F.S",
+      "lat": 43.630184173584,
+      "lon": 13.3973951339722,
+      "km": 50.9
+    },
+    {
+      "id": "ATMA_20011",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_20011",
+      "name": "TORRETTE CENTRO",
+      "lat": 43.6099853515625,
+      "lon": 13.4554252624512,
+      "km": 56.0
+    },
+    {
+      "id": "ATMA_851",
+      "netex_id": "epd:IT:ITI3:ScheduledStopPoint:ATMA_851",
+      "name": "STAZIONE F.S. CAP. 65, 4",
+      "lat": 43.6073379516602,
+      "lon": 13.4981479644775,
+      "km": 59.5
+    }
+  ],
+  "lines": [
+    {
+      "id": "epd:IT:ITI3:Line:ADRIABUS_135",
+      "name": "ADRIABUS_135",
+      "description": "Fano-Torrette-Marotta",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ADRIABUS_35A",
+      "name": "ADRIABUS_35A",
+      "description": "Fano-Marotta",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ADRIABUS_45",
+      "name": "ADRIABUS_45",
+      "description": "Carpegna-Sassocorvaro-Montecchio-Pesaro",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ADRIABUS_69",
+      "name": "ADRIABUS_69",
+      "description": "Pesaro FF.SS-Montelabbate-zona Industriale",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ADRIABUS_72",
+      "name": "ADRIABUS_72",
+      "description": "Barchi-S.Costanzo-Fano",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ADRIABUS_99A",
+      "name": "ADRIABUS_99A",
+      "description": "Fano-Muraglia-Pesaro",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ADRIABUS_99AF",
+      "name": "ADRIABUS_99AF",
+      "description": "Fano-Muraglia-Pesaro Festiva",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ADRIABUS_99R",
+      "name": "ADRIABUS_99R",
+      "description": "Pesaro-Fano",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ADRIABUS_99V",
+      "name": "ADRIABUS_99V",
+      "description": "Fano-Pesaro",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ADRIABUS_F17",
+      "name": "ADRIABUS_F17",
+      "description": "Fano FS-Vallato-Tre Ponti-Falcineto",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ADRIABUS_F3",
+      "name": "ADRIABUS_F3",
+      "description": "Carignano-Fano-S.Angelo",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ADRIABUS_F4",
+      "name": "ADRIABUS_F4",
+      "description": "S.Angelo-Fano-Carignano-S.M.Arzilla",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ADRIABUS_F8a",
+      "name": "ADRIABUS_F8a",
+      "description": "Rosciano-Pincio-Stazione-Ospedale-S.Lazzaro",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ADRIABUS_F8r",
+      "name": "ADRIABUS_F8r",
+      "description": "S. Lazzaro-Ospedale-Stazione Pincio-Rosciano",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ADRIABUS_MS",
+      "name": "ADRIABUS_MS",
+      "description": "San Decenzio-Sottomonte",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ADRIABUS_RSB",
+      "name": "ADRIABUS_RSB",
+      "description": "Riviera San Bartolo",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_35",
+      "name": "ATMA_35",
+      "description": "LINEA 35  NAVETTA STAZIONE DI TORRETTE - OSPEDALE REGIONALE",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_BS1",
+      "name": "ATMA_BS1",
+      "description": "LINEE SUD BUCCI SENIGALLIA",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_BS3",
+      "name": "ATMA_BS3",
+      "description": "LINEE VALLE DEL NEVOLA  BUCCI SENIGALLIA",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_BS4",
+      "name": "ATMA_BS4",
+      "description": "LINEE  BUCCI JESI   SENIGALLIA",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_BS5",
+      "name": "ATMA_BS5",
+      "description": "SENIGALLIA - FANO SNAM",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_BUS10",
+      "name": "ATMA_BUS10",
+      "description": "SENIGALLIA CAP. - LUNGOMARE DI LEVANTE - MARZOCCHETTA - MONTIGNANO - CASTELLARO",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_BUS8",
+      "name": "ATMA_BUS8",
+      "description": "SENIGALLIA - CANNELLA - B. CATENA - B. RIBECA - SENIGALLIA F.S.",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_CR3",
+      "name": "ATMA_CR3",
+      "description": "JESI - CHIARAVALLE - ROCCA PRIORA - FALCONARA - TORRETTE - ANCONA",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_D",
+      "name": "ATMA_D",
+      "description": "OSTRA - M.MARCIANO - ANCONA",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_E",
+      "name": "ATMA_E",
+      "description": "CHIARAVALLE.M.MARCIANO-SENIGALLIA",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_I",
+      "name": "ATMA_I",
+      "description": "JESI S M NUOVA  POLVERIGI AGUGLIANO ANCONA",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_J",
+      "name": "ATMA_J",
+      "description": "CHIARAVALLE - FALCONARA - TORRETTE- ANCONA - BARACCOLA",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_M",
+      "name": "ATMA_M",
+      "description": "BELVEDERE-S.MARCELLO-M.D'ALBA-C.VALLE-ANCONA",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_RAF",
+      "name": "ATMA_RAF",
+      "description": "AEROBUS RAFFAELLO",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_SA2",
+      "name": "ATMA_SA2",
+      "description": "JESI - CHIARAVALLE - ROCCA PRIORA - FALCONARA  ANCONA",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_VI2",
+      "name": "ATMA_VI2",
+      "description": "BELLISIO - PERGOLA - SENIGALLIA - ANCONA",
+      "transport_mode": "bus"
+    },
+    {
+      "id": "epd:IT:ITI3:Line:ATMA_VI3",
+      "name": "ATMA_VI3",
+      "description": "SAN LORENZO - ARCEVIA - SASSOFERRATO- FABRIANO",
+      "transport_mode": "bus"
+    }
+  ],
+  "journeys": [],
+  "warnings": [
+    "file non UTF-8: byte Latin-1 convertiti (fallback)"
+  ],
+  "routes": [
+    {
+      "id": "R-MARCHE",
+      "name": "Pesaro → Ancona",
+      "color": "#FFB000",
+      "stops": [
+        "ADRIABUS_FP1000",
+        "ADRIABUS_FP0040",
+        "ADRIABUS_FP6640",
+        "ADRIABUS_FP6650",
+        "ADRIABUS_FP6661",
+        "ADRIABUS_FP6670",
+        "ADRIABUS_FP6680",
+        "ADRIABUS_FP6690",
+        "ADRIABUS_FP6700",
+        "ADRIABUS_FF0661",
+        "ADRIABUS_FF0662",
+        "ADRIABUS_FF0658",
+        "ADRIABUS_FF0657",
+        "ADRIABUS_FF0665",
+        "ADRIABUS_FF0666",
+        "ADRIABUS_FF0667",
+        "ADRIABUS_FF0668",
+        "ADRIABUS_FF0759",
+        "ADRIABUS_FF1002",
+        "ADRIABUS_FF1004",
+        "ADRIABUS_FF0953",
+        "ADRIABUS_FF0954",
+        "ADRIABUS_FF0979",
+        "ADRIABUS_FF0956",
+        "ADRIABUS_FF0359",
+        "ADRIABUS_FF0958",
+        "ADRIABUS_FF0976",
+        "ADRIABUS_FF0960",
+        "ADRIABUS_FF0961",
+        "ADRIABUS_FF0962",
+        "ADRIABUS_FF0972",
+        "ADRIABUS_FF0971",
+        "ADRIABUS_FF0965",
+        "ADRIABUS_FF0966",
+        "ADRIABUS_FF0967",
+        "ADRIABUS_FMF040",
+        "ADRIABUS_FMF042",
+        "ADRIABUS_FMF044",
+        "ATMA_6223",
+        "ATMA_6410",
+        "ATMA_6413",
+        "ATMA_6417",
+        "ATMA_6419",
+        "ATMA_6421",
+        "ATMA_6423",
+        "ATMA_6424",
+        "ATMA_6427",
+        "ATMA_7002",
+        "ATMA_21040",
+        "ATMA_7006",
+        "ATMA_7011",
+        "ATMA_7014",
+        "ATMA_7024",
+        "ATMA_20026",
+        "ATMA_20011",
+        "ATMA_851"
+      ],
+      "note": "corridoio su rete NeTEx Adriabus spa, Soc. Consortile A.T.M.A."
+    }
+  ],
+  "vehicles": []
+}

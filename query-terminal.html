@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.query">Terminale Orari - Stefano Pucci</title>
+  <meta name="description" content="Terminale di interrogazione partenze live e bus: stazioni, ritardi, linee GTFS.">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css?v=20261023b">
+  <style>
+    #qt-out .term-line b{color:#00F0FF}
+    .qt-table{width:100%;border-collapse:collapse;font-size:.68rem;margin:6px 0 4px}
+    .qt-table th{color:#00F0FF;text-align:left;padding:4px 8px;border-bottom:1px solid rgba(0,240,255,.25);
+      font-weight:600;letter-spacing:.08em;font-size:.6rem;white-space:nowrap}
+    .qt-table td{padding:4px 8px;border-bottom:1px solid var(--term-glow-soft);color:var(--term-color);
+      font-family:'Courier New',Consolas,monospace;vertical-align:top}
+    .qt-title{border:1px solid rgba(0,240,255,.35);background:rgba(0,240,255,.06);
+      color:#00F0FF;text-align:center;font-weight:700;letter-spacing:.18em;
+      font-size:.72rem;padding:8px 6px;margin:10px 0 2px}
+    #qt-screen{height:420px;min-height:420px;max-height:420px}
+    @media(max-width:768px){#qt-screen{height:320px;min-height:320px;max-height:320px}}
+    .demo-note{font-size:.72rem;color:#6a6a7a;margin-top:12px}
+    .qt-wrap{width:760px;max-width:100%;margin:0 auto}
+  </style>
+  <meta property="og:title" content="Terminale Orari - Stefano Pucci">
+  <meta property="og:description" content="Terminale di interrogazione partenze live e bus: stazioni, ritardi, linee GTFS.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pucci-homelab.duckdns.org/query-terminal.html">
+  <meta property="og:image" content="https://pucci-homelab.duckdns.org/img/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Stefano Pucci — Portfolio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Terminale Orari - Stefano Pucci">
+  <meta name="twitter:description" content="Terminale di interrogazione partenze live e bus: stazioni, ritardi, linee GTFS.">
+  <meta name="twitter:image" content="https://pucci-homelab.duckdns.org/img/og-home.png">
+</head>
+<body class="grid-bg">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">stefano_pucci</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+        <li><a href="projects.html" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="pluservice.html" data-i18n="nav.pluservice">PLUSERVICE</a></li>
+        <li><a href="firewall.html" data-i18n="nav.firewall">FIREWALL</a></li>
+        <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">CONTATTI</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn lang-btn-it active" data-lang="it">ITA</button>
+        <button class="lang-btn lang-btn-en" data-lang="en">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label"><span class="line"></span><span data-i18n="qt.label">QUERY_TERMINAL</span></div>
+        <h2 data-i18n-html="qt.title">Orari <span>da terminale</span></h2>
+        <p data-i18n="qt.desc">&gt; Interroga partenze live Viaggiatreno e linee bus GTFS con comandi testuali</p>
+      </div>
+
+      <div class="qt-wrap">
+        <div class="retro-terminal" style="max-width:100%;margin:0">
+          <div class="term-crt">
+            <div class="term-screen" id="qt-screen">
+              <div class="term-output" id="qt-out"></div>
+            </div>
+            <div class="term-brand">STEFANO PUCCI — QUERY TERMINAL v1.0</div>
+          </div>
+        </div>
+      </div>
+      <p class="demo-note" data-i18n="qt.note">Dati: api/realtime.json (live, refresh cron 5 min) + api/gtfs.json (fermate reali). Futura sorgente: api/query.php su PostgreSQL.</p>
+
+      <div class="project-links" style="margin-top:24px">
+        <div class="project-links-list">
+          <a href="gtfs-demo.html" class="btn btn-sm btn-outline"><span data-i18n="qt.back">TORNA_A_GTFS_LIVE</span></a>
+          <a href="api/realtime.json" class="btn btn-sm btn-outline" target="_blank" rel="noopener">API_JSON</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-content">
+    <p>&copy; 2026 Stefano Pucci</p>
+    <div class="footer-links"><a href="projects.html" class="footer-link">Progetti</a><span class="footer-sep">|</span><a href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" class="footer-link">GitHub</a></div>
+  </div></div></footer>
+
+  <script src="js/i18n.js?v=20261026"></script>
+  <script src="js/main.js?v=20261023"></script>
+  <script src="js/terminal.js?v=20261023"></script>
+  <script src="js/query.js?v=20261023"></script>
+</body>
+</html>

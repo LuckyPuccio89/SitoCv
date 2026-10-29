@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title.gtfs">Infomobility GTFS Live - Stefano Pucci</title>
+  <meta name="description" content="Demo infomobilità stile GTFS/AVM: mappa schematica e tabellone arrivi real-time simulato.">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css?v=20261023b">
+  <style>
+    .demo-table{width:100%;border-collapse:collapse;font-size:.75rem}
+    .demo-table th,.demo-table td{border:1px solid rgba(30,30,46,.4);padding:8px 10px;text-align:left}
+    .demo-table th{color:#00F0FF;font-size:.62rem;letter-spacing:.1em;background:rgba(0,240,255,.04)}
+    .demo-table td{color:#c0c0d0}
+    .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+    .filter-row .btn-sm.active{background:#00F0FF;color:#0D0D0F}
+    #gtfs-map{width:100%;height:auto;border:1px solid rgba(30,30,46,.4);background:rgba(13,13,15,.5)}
+    .demo-note{font-size:.72rem;color:#6a6a7a;margin-top:12px}
+    canvas.chart{width:100%;display:block;border:1px solid rgba(30,30,46,.4);background:rgba(13,13,15,.5)}
+  </style>
+  <meta property="og:title" content="Infomobility GTFS Live - Stefano Pucci">
+  <meta property="og:description" content="Demo infomobilità stile GTFS/AVM: mappa schematica e tabellone arrivi real-time simulato.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pucci-homelab.duckdns.org/gtfs-demo.html">
+  <meta property="og:image" content="https://pucci-homelab.duckdns.org/img/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Stefano Pucci — Portfolio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Infomobility GTFS Live - Stefano Pucci">
+  <meta name="twitter:description" content="Demo infomobilità stile GTFS/AVM: mappa schematica e tabellone arrivi real-time simulato.">
+  <meta name="twitter:image" content="https://pucci-homelab.duckdns.org/img/og-home.png">
+</head>
+<body class="grid-bg">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">stefano_pucci</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+        <li><a href="projects.html" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="pluservice.html" data-i18n="nav.pluservice">PLUSERVICE</a></li>
+        <li><a href="firewall.html" data-i18n="nav.firewall">FIREWALL</a></li>
+        <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">CONTATTI</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn lang-btn-it active" data-lang="it">ITA</button>
+        <button class="lang-btn lang-btn-en" data-lang="en">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label"><span class="line"></span><span data-i18n="gtfs.label">INFOMOBILITY_DEMO</span></div>
+        <h2 data-i18n-html="gtfs.title">GTFS Live <span>Fano-Ancona</span></h2>
+        <p data-i18n="gtfs.desc">&gt; Fermate reali GTFS Trenitalia mdb-1319, corse simulate ogni 2s da api/gtfs.json</p>
+      </div>
+
+      <div class="data-freshness" aria-label="Data freshness">
+        <div class="fr-item">
+          <b data-i18n="gtfs.fresh_label">STATUS_DAEMON</b>
+          <span id="fresh-daemon" class="fr-badge fr-sim"><span class="fr-dot"></span><span>CHECK&hellip;</span></span>
+        </div>
+        <span class="fr-sep">|</span>
+        <div class="fr-item">
+          <b data-i18n="gtfs.fresh_sync">LAST_SYNC</b>
+          <span id="fresh-sync" data-i18n="gtfs.fresh_wait">in attesa dello snapshot&hellip;</span>
+        </div>
+        <span class="fr-sep">|</span>
+        <div class="fr-item">
+          <b data-i18n="gtfs.fresh_stations">STAZIONI_MONITORATE</b>
+          <span id="fresh-stations">&mdash;</span>
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <button class="btn btn-sm btn-outline active" data-route-filter="ALL" data-i18n="gtfs.all">TUTTE_LE_LINEE</button>
+        <button class="btn btn-sm btn-outline" data-route-filter="R-ADR">R-ADR_ADRIATICA</button>
+        <button class="btn btn-sm btn-outline" data-route-filter="R-LOC">R-LOC_LOCALE</button>
+        <span id="gtfs-updated" style="margin-left:auto;font-size:.68rem;color:#8E9AAF"></span>
+      </div>
+
+      <svg id="gtfs-map" role="img" aria-label="Mappa schematica linea"></svg>
+      <p id="gtfs-error" style="display:none;color:#ff5050">Errore caricamento api/gtfs.json</p>
+
+      <div class="section-label" style="margin:32px 0 16px;"><span class="line"></span><span data-i18n="gtfs.board">TABELLONE_ARRIVI</span></div>
+      <div style="overflow-x:auto">
+      <table class="demo-table">
+        <thead><tr>
+          <th data-i18n="gtfs.th_bus">MEZZO</th><th data-i18n="gtfs.th_line">LINEA</th>
+          <th data-i18n="gtfs.th_next">PROSSIMA_FERMATA</th><th data-i18n="gtfs.th_eta">ETA</th>
+          <th data-i18n="gtfs.th_delay">RITARDO</th><th data-i18n="gtfs.th_status">STATO</th>
+        </tr></thead>
+        <tbody id="gtfs-board-body"><tr><td colspan="6">loading…</td></tr></tbody>
+      </table>
+      </div>
+
+      <div class="section-label" style="margin:32px 0 16px;"><span class="line"></span><span data-i18n="gtfs.live">PARTENZE_LIVE_VIAGGIATRENO</span></div>
+      <div class="filter-row" style="align-items:center">
+        <span id="live-badge" class="status"><span class="status-dot"></span><span>CHECK…</span></span>
+        <span style="display:flex;gap:8px">
+          <button id="live-tab-dep" class="btn btn-sm" data-i18n="gtfs.live_dep">PARTENZE</button>
+          <button id="live-tab-arr" class="btn btn-sm btn-outline" data-i18n="gtfs.live_arr">ARRIVI</button>
+        </span>
+        <span id="live-stations" style="display:flex;gap:8px;flex-wrap:wrap"></span>
+        <span id="live-updated" style="margin-left:auto;font-size:.68rem;color:#8E9AAF"></span>
+      </div>
+      <div style="overflow-x:auto">
+      <table class="demo-table">
+        <thead><tr><th>ORA</th><th>TRENO</th><th id="live-th-place">DESTINAZIONE</th><th>RITARDO</th><th>BINARIO</th></tr></thead>
+        <tbody id="live-board-body"><tr><td colspan="5">loading…</td></tr></tbody>
+      </table>
+      </div>
+      <p class="demo-note" data-i18n="gtfs.live_note">Live non ufficiale Viaggiatreno (poll server ogni 5 min via cron, tools/viaggiatreno-poll.py). Se il badge è STALE/SIMULATO, mostra l'ultimo snapshot o la simulazione.</p>
+      <p class="demo-note" data-i18n="gtfs.note">Fermate reali (stop_id, lat/lon) dal feed GTFS Trenitalia mdb-1319. Corse simulate: il feed ha solo 2 trip sulla tratta, nessun GTFS-RT bus. Fonti in api/gtfs.json.</p>
+      <p class="demo-note"><strong>MISURATO (29/10/2026):</strong> poll Viaggiatreno ogni 5 min via cron &mdash; 4 stazioni, 0 errori, ~60 movimenti per ciclo; snapshot GTFS statico del 14/10/2026 (corse simulate, nessun GTFS-RT bus esposto).</p>
+
+      <div class="project-links" style="margin-top:24px">
+        <div class="project-links-list">
+          <a href="projects.html" class="btn btn-sm btn-outline"><span data-i18n="gtfs.back">TORNA_A_PROGETTI</span></a>
+          <a href="query-terminal.html" class="btn btn-sm"><span data-i18n="projects.btn_term">TERMINALE</span></a>
+          <a href="api/gtfs.json" class="btn btn-sm btn-outline" target="_blank" rel="noopener">API_JSON</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-content">
+    <p>&copy; 2026 Stefano Pucci</p>
+    <div class="footer-links"><a href="projects.html" class="footer-link">Progetti</a><span class="footer-sep">|</span><a href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" class="footer-link">GitHub</a></div>
+  </div></div></footer>
+
+  <script src="js/i18n.js?v=20261026"></script>
+  <script src="js/main.js?v=20261023"></script>
+  <script src="js/gtfs.js?v=20261014"></script>
+  <script src="js/gtfs-live.js?v=20261023"></script>
+</body>
+</html>

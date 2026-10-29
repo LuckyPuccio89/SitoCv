@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="ad.meta_title">Active Directory Live — Samba 4.19 / Zentyal - Stefano Pucci</title>
+  <meta name="description" data-i18n-title="ad.meta_desc" content="Monitoraggio live del domain controller Samba 4.19 su Zentyal: utenti, computer, gruppi, DNS, autenticazioni, dbcheck e alert. Dati aggregati e sanitizzati, nessun nome utente o IP pubblicato.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗄️</text></svg>">
+  <link rel="stylesheet" href="css/style.css?v=20261023b">
+  <style>
+    .ad-note { border: 1px solid var(--border); border-left: 3px solid var(--cyan); background: var(--bg-card); border-radius: 8px; padding: 12px 16px; color: var(--text); margin: 12px 0 24px; font-size: 12.5px; line-height: 1.6; }
+    .ad-note strong { color: var(--cyan); }
+    .ad-badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 0; }
+    .ad-badge { font-size: 11px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--steel); background: var(--bg-card); }
+    .ad-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 18px 0 30px; }
+    .ad-card { border: 1px solid var(--border); border-radius: 10px; background: var(--bg-card); padding: 18px; }
+    .ad-card h3 { font-family: var(--font-mono); font-size: .82rem; letter-spacing: .12em; color: var(--cyan); margin: 0 0 4px; }
+    .ad-card .role { color: var(--text-dim); font-size: .7rem; margin-bottom: 14px; }
+    .ad-status { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .1em; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--border); margin-bottom: 14px; }
+    .ad-status .dot { width: 8px; height: 8px; border-radius: 50%; background: #ff6b6b; box-shadow: 0 0 8px #ff6b6b; }
+    .ad-status.up { color: #4ade80; border-color: rgba(74,222,128,.35); }
+    .ad-status.up .dot { background: #4ade80; box-shadow: 0 0 8px #4ade80; }
+    .ad-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+    .ad-kpi label { display: block; font-size: .6rem; letter-spacing: .12em; color: var(--text-dim); margin-bottom: 2px; }
+    .ad-kpi b { font-family: var(--font-mono); font-size: 1rem; color: var(--text); font-weight: 600; word-break: break-word; }
+    .ad-kpi small { color: var(--text-dim); font-size: .62rem; }
+    .ad-svc { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 6px 0; border-bottom: 1px dashed var(--border); font-family: var(--font-mono); font-size: .76rem; }
+    .ad-svc:last-child { border-bottom: 0; }
+    .ad-svc .name { color: var(--text); }
+    .ad-svc .meta { color: var(--text-dim); font-size: .68rem; }
+    .ad-svc .ok { color: #4ade80; }
+    .ad-svc .ko { color: #ff6b6b; }
+    .ad-counters { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; margin: 14px 0 30px; }
+    .ad-counter { border: 1px solid var(--border); border-radius: 10px; background: var(--bg-card); padding: 14px 16px; }
+    .ad-counter label { display: block; font-size: .6rem; letter-spacing: .12em; color: var(--text-dim); margin-bottom: 4px; }
+    .ad-counter b { font-family: var(--font-mono); font-size: 1.35rem; color: var(--text); }
+    .ad-counter.warn b { color: #ffb020; }
+    .ad-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 0 0 30px; }
+    .ad-chart { border: 1px solid var(--border); border-radius: 10px; background: var(--bg-card); padding: 14px 16px; }
+    .ad-chart header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+    .ad-chart h4 { margin: 0; font-size: .7rem; letter-spacing: .1em; color: var(--cyan); font-family: var(--font-mono); }
+    .ad-chart .last { font-family: var(--font-mono); font-size: .78rem; color: var(--text); }
+    .ad-chart svg { width: 100%; height: 80px; display: block; }
+    .ad-chart .empty { color: var(--text-dim); font-size: .72rem; padding: 32px 0; text-align: center; }
+    .ad-legend { display: flex; gap: 14px; font-size: .62rem; color: var(--text-dim); font-family: var(--font-mono); margin-top: 4px; }
+    .ad-legend i { display: inline-block; width: 14px; height: 2px; margin-right: 5px; vertical-align: middle; }
+    .ad-table { width: 100%; border-collapse: collapse; font-size: .74rem; margin: 8px 0 0; }
+    .ad-table th { text-align: left; color: var(--cyan); font-size: .6rem; letter-spacing: .12em; padding: 8px 10px; border: 1px solid var(--border); background: rgba(0,240,255,.04); }
+    .ad-table td { padding: 7px 10px; border: 1px solid var(--border); color: var(--steel); font-family: var(--font-mono); }
+    .ad-table td:last-child { text-align: right; }
+    .ad-tables { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 0 0 30px; }
+    .ad-alerts { border: 1px solid var(--border); border-radius: 10px; background: var(--bg-card); padding: 16px 18px; margin: 0 0 30px; }
+    .ad-alerts h3 { color: var(--cyan); font-family: var(--font-mono); font-size: .78rem; letter-spacing: .1em; margin: 0 0 10px; }
+    .ad-alerts-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 14px; }
+    .ad-alerts-row div { font-family: var(--font-mono); }
+    .ad-alerts-row label { display: block; font-size: .6rem; letter-spacing: .12em; color: var(--text-dim); margin-bottom: 3px; }
+    .ad-alerts-row b { font-size: 1.15rem; color: var(--text); }
+    .ad-alerts p { color: var(--text-dim); font-size: .7rem; margin: 12px 0 0; line-height: 1.6; }
+    .ad-grafana { border: 1px solid var(--border); border-radius: 10px; background: var(--bg-card); padding: 16px 18px; margin: 0 0 30px; }
+    .ad-grafana h3 { color: var(--cyan); font-family: var(--font-mono); font-size: .78rem; letter-spacing: .1em; margin: 0 0 10px; }
+    .ad-grafana-note { color: var(--text-dim); font-size: .7rem; margin: 0 0 12px; line-height: 1.6; }
+    .ad-grafana-frame { position: relative; width: 100%; min-height: 420px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: #0b0b10; }
+    .ad-grafana-frame iframe { display: block; width: 100%; height: 520px; border: 0; }
+    .ad-grafana-fallback { display: flex; align-items: center; justify-content: center; min-height: 420px; padding: 24px; text-align: center; color: var(--text-dim); font-size: .75rem; line-height: 1.7; }
+    .ad-grafana-link { margin: 12px 0 0; }
+    .ad-updated { font-family: var(--font-mono); font-size: .68rem; color: var(--text-dim); margin: 0 0 18px; }
+    .ad-updated .stale { color: #ffb020; }
+  </style>
+</head>
+<body class="grid-bg">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">stefano_pucci</a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-i18n="nav.home">HOME</a></li>
+        <li><a href="about.html" data-i18n="nav.about">ABOUT</a></li>
+        <li><a href="projects.html" class="active" data-i18n="nav.projects">PROGETTI</a></li>
+        <li><a href="firewall.html" data-i18n="nav.firewall">FIREWALL</a></li>
+        <li><a href="certifications.html" data-i18n="nav.certs">CERTIFICAZIONI</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">CONTATTI</a></li>
+      </ul>
+      <div class="lang-switcher">
+        <button class="lang-btn lang-btn-it active" data-lang="it" data-i18n="nav.lang_it">ITA</button>
+        <button class="lang-btn lang-btn-en" data-lang="en" data-i18n="nav.lang_en">ENG</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label"><span class="line"></span><span data-i18n="ad.label">AD_LIVE</span></div>
+        <h2 data-i18n-html="ad.title">Active Directory <span>Live</span></h2>
+        <p data-i18n="ad.desc">&gt; Domain controller Samba 4.19 su Zentyal: utenti, servizi, DNS e autenticazioni con aggiornamento ogni 60 secondi</p>
+        <div class="ad-badge-row">
+          <span class="ad-badge">Samba 4.19</span>
+          <span class="ad-badge">Zentyal 8.1</span>
+          <span class="ad-badge">Prometheus</span>
+          <span class="ad-badge">Grafana</span>
+          <span class="ad-badge" data-i18n="ad.badge_refresh">REFRESH 60s</span>
+        </div>
+        <div class="project-links-list" style="margin-top:16px;">
+          <a href="projects.html" class="btn btn-sm btn-outline" data-i18n="ad.back">&larr; PROGETTI</a>
+        </div>
+      </div>
+
+      <div class="ad-note" data-i18n-html="ad.note">
+        <strong>Dati reali, nessun nome utente.</strong> La pagina legge uno snapshot JSON generato ogni 60 secondi dal
+        server a partire da Prometheus: conteggi di utenti, computer e gruppi, stato dei servizi, record SRV, esito del
+        <code>dbcheck</code> e numero di alert. Nomi di account, indirizzi IP delle sorgenti e configurazioni non vengono
+        mai pubblicati. La dashboard Grafana completa resta disponibile solo dalla rete locale.
+      </div>
+
+      <p class="ad-updated"><span data-i18n="ad.updated">Ultimo aggiornamento</span>: <span id="ad-updated">—</span> · <span data-i18n="ad.refresh">refresh</span> 60s · <span id="ad-stale"></span></p>
+
+      <div class="ad-grid" id="ad-summary">
+        <div class="ad-card">
+          <h3 data-i18n="ad.domain_title">DOMAIN CONTROLLER</h3>
+          <div class="role" data-i18n="ad.domain_role">Samba AD DC / DNS integrato</div>
+          <span class="ad-status" id="ad-domain-status"><span class="dot"></span><span class="state">—</span></span>
+          <div class="ad-kpis">
+            <div class="ad-kpi"><label>HOST</label><b data-k="dc">—</b></div>
+            <div class="ad-kpi"><label data-i18n="ad.kpi_version">VERSIONE</label><b data-k="version">—</b></div>
+            <div class="ad-kpi"><label data-i18n="ad.kpi_domain_level">DOMAIN LEVEL</label><b data-k="domain_level">—</b></div>
+            <div class="ad-kpi"><label data-i18n="ad.kpi_forest_level">FOREST LEVEL</label><b data-k="forest_level">—</b></div>
+            <div class="ad-kpi"><label data-i18n="ad.kpi_dcs">DOMAIN CONTROLLER</label><b data-k="dcs">—</b></div>
+            <div class="ad-kpi"><label data-i18n="ad.kpi_privileged">ACCOUNT PRIVILEGIATI</label><b data-k="privileged">—</b></div>
+          </div>
+        </div>
+
+        <div class="ad-card">
+          <h3 data-i18n="ad.services_title">SERVIZI</h3>
+          <div class="role" data-i18n="ad.services_role">Stato systemd dei servizi del DC</div>
+          <span class="ad-status" id="ad-services-status"><span class="dot"></span><span class="state">—</span></span>
+          <div id="ad-services"><div class="ad-svc"><span class="name">—</span></div></div>
+        </div>
+
+        <div class="ad-card">
+          <h3 data-i18n="ad.collector_title">COLLECTOR</h3>
+          <div class="role" data-i18n="ad.collector_role">Exporter Python in sola lettura</div>
+          <span class="ad-status" id="ad-collector-status"><span class="dot"></span><span class="state">—</span></span>
+          <div class="ad-kpis">
+            <div class="ad-kpi"><label data-i18n="ad.kpi_last_run">ULTIMA RACCOLTA</label><b data-k="age">—</b></div>
+            <div class="ad-kpi"><label data-i18n="ad.kpi_duration">DURATA</label><b data-k="duration">—</b></div>
+            <div class="ad-kpi"><label data-i18n="ad.kpi_sections">SEZIONI OK</label><b data-k="sections">—</b></div>
+            <div class="ad-kpi"><label data-i18n="ad.kpi_partial">ERRORI PARZIALI</label><b data-k="partial">—</b></div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="color:var(--cyan);font-family:var(--font-mono);font-size:.82rem;letter-spacing:.1em;margin:30px 0 4px;" data-i18n="ad.counters_title">DIRECTORY</h3>
+      <div class="ad-counters" id="ad-counters">
+        <div class="ad-counter"><label data-i18n="ad.c_users">UTENTI</label><b data-k="users">—</b></div>
+        <div class="ad-counter"><label data-i18n="ad.c_enabled">ATTIVI</label><b data-k="users_enabled">—</b></div>
+        <div class="ad-counter"><label data-i18n="ad.c_disabled">DISABILITATI</label><b data-k="users_disabled">—</b></div>
+        <div class="ad-counter"><label data-i18n="ad.c_locked">BLOCCATI</label><b data-k="users_locked">—</b></div>
+        <div class="ad-counter"><label data-i18n="ad.c_computers">COMPUTER</label><b data-k="computers">—</b></div>
+        <div class="ad-counter"><label data-i18n="ad.c_groups">GRUPPI</label><b data-k="groups">—</b></div>
+        <div class="ad-counter"><label data-i18n="ad.c_ous">OU</label><b data-k="ous">—</b></div>
+        <div class="ad-counter"><label data-i18n="ad.c_pwd_never">PWD SENZA SCADENZA</label><b data-k="pwd_never_expires">—</b></div>
+      </div>
+
+      <h3 style="color:var(--cyan);font-family:var(--font-mono);font-size:.82rem;letter-spacing:.1em;margin:30px 0 4px;" data-i18n="ad.charts_title">ANDAMENTO</h3>
+      <div class="ad-charts">
+        <div class="ad-chart">
+          <header><h4 data-i18n="ad.chart_auth">AUTENTICAZIONI / 6H</h4><span class="last" id="ad-c1">—</span></header>
+          <div class="chart-body" data-chart="auth"></div>
+          <div class="ad-legend"><span><i style="background:#ff6b6b"></i><span data-i18n="ad.leg_failures">fallite</span></span><span><i style="background:#4ade80"></i><span data-i18n="ad.leg_success">riuscite</span></span></div>
+        </div>
+        <div class="ad-chart">
+          <header><h4 data-i18n="ad.chart_duration">DURATA RACCOLTA / 6H</h4><span class="last" id="ad-c2">—</span></header>
+          <div class="chart-body" data-chart="duration"></div>
+          <div class="ad-legend"><span><i style="background:#00f0ff"></i><span data-i18n="ad.leg_seconds">secondi</span></span></div>
+        </div>
+      </div>
+
+      <div class="ad-tables">
+        <div>
+          <h4 style="color:var(--cyan);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;margin:0 0 8px;" data-i18n="ad.auth_title">AUTENTICAZIONI (1H)</h4>
+          <table class="ad-table">
+            <thead><tr><th data-i18n="ad.th_metric">METRICA</th><th data-i18n="ad.th_value">VALORE</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="ad.auth_success">Riuscite</td><td id="ad-auth-success">—</td></tr>
+              <tr><td data-i18n="ad.auth_failures">Fallite</td><td id="ad-auth-failures">—</td></tr>
+              <tr><td data-i18n="ad.auth_lockouts">Lockout</td><td id="ad-auth-lockouts">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h4 style="color:var(--cyan);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;margin:0 0 8px;" data-i18n="ad.dns_title">DNS E SALUTE</h4>
+          <table class="ad-table">
+            <thead><tr><th data-i18n="ad.th_check">CONTROLLO</th><th data-i18n="ad.th_value">VALORE</th></tr></thead>
+            <tbody>
+              <tr><td data-i18n="ad.dns_zones">Zone DNS</td><td id="ad-dns-zones">—</td></tr>
+              <tr><td data-i18n="ad.dns_srv">Record SRV</td><td id="ad-dns-srv">—</td></tr>
+              <tr><td data-i18n="ad.dns_xfer">Transfer deferred</td><td id="ad-dns-xfer">—</td></tr>
+              <tr><td>SYSVOL</td><td id="ad-sysvol">—</td></tr>
+              <tr><td data-i18n="ad.dbcheck">dbcheck errori</td><td id="ad-dbcheck">—</td></tr>
+              <tr><td data-i18n="ad.dbcheck_age">dbcheck eta</td><td id="ad-dbcheck-age">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="ad-alerts">
+        <h3 data-i18n="ad.alerts_title">ALERT GRAFANA</h3>
+        <div class="ad-alerts-row">
+          <div><label data-i18n="ad.al_total">REGOLE</label><b id="ad-al-total">—</b></div>
+          <div><label data-i18n="ad.al_firing">FIRING</label><b id="ad-al-firing">—</b></div>
+          <div><label data-i18n="ad.al_pending">PENDING</label><b id="ad-al-pending">—</b></div>
+          <div><label data-i18n="ad.al_inactive">INACTIVE</label><b id="ad-al-inactive">—</b></div>
+        </div>
+        <p data-i18n="ad.alerts_note">16 regole Grafana-managed su disponibilità, servizi, directory, autenticazioni, DNS e salute del DC. Le notifiche partono via email; il pannello della dashboard è incorporato qui sotto.</p>
+      </div>
+
+      <div class="ad-grafana">
+        <h3 data-i18n="ad.panel_title">DASHBOARD_GRAFANA</h3>
+        <p class="ad-grafana-note" data-i18n="ad.panel_note">Pannello live della dashboard Active Directory. Visibile solo dalla rete locale; il resto dei dati resta aggregato.</p>
+        <div class="ad-grafana-frame" id="ad-grafana-frame">
+          <div class="ad-grafana-fallback" id="ad-grafana-fallback" data-i18n="ad.panel_fallback">Pannello non raggiungibile da questa rete: la dashboard completa è disponibile solo dalla LAN.</div>
+        </div>
+        <p class="ad-grafana-link"><a class="btn btn-sm btn-outline" href="/grafana/d/active-directory/active-directory-e28094-home-pucci-lan?kiosk&amp;theme=dark" target="_blank" rel="noopener" data-i18n="ad.panel_open">APRI_DASHBOARD</a></p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2026 Stefano Pucci</p>
+        <p class="footer-tagline" data-i18n-html="footer.tagline">built with &lt;html&gt; &bull; <span class="prompt-symbol">whoami</span></p>
+        <div class="footer-links">
+          <a href="mailto:stefano.informatico@gmail.com" class="footer-link">Email</a>
+          <span class="footer-sep">|</span>
+          <a href="https://www.linkedin.com/in/stefano-pucci-08210a19a/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+          <span class="footer-sep">|</span>
+          <a href="cv/cv-stefano-pucci.pdf" download class="footer-link">CV</a>
+          <span class="footer-sep">|</span>
+          <a href="https://github.com/LuckyPuccio89/SitoCv" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js?v=20261023b"></script>
+  <script src="js/ad-i18n.js?v=20261023b"></script>
+  <script src="js/ad-monitoring.js?v=20261023b"></script>
+  <script src="js/main.js?v=20261013b"></script>
+</body>
+</html>
